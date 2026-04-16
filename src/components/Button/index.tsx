@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function Button({ children, styles, handleClick }: Props) {
-    return <button className={`${styles}`} onClick={() => handleClick()}>{children}</button>
+    return <button className={`cursor-pointer ${styles}`} onClick={() => handleClick()}>{children}</button>
 }

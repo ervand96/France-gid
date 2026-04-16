@@ -4,11 +4,11 @@ export type NavItem = {
 };
 
 export const navData: NavItem[] = [
-  { name: "Excursions", path: "/excursions" },
-  { name: "Pricelist", path: "/pricing" },
-  { name: "Transfers", path: "/transfers" },
-  { name: "About", path: "/about" },
-  { name: "Reviews", path: "/reviews" },
-  { name: "News", path: "/news" },
-  { name: "Contacts", path: "/contacts" },
+  { name: "Главная", path: "/" },
+  { name: "Экскурсии по Парижу", path: "/excursions-in-paris" },
+  {
+    name: "Экскурсии по пригородам Парижа",
+    path: "/excursions-to-the-suburbs-of-paris",
+  },
+  { name: "Туры по Франции", path: "/tours-in-france" },
 ];
