@@ -1,7 +1,11 @@
+"use client"
+
+import HeroSection from "@/components/HeroSection";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Hello World
+    <div>
+      <HeroSection heading="Experience Paris" coloredPart="Like Never Before" subHeading="Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers." />
     </div>
   );
 }
