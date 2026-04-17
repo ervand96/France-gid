@@ -9,7 +9,7 @@ type Props = {
 
 import Button from "../Button";
 import Container from "../Container";
-import phoneIcon from "../../assets/elements/phone.png";
+import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
 
 export default function HeroSection({
