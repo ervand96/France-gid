@@ -1,6 +1,5 @@
 {
-  "Home": {
-    "title": "Welcome",
-    "desc": "Hello world"
+  "IndexPage": {
+    "title": "example"
   }
 }
