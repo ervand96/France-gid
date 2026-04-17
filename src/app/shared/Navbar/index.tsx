@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { navData } from "@/constants/navbarData";
 import Container from "../Container";
-import Button from "../Button";
-import menuIcon from "../../assets/elements/menu.png";
+import Button from "@/app/shared/Button";
+import menuIcon from "@/assets/elements/menu.png";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
