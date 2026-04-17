@@ -9,10 +9,10 @@ import Button from "../Button";
 import menuIcon from "../../assets/elements/menu.png";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   return (
@@ -38,22 +38,18 @@ export default function Navbar() {
                   </li>
                 ))}
               <Button
-                children={"Забронировать тур"}
+                text={"Забронировать тур"}
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-                handleClick={() => console.log("aaa")}
+                onClick={() => console.log("aaa")}
               />
             </ul>
-            <Button
-              children={
-                <Image
-                  src={menuIcon}
-                  alt="Navbar menu icon"
-                  className={`w-[30px] h-[30px] ${isMenuOpen && "rotate-90"}`}
-                />
-              }
-              styles="xl:hidden"
-              handleClick={toggleMenu}
-            />
+            <Button text={"s"} styles="xl:hidden" onClick={toggleMenu}>
+              <Image
+                src={menuIcon}
+                alt="Navbar menu icon"
+                className={`w-[30px] h-[30px] ${isMenuOpen && "rotate-90"}`}
+              />
+            </Button>
           </div>
           {isMenuOpen && (
             <div className="xl:hidden flex flex-col items-end gap-[20px] bg-primary px-[20px] rounded-xl">

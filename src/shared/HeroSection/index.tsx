@@ -43,13 +43,13 @@ export default function HeroSection({
           </div>
           <div className="flex lg:flex-row flex-col justify-center items-center gap-[16px]">
             <Button
-              children="Заказать экскурсию"
+              text="Заказать экскурсию"
               styles="min-w-[255px] px-[40px] py-[18px] text-primary text-[16px] leading-[150%] font-[600] bg-accent border-[2px] border-accent rounded-[6px] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-              handleClick={() => console.log("aaa")}
+              onClick={() => console.log("aaa")}
             />
             <Button
               styles="min-w-[255px] flex justify-center items-center gap-[8px] px-[40px] py-[18px] text-secondary text-[16px] leading-[150%] font-[600] border-[2px] border-secondary rounded-[6px] hover:bg-primary hover:border-primary transition-all duration-500"
-              handleClick={() => console.log("aaa")}
+              onClick={() => console.log("aaa")}
             >
               <Image src={phoneIcon} alt="Phone icon" width={20} height={20} />
               <p>Связаться с нами</p>

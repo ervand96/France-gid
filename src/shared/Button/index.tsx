@@ -1,9 +1,19 @@
-type Props = {
-    children: React.ReactNode;
-    styles: string
-    handleClick: () => void;
-};
+import { ButtonType } from "./type";
 
-export default function Button({ children, styles, handleClick }: Props) {
-    return <button className={`cursor-pointer ${styles}`} onClick={() => handleClick()}>{children}</button>
+export default function Button({
+  text,
+  styles,
+  onClick,
+  disabled,
+  children
+}: ButtonType) {
+  return (
+    <button
+      disabled={disabled}
+      className={`cursor-pointer ${styles}`}
+      onClick={onClick}
+    >
+     {children ? children : <span>{text}</span>}
+    </button>
+  );
 }
