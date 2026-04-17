@@ -7,6 +7,7 @@ import { navData } from "@/constants/navbarData";
 import Container from "../Container";
 import Button from "@/app/shared/Button";
 import menuIcon from "@/assets/elements/menu.png";
+import closeIcon from "@/assets/elements/close.png";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -45,14 +46,14 @@ export default function Navbar() {
             </ul>
             <Button text={"s"} styles="xl:hidden" onClick={toggleMenu}>
               <Image
-                src={menuIcon}
-                alt="Navbar menu icon"
-                className={`w-[30px] h-[30px] ${isMenuOpen && "rotate-90"}`}
+                src={isMenuOpen ? closeIcon : menuIcon}
+                alt={isMenuOpen ? "Navbar close icon" : "Navbar menu icon"}
+                className="w-[30px] h-[30px]"
               />
             </Button>
           </div>
           {isMenuOpen && (
-            <div className="xl:hidden flex flex-col items-end gap-[20px] bg-primary px-[20px] rounded-xl">
+            <div className="xl:hidden flex flex-col items-end gap-[20px] bg-primary p-[20px] rounded-xl">
               {navData &&
                 navData.map((item, index) => (
                   <Link

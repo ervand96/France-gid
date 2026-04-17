@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <div>
       <HeroSection
-        heading="Experience Paris"
-        coloredPart="Like Never Before"
-        subHeading="Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers."
+        heading="Откройте для себя Париж"
+        coloredPart="Как никогда прежде"
+        subHeading="Эксклюзивные экскурсии с гидом, раскрывающие скрытую душу Города Света. Подлинные впечатления, созданные для взыскательных путешественников."
       />
     </div>
   );
