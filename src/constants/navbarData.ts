@@ -4,7 +4,7 @@ export type NavItem = {
 };
 
 export const navData: NavItem[] = [
-  { name: "Excursions", path: "/" },
+  { name: "Excursions", path: "/excursions" },
   { name: "Pricelist", path: "/pricing" },
   { name: "Transfers", path: "/transfers" },
   { name: "About", path: "/about" },
