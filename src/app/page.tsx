@@ -1,6 +1,6 @@
 "use client";
 
-import HeroSection from "@/shared/HeroSection";
+import HeroSection from "@/app/shared/HeroSection";
 
 export default function Home() {
   return (
