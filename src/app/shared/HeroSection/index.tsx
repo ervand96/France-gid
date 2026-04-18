@@ -29,7 +29,7 @@ export default function HeroSection({
         >
           <div className="flex flex-col items-center justify-center text-center gap-[24px]">
             <h1
-              className={`text-[36px] sm:text-[48px] lg:text-[96px]  font-[500] leading-[110%] text-secondary ${headingStyles}`}
+              className={`text-[36px] sm:text-[48px] lg:text-[96px] font-[500] leading-[110%] text-secondary ${headingStyles}`}
               style={{ fontFamily: "Oswald" }}
             >
               {heading}

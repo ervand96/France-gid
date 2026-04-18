@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { StaticImageData } from "next/image";
+import { ReactNode } from "react";
 
 export type CardType = {
   primaryText?: string;
@@ -9,10 +9,13 @@ export type CardType = {
   description?: string;
   descriptionStyles?: string;
   textBlockStyles?: string;
-  stylesOfCard: string;
+  stylesOfCard?: string;
+  bgImage?: StaticImageData;
   img?: StaticImageData;
   imageAltText?: string;
   imgStyles?: string;
   onClick?: () => void;
   children?: ReactNode;
+  isLink?: boolean;
+  path?: string;
 };
