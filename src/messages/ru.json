@@ -1,5 +1,12 @@
 {
-  "IndexPage": {
+  "Home": {
     "title": "правилно"
+  },
+  "Navbar": {
+    "Home": "Главная",
+    "ExcursionsInParis": "Экскурсии по Парижу",
+    "ExcursionsToTheSuburbsOfParis": "Экскурсии по пригородам Парижа",
+    "ToursOfFrance": "Туры по Франции",
+    "BookATour": "Забронировать тур"
   }
 }

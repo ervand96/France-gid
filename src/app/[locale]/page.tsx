@@ -4,7 +4,7 @@ import HeroSection from "@/app/shared/HeroSection";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
-  const t = useTranslations("IndexPage");
+  const t = useTranslations("Home");
   return (
     <div>
       <HeroSection

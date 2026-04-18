@@ -1,14 +1,16 @@
+import { PathnameEnum } from "./pathName";
+
 export type NavItem = {
-  name: string;
+  key: string;
   path: string;
 };
 
 export const navData: NavItem[] = [
-  { name: "Главная", path: "/" },
-  { name: "Экскурсии по Парижу", path: "/excursions-in-paris" },
+  { key: "Home", path: PathnameEnum.HOME },
+  { key: "ExcursionsInParis", path: PathnameEnum.ExcursionsInParis },
   {
-    name: "Экскурсии по пригородам Парижа",
-    path: "/excursions-to-the-suburbs-of-paris",
+    key: "ExcursionsToTheSuburbsOfParis",
+    path: PathnameEnum.ExcursionsToTheSuburbsOfParis,
   },
-  { name: "Туры по Франции", path: "/tours-in-france" },
+  { key: "ToursOfFrance", path: PathnameEnum.ToursOfFrance },
 ];
