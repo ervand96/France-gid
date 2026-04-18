@@ -34,6 +34,7 @@ export default function Navbar() {
             >
               Elite Paris Guide
             </Link>
+
             <ul className="hidden xl:flex justify-center items-center xl:gap-[32px]">
               {navData &&
                 navData.map((item, index) => (
@@ -49,7 +50,9 @@ export default function Navbar() {
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
                 onClick={() => console.log("aaa")}
               />
+              <LanguageSwitcher />
             </ul>
+
             <Button text={"s"} styles="xl:hidden" onClick={toggleMenu}>
               <Image
                 src={isMenuOpen ? closeIcon : menuIcon}
@@ -57,9 +60,10 @@ export default function Navbar() {
                 className="w-[30px] h-[30px]"
               />
             </Button>
+
           </div>
           {isMenuOpen && (
-            <div className="xl:hidden flex flex-col items-end gap-[20px] bg-primary p-[20px] rounded-xl">
+            <div className="xl:hidden flex flex-col items-start gap-[20px] bg-primary/1 p-[20px] rounded-xl">
               {navData &&
                 navData.map((item, index) => (
                   <Link
@@ -71,9 +75,17 @@ export default function Navbar() {
                     {t(item.key)}
                   </Link>
                 ))}
+              <div className="pt-[10px] border-t border-white/10 w-full flex justify-between items-center">
+                <LanguageSwitcher />
+                <Button
+                  text={t("BookATour")}
+                  styles="bg-accent text-primary text-[12px] rounded-[2px] px-[18px] py-[6px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                  onClick={() => console.log("aaa")}
+                />
+              </div>
             </div>
           )}
-          <LanguageSwitcher />
+
         </Container>
       </div>
     </div>
