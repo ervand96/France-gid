@@ -16,7 +16,7 @@ export default function LanguageSwitcher() {
 
   return (
     <button
-      onClick={() => router.push(newPath)}
+       onClick={() => router.push(newPath, { scroll: false })}
       className="flex items-center gap-2"
     >
       {locale === "en" ? "🇷🇺 Russian" : "🇬🇧 English"}

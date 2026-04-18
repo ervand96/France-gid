@@ -34,7 +34,7 @@ export default function Home() {
                     textBlockStyles="w-full flex flex-col lg:flex-row justify-between lg:items-center items-start gap-y-[8px]"
                     secondaryText={`📅 ${elm.duration}`}
                     secondaryTextStyles="text-[14px] font-[400] leading-[143%] text-secondary group-hover:underline transition-all duration-500"
-                    description={elm.category}
+                    description={t(elm.category)}
                     descriptionStyles="text-[11px] font-[600] leading-[143%] text-accent bg-secondary rounded-md px-[5px] py-[2px] group-hover:bg-secondary/20 group-hover:text-secondary transition-all duration-500"
                   ><span className="absolute w-8 h-8 flex justify-center items-center top-[14px] right-[14px] text-[24px] rounded-full group-hover:text-primary group-hover:bg-secondary/20 transition-all duration-500">
                       &#10095;
