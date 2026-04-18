@@ -7,6 +7,7 @@ import { excursionsData } from "@/constants/excursionData";
 import Card from "@/app/shared/Card";
 import Container from "@/app/shared/Container";
 import Button from "@/app/shared/Button";
+import GetInTouch from "../shared/getInTouch";
 
 export default function Home() {
   const t = useTranslations("HeroSection");
@@ -54,6 +55,7 @@ export default function Home() {
           </Container>
         </section>
       </div>
+      <GetInTouch />
     </div>
   );
 }
