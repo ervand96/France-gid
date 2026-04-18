@@ -8,8 +8,9 @@ type Props = {
 };
 
 import { useState, useEffect } from "react";
-import Button from "../Button";
-import Container from "../Container";
+import { useTranslations } from "next-intl";
+import Button from "@/app/shared/Button";
+import Container from "@/app/shared/Container";
 import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
 import scrollAnimation from "@/assets/elements/scroll.gif"
@@ -23,12 +24,13 @@ export default function HeroSection({
   headingStyles,
   subHeadingStyles,
 }: Props) {
+  const t = useTranslations("HeroSection");
 
   const [hideScrollIcon, setHideScrollIcon] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setHideScrollIcon(window.scrollY  > 50)
+      setHideScrollIcon(window.scrollY > 50)
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -60,7 +62,7 @@ export default function HeroSection({
           </div>
           <div className="flex lg:flex-row flex-col justify-center items-center gap-[16px]">
             <Button
-              text="Заказать экскурсию"
+              text={t("BookATour")}
               styles="min-w-[255px] px-[40px] py-[18px] text-primary text-[16px] leading-[150%] font-[600] bg-accent border-[2px] border-accent rounded-[6px] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
               onClick={() => console.log("aaa")}
             />
@@ -69,7 +71,7 @@ export default function HeroSection({
               onClick={() => console.log("aaa")}
             >
               <Image src={phoneIcon} alt="Phone icon" width={20} height={20} />
-              <p>Связаться с нами</p>
+              <p>{t("ContactUs")}</p>
             </Button>
           </div>
           <Image
