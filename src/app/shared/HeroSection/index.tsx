@@ -11,6 +11,7 @@ import Button from "../Button";
 import Container from "../Container";
 import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
+import scrollAnimation from "@/assets/elements/scroll.gif"
 
 export default function HeroSection({
   generalStyles,
@@ -24,11 +25,11 @@ export default function HeroSection({
     <section className="bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
       <Container>
         <div
-          className={`flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] ${generalStyles}`}
+          className={`relative flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] ${generalStyles}`}
         >
           <div className="flex flex-col items-center justify-center text-center gap-[24px]">
             <h1
-              className={`text-[36px] sm:text-[48px] lg:text-[96px]  font-[500] leading-[110%] text-secondary ${headingStyles}`}
+              className={`text-[36px] sm:text-[48px] lg:text-[96px] font-[500] leading-[110%] text-secondary ${headingStyles}`}
               style={{ fontFamily: "Oswald" }}
             >
               {heading}
@@ -55,6 +56,7 @@ export default function HeroSection({
               <p>Связаться с нами</p>
             </Button>
           </div>
+          <Image src={scrollAnimation} alt="Scrolling animation gif" width={50} className="absolute bottom-[50px]" />
         </div>
       </Container>
     </section>
