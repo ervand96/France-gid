@@ -10,9 +10,13 @@
     "ExperienceParis": "Experience Paris",
     "LikeNeverBefore": "Like Never Before",
     "ExclusiveGuided": "Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers.",
+    "BookATour": "Book a tour",
+    "ContactUs": "Contact us",
+    "RecommendedExcursions": "Recommended Excursions",
+    "ExcursionsThatWillReveal": "Excursions that will reveal the true Paris, its suburbs, and the rest of France, beyond the tourist routes.",
     "SightseeingTourOfParis": "Sightseeing tour of Paris",
     "EveningParisTour": "Evening Paris Tour and Seine River Cruise",
-    "TourOfMontmartre": "Экскурсия по Монмартру",
+    "TourOfMontmartre": "Tour of Montmartre",
     "LatinQuarter": "Tour of the Latin Quarter",
     "TourOfTheMarais": "Tour of the Marais",
     "LouvreMuseum": "Louvre Museum Tour",
@@ -38,6 +42,9 @@
 
     "ExcursionsInParis": "Excursions in Paris",
     "ExcursionsToTheSuburbs": "Excursions to the suburbs of Paris",
-    "RegionsOfFrance": "Excursions to the regions of France"
+    "RegionsOfFrance": "Excursions to the regions of France",
+
+    "ShowMore": "Show more",
+    "ShowLess": "Show less"
   }
 }
