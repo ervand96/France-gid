@@ -1,6 +1,12 @@
 {
   "Home": {
-    "title": "Welcome",
-    "desc": "Hello world"
+    "title": "example"
+  },
+  "Navbar": {
+    "Home": "Home",
+    "ExcursionsInParis": "Excursions in Paris",
+    "ExcursionsToTheSuburbsOfParis": "Excursions to the suburbs of Paris",
+    "ToursOfFrance": "Tours of France",
+    "BookATour": "Book a tour"
   }
 }

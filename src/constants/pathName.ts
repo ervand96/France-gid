@@ -1,0 +1,6 @@
+export enum PathnameEnum {
+  HOME = "/",
+  ExcursionsInParis = "/excursions-in-paris",
+  ExcursionsToTheSuburbsOfParis = "/excursions-to-the-suburbs-of-paris",
+  ToursOfFrance = "/tours-in-france",
+}

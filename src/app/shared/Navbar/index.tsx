@@ -3,14 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { navData } from "@/constants/navbarData";
 import Container from "../Container";
 import Button from "@/app/shared/Button";
+import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
+
 import menuIcon from "@/assets/elements/menu.png";
 import closeIcon from "@/assets/elements/close.png";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const t = useTranslations("Navbar");
+  const locale = useLocale();
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -35,11 +41,11 @@ export default function Navbar() {
                     key={index}
                     className="text-[16px] font-[400] leading-[150%] text-secondary hover:text-gray-500"
                   >
-                    <Link href={item.path}>{item.name}</Link>
+                    <Link href={`/${locale}${item.path}`}>{t(item.key)}</Link>
                   </li>
                 ))}
               <Button
-                text={"Забронировать тур"}
+                text={t("BookATour")}
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
                 onClick={() => console.log("aaa")}
               />
@@ -58,15 +64,16 @@ export default function Navbar() {
                 navData.map((item, index) => (
                   <Link
                     key={index}
-                    href={item.path}
+                    href={`/${locale}${item.path}`}
                     onClick={() => setIsMenuOpen(false)}
                     className="text-[16px] font-[400] text-secondary"
                   >
-                    {item.name}
+                    {t(item.key)}
                   </Link>
                 ))}
             </div>
           )}
+          <LanguageSwitcher />
         </Container>
       </div>
     </div>
