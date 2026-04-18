@@ -1,29 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
-import { LocationEnum } from "@/constants/locationEnum";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
 
-  const cleanPath = pathname.replace(/^\/(ru|en)(?=\/|$)/, "") || "/";
+  const cleanPath = pathname.replace(/^\/(ru|en)/, "");
 
-  const isEnglish = locale === LocationEnum.EN;
+  const nextLocale = locale === "en" ? "ru" : "en";
 
-  const href = isEnglish
-    ? cleanPath
-    : `/en${cleanPath === "/" ? "" : cleanPath}`;
+  const newPath = `/${nextLocale}${cleanPath || ""}`;
 
   return (
-    <Link
-      href={href}
-      scroll={false}
-      className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition"
+    <button
+      onClick={() => router.push(newPath)}
+      className="flex items-center gap-2"
     >
-      <span>{isEnglish ? "🇷🇺 Russian" : "🇬🇧 English"}</span>
-    </Link>
+      {locale === "en" ? "🇷🇺 Russian" : "🇬🇧 English"}
+    </button>
   );
 }
