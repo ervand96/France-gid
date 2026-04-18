@@ -4,9 +4,9 @@ import Navbar from "../shared/Navbar";
 
 type Props = {
   children: ReactNode;
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
 export default async function LocaleLayout({ children, params }: Props) {
