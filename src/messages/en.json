@@ -9,6 +9,33 @@
   "HeroSection": {
     "ExperienceParis": "Experience Paris",
     "LikeNeverBefore": "Like Never Before",
-    "ExclusiveGuided": "Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers."
+    "ExclusiveGuided": "Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers.",
+    "SightseeingTourOfParis": "Sightseeing tour of Paris",
+    "EveningParisTour": "Evening Paris Tour and Seine River Cruise",
+    "TourOfMontmartre": "Экскурсия по Монмартру",
+    "LatinQuarter": "Tour of the Latin Quarter",
+    "TourOfTheMarais": "Tour of the Marais",
+    "LouvreMuseum": "Louvre Museum Tour",
+    "EiffelTower": "Eiffel Tower Tour",
+    "GrandOpera": "Visiting the Grand Opera",
+    "PalaceOfVersailles": "Tour of the Palace of Versailles",
+    "PalaceOfFontainebleau": "A tour of the Palace of Fontainebleau",
+    "ChâteauDeVauxLleVicomte": "Tour of the Château de Vaux-le-Vicomte",
+    "CandlelightTour": "Candlelight tour of the Château de Vaux-le-Vicomte",
+    "ChâteauDeChantilly": "Tour of the Château de Chantilly",
+    "RussianCemetery": "A tour of the Russian Cemetery in Sainte-Geneviève-des-Bois",
+    "ThuareeSafariPark": "Visiting the Thuaree Safari Park",
+    "FranceInMiniaturePark": "Visit to the France in Miniature Park",
+    "VisitingDisneyland": "Visiting Disneyland Paris",
+    "ChâteauDePierrefonds": "Tour of the Château de Pierrefonds",
+    "ExcursionToGiverny": "Excursion to Giverny, Claude Monet's estate",
+    "TourOfChartres": "Tour of Chartres",
+    "NormandyTour": "Normandy Tour",
+    "CastlesOfTheLoire": "Tour of the castles of the Loire",
+    "ChampagneTour": "Champagne Tour",
+    "ExcursionToMont": "Excursion to Mont Saint-Michel",
+    "VisitingTheMoulin": "Visiting the Moulin Rouge, Lido, and Crazy Horse cabaret",
+
+    "ExcursionsInParis": "Excursions in Paris"
   }
 }
