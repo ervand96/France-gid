@@ -7,11 +7,13 @@ type Props = {
   subHeadingStyles?: string;
 };
 
+import { useState, useEffect } from "react";
 import Button from "../Button";
 import Container from "../Container";
 import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
 import scrollAnimation from "@/assets/elements/scroll.gif"
+
 
 export default function HeroSection({
   generalStyles,
@@ -21,11 +23,25 @@ export default function HeroSection({
   headingStyles,
   subHeadingStyles,
 }: Props) {
+
+  const [hideScrollIcon, setHideScrollIcon] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHideScrollIcon(window.scrollY  > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <section className="bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
+
+    <section className="relative bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
       <Container>
         <div
-          className={`relative flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] ${generalStyles}`}
+          className={`flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] pt-[150px] ${generalStyles}`}
         >
           <div className="flex flex-col items-center justify-center text-center gap-[24px]">
             <h1
@@ -56,7 +72,12 @@ export default function HeroSection({
               <p>Связаться с нами</p>
             </Button>
           </div>
-          <Image src={scrollAnimation} alt="Scrolling animation gif" width={50} className="absolute bottom-[50px]" />
+          <Image
+            src={scrollAnimation}
+            alt="Scrolling animation gif"
+            width={50}
+            className={`absolute bottom-[5px] left-1/2 -translate-x-1/2 transition-opacity duration-700 ${hideScrollIcon ? "opacity-0" : "opacity-100"}`}
+          />
         </div>
       </Container>
     </section>
