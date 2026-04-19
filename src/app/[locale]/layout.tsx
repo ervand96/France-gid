@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
+import { ReactNode } from "react";
 import Navbar from "../shared/Navbar";
 
 type Props = {
