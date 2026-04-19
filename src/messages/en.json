@@ -46,5 +46,10 @@
 
     "ShowMore": "Show more",
     "ShowLess": "Show less"
+  },
+  "CallToAction": {
+    "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
+    "ContactUs": "Contact us and get a quick offer in minutes",
+    "PlanYourTour": "Plan your tour in few clicks."
   }
 }

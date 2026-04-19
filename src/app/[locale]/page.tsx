@@ -8,6 +8,7 @@ import Card from "@/app/shared/Card";
 import Container from "@/app/shared/Container";
 import Button from "@/app/shared/Button";
 import { excursionsData } from "@/constants/excursionData";
+import CallToAction from "../features/CallToAction";
 
 export default function Home() {
   const initialCount = 8;
@@ -62,6 +63,7 @@ export default function Home() {
           </Container>
         </section>
       </div>
+      <CallToAction />
     </div>
   );
 }
