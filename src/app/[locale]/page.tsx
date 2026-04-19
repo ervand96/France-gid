@@ -7,6 +7,7 @@ import Header from "@/app/shared/Header";
 import Card from "@/app/shared/Card";
 import Container from "@/app/shared/Container";
 import Button from "@/app/shared/Button";
+import GetInTouch from "../shared/getInTouch";
 import { excursionsData } from "@/constants/excursionData";
 import CallToAction from "../features/CallToAction";
 
@@ -64,6 +65,7 @@ export default function Home() {
         </section>
       </div>
       <CallToAction />
+      <GetInTouch />
     </div>
   );
 }
