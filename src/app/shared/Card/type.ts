@@ -10,7 +10,7 @@ export type CardType = {
   descriptionStyles?: string;
   textBlockStyles?: string;
   stylesOfCard?: string;
-  bgImage?: StaticImageData;
+  bgImage?: string;
   img?: StaticImageData;
   imageAltText?: string;
   imgStyles?: string;
