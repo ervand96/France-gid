@@ -9,6 +9,7 @@ import Container from "@/app/shared/Container";
 import Button from "@/app/shared/Button";
 import GetInTouch from "../shared/getInTouch";
 import { excursionsData } from "@/constants/excursionData";
+import CallToAction from "../features/CallToAction";
 
 export default function Home() {
   const initialCount = 8;
@@ -63,6 +64,7 @@ export default function Home() {
           </Container>
         </section>
       </div>
+      <CallToAction />
       <GetInTouch />
     </div>
   );
