@@ -1,25 +1,17 @@
-// import { useState } from "react";
-// import { useTranslations } from "next-intl";
 import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
-// import Card from "@/app/shared/Card";
 import Container from "@/app/shared/Container";
-// import Button from "@/app/shared/Button";
-// import { excursionsData } from "@/constants/excursionData";
 import NewStrapiCard from "../features/newStrapiCard";
+import GetInTouch from "../shared/getInTouch";
+import CallToAction from "../features/CallToAction";
 
 export default async function Home({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  // const initialCount = 8;
-  // const [showAllCards, setShowAllCards] = useState(false);
-
-  // const visibleCardsCount = showAllCards
-  //   ? excursionsData
-  //   : excursionsData.slice(0, initialCount);
   const { locale } = await params;
+
   return (
     <div>
       <HeroSection />
@@ -33,11 +25,7 @@ export default async function Home({
                 subHeadingStyles="text-center"
               />
               <div className="flex flex-wrap justify-center items-center gap-x-[24px] gap-y-[40px] my-[64px]">
-                {/* {excursionsData && */}
-                {/* visibleCardsCount.map((elm) => { */}
-                {/* return ( */}
                 <div
-                  // key={elm.id}
                   className="shadow-xl/50 rounded-lg group"
                 >
                   {/* <Card
@@ -71,6 +59,8 @@ export default async function Home({
           </Container>
         </section>
       </div>
+      <CallToAction />
+      <GetInTouch />
     </div>
   );
 }
