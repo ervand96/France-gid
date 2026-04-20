@@ -1,8 +1,7 @@
+"use client";
+
 type Props = {
   generalStyles?: string;
-  heading: string;
-  coloredPart: string;
-  subHeading: string;
   headingStyles?: string;
   subHeadingStyles?: string;
 };
@@ -13,14 +12,10 @@ import Button from "@/app/shared/Button";
 import Container from "@/app/shared/Container";
 import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
-import scrollAnimation from "@/assets/elements/scroll.gif"
-
+import scrollAnimation from "@/assets/elements/scroll.gif";
 
 export default function HeroSection({
   generalStyles,
-  heading,
-  coloredPart,
-  subHeading,
   headingStyles,
   subHeadingStyles,
 }: Props) {
@@ -30,16 +25,15 @@ export default function HeroSection({
 
   useEffect(() => {
     const handleScroll = () => {
-      setHideScrollIcon(window.scrollY > 50)
-    }
+      setHideScrollIcon(window.scrollY > 50);
+    };
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-
     <section className="relative bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
       <Container>
         <div
@@ -50,14 +44,14 @@ export default function HeroSection({
               className={`text-[36px] sm:text-[48px] lg:text-[96px] font-[500] leading-[110%] text-secondary ${headingStyles}`}
               style={{ fontFamily: "Oswald" }}
             >
-              {heading}
+              {t("ExperienceParis")}
               <br />
-              <span className="text-accent">{coloredPart}</span>
+              <span className="text-accent">{t("LikeNeverBefore")}</span>
             </h1>
             <h2
               className={`max-w-[700px] lg:text-[22px] text-[18px] font-[400] leading-[150%] text-secondary ${subHeadingStyles}`}
             >
-              {subHeading}
+              {t("ExclusiveGuided")}
             </h2>
           </div>
           <div className="flex lg:flex-row flex-col justify-center items-center gap-[16px]">
