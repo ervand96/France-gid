@@ -1,9 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Header from "../Header";
+import Container from "../Container";
+import Button from "../Button";
+import Card from "../Card";
+import { contactData } from "@/constants/contactItems";
+import Toast from "../toast";
 
 export default function GetInTouch() {
+  const t = useTranslations("GetInTouch");
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,35 +22,11 @@ export default function GetInTouch() {
   });
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<string>("");
-  const [error, setError] = useState<string>("");
-
-  const contactItems = [
-    {
-      icon: <Phone size={24} />,
-      title: "Phone",
-      value: "+33 1 23 45 67 89",
-      sub: "Available 9:00 - 21:00",
-    },
-    {
-      icon: <Mail size={24} />,
-      title: "Email",
-      value: "contact@eliteparisguide.com",
-      sub: "Response within 24 hours",
-    },
-    {
-      icon: <MapPin size={24} />,
-      title: "Location",
-      value: "12 Rue de Rivoli, 75001 Paris",
-      sub: "By appointment only",
-    },
-    {
-      icon: <MessageCircle size={24} />,
-      title: "WhatsApp",
-      value: "+33 6 12 34 56 78",
-      sub: "Quick responses",
-    },
-  ];
+  const [toast, setToast] = useState({
+    show: false,
+    type: "success" as "success" | "failed",
+    message: "",
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -54,10 +39,7 @@ export default function GetInTouch() {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
-    setSuccess("");
-    setError("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -71,7 +53,11 @@ export default function GetInTouch() {
       const data = await res.json();
 
       if (data.success) {
-        setSuccess("Message sent successfully!");
+        setToast({
+          show: true,
+          type: "success",
+          message: t("SuccessMessage"),
+        });
         setForm({
           name: "",
           email: "",
@@ -80,118 +66,144 @@ export default function GetInTouch() {
           honeypot: "",
         });
       } else {
-        setError(data.message || "Failed to send message.");
+        setToast({
+          show: true,
+          type: "failed",
+          message: t("FailedMessage"),
+        });
       }
     } catch {
-      setError("Something went wrong.");
+      setToast({
+        show: true,
+        type: "failed",
+        message: "Failed to send message",
+      });
     }
 
     setLoading(false);
   };
 
   return (
-    <section className="bg-[#021538] text-white py-24 px-6">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-[80px] font-serif">Get In Touch</h2>
-          <div className="w-[100px] h-[4px] bg-[#caa06b] mx-auto my-6" />
-          <p className="text-[24px] text-gray-300">
-            Ready to explore Paris? Contact us to plan your unforgettable
-            journey
-          </p>
-        </div>
+    <>
+      <section className="bg-primary text-secondary py-[100px]">
+        <Container>
+          <div className="flex flex-col gap-[64px]">
+            <Header
+              blockStyles="items-center"
+              isDark={false}
+              heading={t("GetInTouch")}
+              subHeading={t("ReadyToExplore")}
+              subHeadingStyles="text-center"
+            />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          {/* LEFT */}
-          <div className="space-y-10">
-            {contactItems.map((item, i) => (
-              <div key={i} className="flex gap-5">
-                <div className="w-16 h-16 rounded-full bg-[#2d3443] flex items-center justify-center">
-                  {item.icon}
-                </div>
-
-                <div>
-                  <h3 className="text-[42px] font-serif">{item.title}</h3>
-                  <p className="text-[#d6a96f] text-[26px]">{item.value}</p>
-                  <p className="text-gray-400 text-[22px]">{item.sub}</p>
-                </div>
+            <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-[48px] px-[20px]">
+              <div className="w-full flex flex-row lg:flex-col flex-wrap justify-between items-start gap-[32px] mt-[50px] lg:mt-[0px]">
+                {contactData.map((item, i) => (
+                  <div
+                    key={i}
+                    className="w-[150px] sm:w-[300px] flex flex-col lg:flex-row justify-start items-start gap-[16px]"
+                  >
+                    <div className="flex justify-center items-center bg-accent/10 rounded-[50px] p-[15px]">
+                      <Image
+                        src={item.icon}
+                        alt={t(item.key) + "icon"}
+                        width={24}
+                        height={24}
+                        className="object-cover w-[16px] h-[16px] sm:w-[24px] sm:h-[24px]"
+                      />
+                    </div>
+                    <Card
+                      stylesOfCard="flex flex-col items-start gap-[4px]"
+                      primaryText={t(item.key)}
+                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary"
+                      textBlockStyles="flex flex-col items-start gap-[4px]"
+                      secondaryText={item.value}
+                      secondaryTextStyles="text-[12px] sm:text-[16px] font-[400] leading-[150%] text-accent"
+                      description={t(item.sub)}
+                      descriptionStyles="text-[12px] sm:text-[14px] font-[500] leading-[143%] text-secondary/50"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="w-full flex flex-col gap-[25px] bg-secondary-transparent rounded-[6px] p-[32px]">
+                <h3
+                  className="text-[28px] font-[500] leading-[150%]"
+                  style={{ fontFamily: "Oswald" }}
+                >
+                  Send a Message
+                </h3>
+
+                <form
+                  onSubmit={submitForm}
+                  className="relative w-full flex flex-col items-center gap-[16px]"
+                >
+                  <input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder={t("YourName")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
+                  />
+
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder={t("YourEmail")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
+                  />
+
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder={t("PhoneNumber")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
+                  />
+
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder={t("YourDream")}
+                    rows={5}
+                    className="w-full bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent resize-none"
+                    required
+                  />
+
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={form.honeypot}
+                    onChange={handleChange}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    text={loading ? "Sending..." : t("SendMessage")}
+                    styles="absolute bottom-[-82px] w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                  />
+                </form>
+              </div>
+            </div>
           </div>
-
-          {/* RIGHT */}
-          <div className="bg-[#27344a] rounded-xl p-10">
-            <h3 className="text-[54px] font-serif mb-8">Send a Message</h3>
-
-            <form onSubmit={submitForm} className="space-y-5">
-              <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full h-[72px] bg-[#3a4659] rounded-lg px-6"
-                required
-              />
-
-              <input
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className="w-full h-[72px] bg-[#3a4659] rounded-lg px-6"
-                required
-              />
-
-              <input
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                className="w-full h-[72px] bg-[#3a4659] rounded-lg px-6"
-                required
-              />
-
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Tell us about your dream Paris experience..."
-                rows={5}
-                className="w-full bg-[#3a4659] rounded-lg px-6 py-4 resize-none"
-                required
-              />
-
-              {/* hidden anti spam */}
-              <input
-                type="text"
-                name="honeypot"
-                value={form.honeypot}
-                onChange={handleChange}
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
-              />
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full h-[72px] bg-[#d2a36d] text-black rounded-lg font-semibold"
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-
-              {success && (
-                <p className="text-center text-green-400 mt-3">{success}</p>
-              )}
-
-              {error && (
-                <p className="text-center text-red-400 mt-3">{error}</p>
-              )}
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+        </Container>
+      </section>
+      <Toast
+        show={toast.show}
+        type={toast.type}
+        message={toast.message}
+        onClose={() => setToast((prev) => ({ ...prev, show: false }))}
+      />
+    </>
   );
 }

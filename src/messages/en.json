@@ -51,5 +51,24 @@
     "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
     "ContactUs": "Contact us and get a quick offer in minutes",
     "PlanYourTour": "Plan your tour in few clicks."
+  },
+  "GetInTouch": {
+    "GetInTouch": "Get In Touch",
+    "ReadyToExplore": "Ready to explore Paris? Contact us to plan your unforgettable journey",
+    "SendMessage": "Send Message",
+    "YourName": "Your Name",
+    "YourEmail": "Your Email",
+    "PhoneNumber": "Phone Number",
+    "YourDream": "Tell us about your dream Paris experience...",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Location": "Location",
+    "WhatsApp": "WhatsApp",
+    "Availability": "Available 9:00 - 21:00",
+    "Response": "Response within 24 hours",
+    "Appointment": "By appointment only",
+    "QuickResponses": "Quick responses",
+    "SuccessMessage": "Message was sent successfully",
+    "FailedMessage": "Message was not sent"
   }
 }
