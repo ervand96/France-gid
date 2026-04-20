@@ -6,4 +6,5 @@ export type ButtonType = {
   onClick: () => void;
   disabled?: boolean;
   children?: ReactNode;
+  type?: "button" | "submit" | "reset";
 };

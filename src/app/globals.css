@@ -13,6 +13,7 @@
   --color-primary: #0a1628;
   --color-secondary: #faf8f5;
   --color-accent: #d4a574;
+  --color-secondary-transparent: #faf8f51a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +31,16 @@ body {
 
 img {
   user-select: none;
+}
+
+@layer base {
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(10, 22, 40, 0.3); /* custom focus */
+  }
+
+  textarea:focus,
+  select:focus {
+    @apply outline-none;
+  }
 }

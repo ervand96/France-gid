@@ -5,15 +5,17 @@ export default function Button({
   styles,
   onClick,
   disabled,
-  children
+  children,
+  type
 }: ButtonType) {
   return (
     <button
+      type={type || "button"}
       disabled={disabled}
       className={`cursor-pointer ${styles}`}
       onClick={onClick}
     >
-     {children ? children : <span>{text}</span>}
+      {children ? children : <span>{text}</span>}
     </button>
   );
 }
