@@ -8,9 +8,9 @@ import Container from "../Container";
 import Button from "../Button";
 import Card from "../Card";
 import { contactData } from "@/constants/contactItems";
+import Toast from "../toast";
 
 export default function GetInTouch() {
-
   const t = useTranslations("GetInTouch");
 
   const [form, setForm] = useState({
@@ -22,10 +22,11 @@ export default function GetInTouch() {
   });
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<string>("");
-  const [error, setError] = useState<string>("");
-
-
+  const [toast, setToast] = useState({
+    show: false,
+    type: "success" as "success" | "failed",
+    message: "",
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,10 +39,7 @@ export default function GetInTouch() {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
-    setSuccess("");
-    setError("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -55,7 +53,11 @@ export default function GetInTouch() {
       const data = await res.json();
 
       if (data.success) {
-        setSuccess("Message sent successfully!");
+        setToast({
+          show: true,
+          type: "success",
+          message: t("SuccessMessage"),
+        });
         setForm({
           name: "",
           email: "",
@@ -64,117 +66,144 @@ export default function GetInTouch() {
           honeypot: "",
         });
       } else {
-        setError(data.message || "Failed to send message.");
+        setToast({
+          show: true,
+          type: "failed",
+          message: t("FailedMessage"),
+        });
       }
     } catch {
-      setError("Something went wrong.");
+      setToast({
+        show: true,
+        type: "failed",
+        message: "Failed to send message",
+      });
     }
 
     setLoading(false);
   };
 
   return (
-    <section className="bg-primary text-secondary py-[100px]">
-      <Container>
-        <div className="flex flex-col gap-[64px]">
-          <Header blockStyles="items-center" isDark={false} heading={t("GetInTouch")} subHeading={t("ReadyToExplore")} subHeadingStyles="text-center" />
+    <>
+      <section className="bg-primary text-secondary py-[100px]">
+        <Container>
+          <div className="flex flex-col gap-[64px]">
+            <Header
+              blockStyles="items-center"
+              isDark={false}
+              heading={t("GetInTouch")}
+              subHeading={t("ReadyToExplore")}
+              subHeadingStyles="text-center"
+            />
 
-          <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-[48px] px-[20px]">
-            <div className="w-full flex flex-row lg:flex-col flex-wrap justify-between items-start gap-[32px] mt-[50px] lg:mt-[0px]">
-              {contactData.map((item, i) => (
+            <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-[48px] px-[20px]">
+              <div className="w-full flex flex-row lg:flex-col flex-wrap justify-between items-start gap-[32px] mt-[50px] lg:mt-[0px]">
+                {contactData.map((item, i) => (
+                  <div
+                    key={i}
+                    className="w-[150px] sm:w-[300px] flex flex-col lg:flex-row justify-start items-start gap-[16px]"
+                  >
+                    <div className="flex justify-center items-center bg-accent/10 rounded-[50px] p-[15px]">
+                      <Image
+                        src={item.icon}
+                        alt={t(item.key) + "icon"}
+                        width={24}
+                        height={24}
+                        className="object-cover w-[16px] h-[16px] sm:w-[24px] sm:h-[24px]"
+                      />
+                    </div>
+                    <Card
+                      stylesOfCard="flex flex-col items-start gap-[4px]"
+                      primaryText={t(item.key)}
+                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary"
+                      textBlockStyles="flex flex-col items-start gap-[4px]"
+                      secondaryText={item.value}
+                      secondaryTextStyles="text-[12px] sm:text-[16px] font-[400] leading-[150%] text-accent"
+                      description={t(item.sub)}
+                      descriptionStyles="text-[12px] sm:text-[14px] font-[500] leading-[143%] text-secondary/50"
+                    />
+                  </div>
+                ))}
+              </div>
 
-                <div key={i} className="w-[150px] sm:w-[300px] flex flex-col lg:flex-row justify-start items-start gap-[16px]">
+              <div className="w-full flex flex-col gap-[25px] bg-secondary-transparent rounded-[6px] p-[32px]">
+                <h3
+                  className="text-[28px] font-[500] leading-[150%]"
+                  style={{ fontFamily: "Oswald" }}
+                >
+                  Send a Message
+                </h3>
 
-                  <div className="flex justify-center items-center bg-accent/10 rounded-[50px] p-[15px]">
-                    <Image src={item.icon} alt={t(item.key) + "icon"} width={24} height={24} className="object-cover w-[16px] h-[16px] sm:w-[24px] sm:h-[24px]" /></div>
-                  <Card
-                    stylesOfCard="flex flex-col items-start gap-[4px]"
-                    primaryText={t(item.key)}
-                    primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary"
-                    textBlockStyles="flex flex-col items-start gap-[4px]"
-                    secondaryText={item.value}
-                    secondaryTextStyles="text-[12px] sm:text-[16px] font-[400] leading-[150%] text-accent"
-                    description={t(item.sub)}
-                    descriptionStyles="text-[12px] sm:text-[14px] font-[500] leading-[143%] text-secondary/50"
+                <form
+                  onSubmit={submitForm}
+                  className="relative w-full flex flex-col items-center gap-[16px]"
+                >
+                  <input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder={t("YourName")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
                   />
 
-                </div>
-              ))}
-            </div>
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder={t("YourEmail")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
+                  />
 
-            <div className="w-full flex flex-col gap-[25px] bg-secondary-transparent rounded-[6px] p-[32px]">
-              <h3 className="text-[28px] font-[500] leading-[150%]" style={{ fontFamily: "Oswald" }}>Send a Message</h3>
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder={t("PhoneNumber")}
+                    className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
+                    required
+                  />
 
-              <form onSubmit={submitForm} className="relative w-full flex flex-col items-center gap-[16px]">
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder={t("YourName")}
-                  className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
-                  required
-                />
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder={t("YourDream")}
+                    rows={5}
+                    className="w-full bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent resize-none"
+                    required
+                  />
 
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder={t("YourEmail")}
-                  className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
-                  required
-                />
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={form.honeypot}
+                    onChange={handleChange}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
 
-                <input
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder={t("PhoneNumber")}
-                  className="w-full h-[50px] bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent"
-                  required
-                />
-
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder={t("YourDream")}
-                  rows={5}
-                  className="w-full bg-secondary-transparent rounded-[6px] p-[16px] border-[1px] border-accent resize-none"
-                  required
-                />
-
-                <input
-                  type="text"
-                  name="honeypot"
-                  value={form.honeypot}
-                  onChange={handleChange}
-                  className="hidden"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  text={loading ? "Sending..." : t("SendMessage")}
-                  styles="absolute bottom-[-82px] w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-                  onClick={() => console.log("aaa")}
-                />
-
-                {success && (
-                  <p className="text-center text-green-400 mt-3">{success}</p>
-                )}
-
-                {error && (
-                  <p className="text-center text-red-400 mt-3">{error}</p>
-                )}
-              </form>
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    text={loading ? "Sending..." : t("SendMessage")}
+                    styles="absolute bottom-[-82px] w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                  />
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-
-      </Container>
-    </section>
+        </Container>
+      </section>
+      <Toast
+        show={toast.show}
+        type={toast.type}
+        message={toast.message}
+        onClose={() => setToast((prev) => ({ ...prev, show: false }))}
+      />
+    </>
   );
 }

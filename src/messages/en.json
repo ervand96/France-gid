@@ -67,6 +67,8 @@
     "Availability": "Available 9:00 - 21:00",
     "Response": "Response within 24 hours",
     "Appointment": "By appointment only",
-    "QuickResponses": "Quick responses"
+    "QuickResponses": "Quick responses",
+    "SuccessMessage": "Message was sent successfully",
+    "FailedMessage": "Message was not sent"
   }
 }

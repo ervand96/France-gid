@@ -6,7 +6,7 @@ export default function Button({
   onClick,
   disabled,
   children,
-  type
+  type,
 }: ButtonType) {
   return (
     <button
