@@ -15,13 +15,13 @@ export const contactData: ContactItem[] = [
   {
     icon: phoneIcon,
     key: "Phone",
-    value: "+33 1 23 45 67 89",
+    value: "+33-609-57-27-80",
     sub: "Availability",
   },
   {
     icon: emailIcon,
     key: "Email",
-    value: "contact@eliteparisguide.com",
+    value: "garik@france-gid.ru",
     sub: "Response",
   },
   {
@@ -33,7 +33,7 @@ export const contactData: ContactItem[] = [
   {
     icon: whatsAppIcon,
     key: "WhatsApp",
-    value: "+33 6 12 34 56 78",
+    value: "+33-609-57-27-80",
     sub: "QuickResponses",
   },
 ];

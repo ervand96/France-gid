@@ -20,7 +20,7 @@ export default function GetInTouch() {
     {
       icon: <Phone size={24} />,
       title: "Phone",
-      value: "+33 1 23 45 67 89",
+      value: "+33-609-57-27-80",
       sub: "Available 9:00 - 21:00",
     },
     {
@@ -38,7 +38,7 @@ export default function GetInTouch() {
     {
       icon: <MessageCircle size={24} />,
       title: "WhatsApp",
-      value: "+33 6 12 34 56 78",
+      value: "+33-609-57-27-80",
       sub: "Quick responses",
     },
   ];
