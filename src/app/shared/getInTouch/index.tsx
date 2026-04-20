@@ -91,8 +91,6 @@ export default function GetInTouch() {
             <Header
               blockStyles="items-center"
               isDark={false}
-              heading={t("GetInTouch")}
-              subHeading={t("ReadyToExplore")}
               subHeadingStyles="text-center"
             />
 
