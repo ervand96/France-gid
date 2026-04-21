@@ -136,7 +136,7 @@ export default function GetInTouch() {
 
                 <form
                   onSubmit={submitForm}
-                  className="relative w-full flex flex-col items-center gap-[16px]"
+                  className="w-full flex flex-col items-center gap-[16px]"
                 >
                   <input
                     name="name"
@@ -190,7 +190,7 @@ export default function GetInTouch() {
                     type="submit"
                     disabled={loading}
                     text={loading ? "Sending..." : t("SendMessage")}
-                    styles="absolute bottom-[-82px] w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                    styles="w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
                   />
                 </form>
               </div>
