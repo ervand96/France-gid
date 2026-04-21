@@ -1,10 +1,6 @@
-// 3) src/app/api/contact/route.ts
-
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const schema = z.object({
   name: z.string().min(2).max(100),
@@ -16,58 +12,47 @@ const schema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.CONTACT_TO_EMAIL;
+
+    if (!apiKey || !toEmail) {
+      throw new Error("Missing ENV variables");
+    }
+
+    const resend = new Resend(apiKey);
+
     const body = await req.json();
 
     const parsed = schema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { success: false, message: "Invalid form data" },
-        { status: 400 },
-      );
+      return NextResponse.json({ success: false }, { status: 400 });
     }
 
     const { name, email, phone, message, honeypot } = parsed.data;
 
-    // anti spam
-    if (honeypot && honeypot.trim() !== "") {
+    if (honeypot?.trim()) {
       return NextResponse.json({ success: true });
     }
 
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: "Website Contact <onboarding@resend.dev>",
-      to: process.env.CONTACT_TO_EMAIL!,
+      to: toEmail,
       replyTo: email,
-      subject: `Новое сообщение с моего сайта: ${name}`,
+      subject: `Новое сообщение: ${name}`,
       html: `
-        <h2>Новый заказ </h2>
-
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-
-        <hr />
-
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br/>")}</p>
+        <h2>Новая заявка</h2>
+        <p>${name}</p>
+        <p>${email}</p>
+        <p>${phone}</p>
+        <p>${message}</p>
       `,
     });
 
-    console.log(data, "datadatadatadatadatadata");
-
-    return NextResponse.json({
-      success: true,
-      message: "Message sent successfully",
-    });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("CONTACT ERROR:", error);
+    console.error(error);
 
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to send message",
-      },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 }

@@ -14,10 +14,13 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   const currentLocale = locale === "en" ? "en" : "ru";
 
-  const messages = (await import(`@/messages/${currentLocale}.json`)).default;
+  const messages =
+    currentLocale === "en"
+      ? (await import("@/messages/en.json")).default
+      : (await import("@/messages/ru.json")).default;
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={currentLocale} messages={messages}>
       <Navbar />
       {children}
     </NextIntlClientProvider>
