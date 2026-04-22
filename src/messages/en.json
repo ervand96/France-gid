@@ -69,7 +69,7 @@
     "SuccessMessage": "Message was sent successfully",
     "FailedMessage": "Message was not sent"
   },
-  "AsideSection": {
+  "DetailsPage": {
     "From": "From",
     "BestPrice": "Best price guaranteed",
     "Breakdown": "Price Breakdown",
@@ -78,6 +78,14 @@
     "GuidedTours": "Guided tours",
     "Total": "Total",
     "BookNow": "Book Now",
-    "ContactUs": "Contact us"
+    "ContactUs": "Contact us",
+    "TourOverview": "Tour Overview",
+    "EmbarkOn": "Embark on an unforgettable journey through the heart of France, where timeless elegance meets provincial charm. From the iconic boulevards of Paris to the lavender-scented fields of Provence, this carefully curated experience offers an authentic taste of French culture, cuisine, and hospitality. Discover hidden gems, savor world-class wines, and immerse yourself in the rich history that has shaped this magnificent country. Our expert local guides will ensure every moment is filled with wonder and delight.",
+    "Gallery": "Photo Gallery",
+    "Duration": "Duration",
+    "GroupSize": "Group Size",
+    "NextTour": "Next Tour",
+    "TourHighlights": "Tour Highlights",
+    "Included": "What's Included"
   }
 }

@@ -6,7 +6,7 @@ import Button from "@/app/shared/Button";
 
 export default function AsideCard() {
 
-    const t = useTranslations("AsideSection");
+    const t = useTranslations("DetailsPage");
 
     return <div className="bg-primary flex flex-col p-[32px] w-[350px] rounded-[10px]">
         <div className="flex flex-col gap-[6px]">

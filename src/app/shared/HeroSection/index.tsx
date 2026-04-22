@@ -1,11 +1,5 @@
 "use client";
 
-type Props = {
-  generalStyles?: string;
-  headingStyles?: string;
-  subHeadingStyles?: string;
-};
-
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Button from "@/app/shared/Button";
@@ -13,12 +7,16 @@ import Container from "@/app/shared/Container";
 import phoneIcon from "@/assets/elements/phone.png";
 import Image from "next/image";
 import scrollAnimation from "@/assets/elements/scroll.gif";
+import { HeroProps } from "./type";
 
 export default function HeroSection({
   generalStyles,
+  heading,
+  coloredPart,
   headingStyles,
+  subHeading,
   subHeadingStyles,
-}: Props) {
+}: HeroProps) {
   const t = useTranslations("HeroSection");
 
   const [hideScrollIcon, setHideScrollIcon] = useState(false);
@@ -44,14 +42,14 @@ export default function HeroSection({
               className={`text-[36px] sm:text-[48px] lg:text-[96px] font-[500] leading-[110%] text-secondary ${headingStyles}`}
               style={{ fontFamily: "Oswald" }}
             >
-              {t("ExperienceParis")}
+              {heading}
               <br />
-              <span className="text-accent">{t("LikeNeverBefore")}</span>
+              <span className="text-accent">{coloredPart}</span>
             </h1>
             <h2
               className={`max-w-[700px] lg:text-[22px] text-[18px] font-[400] leading-[150%] text-secondary ${subHeadingStyles}`}
             >
-              {t("ExclusiveGuided")}
+              {subHeading}
             </h2>
           </div>
           <div className="flex lg:flex-row flex-col justify-center items-center gap-[16px]">

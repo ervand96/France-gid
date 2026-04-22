@@ -1,4 +1,5 @@
-import { useTranslations } from "next-intl";
+"use client"
+
 import { HeaderType } from "./type";
 
 export default function Header({
