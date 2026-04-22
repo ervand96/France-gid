@@ -4,6 +4,7 @@ import Container from "@/app/shared/Container";
 import NewStrapiCard from "../features/newStrapiCard";
 import GetInTouch from "../shared/getInTouch";
 import CallToAction from "../features/CallToAction";
+import CategoryCards from "../shared/category";
 
 export default async function Home({
   params,
@@ -24,7 +25,8 @@ export default async function Home({
                 isDark
                 subHeadingStyles="text-center"
               />
-              <NewStrapiCard locale={locale} />
+              {/* <NewStrapiCard locale={locale} /> */}
+              <CategoryCards />
             </div>
           </Container>
         </section>
