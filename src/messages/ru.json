@@ -1,9 +1,9 @@
 {
   "Navbar": {
     "Home": "Главная",
-    "ExcursionsInParis": "Экскурсии по Парижу",
-    "ExcursionsToTheSuburbsOfParis": "Экскурсии по пригородам Парижа",
-    "ToursOfFrance": "Туры по Франции",
+    "ExcursionsInParis": "Экскурсии в Париже",
+    "ExcursionsToTheSuburbsOfParis": "Экскурсии по предместьям Парижа",
+    "ToursOfFrance": "Экскурсии по регионам Франции",
     "BookATour": "Забронировать тур"
   },
   "HeroSection": {
