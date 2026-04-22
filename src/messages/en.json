@@ -68,5 +68,16 @@
     "QuickResponses": "Quick responses",
     "SuccessMessage": "Message was sent successfully",
     "FailedMessage": "Message was not sent"
+  },
+  "AsideSection": {
+    "From": "From",
+    "BestPrice": "Best price guaranteed",
+    "Breakdown": "Price Breakdown",
+    "BasePrice": "Base price",
+    "Accommodations": "Accommodations",
+    "GuidedTours": "Guided tours",
+    "Total": "Total",
+    "BookNow": "Book Now",
+    "ContactUs": "Contact us"
   }
 }

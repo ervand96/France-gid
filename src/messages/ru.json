@@ -39,11 +39,9 @@
     "ChampagneTour": "Экскурсия по Шампани",
     "ExcursionToMont": "Экскурсия на Мон Сен Мишель",
     "VisitingTheMoulin": "Посещение кабарэ Мулен Руж, Лидо, Крейзи Хорс",
-
     "ExcursionsInParis": "Экскурсии по Парижу",
     "ExcursionsToTheSuburbs": "Экскурсии в пригороды Парижа",
     "RegionsOfFrance": "Экскурсии по регионам Франции",
-
     "ShowMore": "Показать больше",
     "ShowLess": "Показать меньше"
   },
@@ -70,5 +68,16 @@
     "QuickResponses": "Быстрые ответы",
     "SuccessMessage": "Сообщение было успешно отправлено",
     "FailedMessage": "Сообщение не было отправлено"
+  },
+  "AsideSection": {
+    "From": "От",
+    "BestPrice": "Гарантированно лучшая цена",
+    "Breakdown": "Разбивка цен",
+    "BasePrice": "Базовая цена",
+    "Accommodations": "Размещение",
+    "GuidedTours": "Экскурсии с гидом",
+    "Total": "Общая цена",
+    "BookNow": "Забронировать сейчас",
+    "ContactUs": "Связаться с нами"
   }
 }

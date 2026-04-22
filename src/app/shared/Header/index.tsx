@@ -3,14 +3,12 @@ import { HeaderType } from "./type";
 
 export default function Header({
   blockStyles,
+  heading,
   headingStyles,
+  subHeading,
   subHeadingStyles,
   isDark,
-  isGetInTouch,
-  getInTouchHeader,
-  getInTouchSub,
 }: HeaderType) {
-  const t = useTranslations("HeroSection");
 
   return (
     <div
@@ -20,13 +18,13 @@ export default function Header({
         className={`text-[32px] sm:text-[44px] lg:text-[72px] font-[500] leading-[110%] ${headingStyles}`}
         style={{ fontFamily: "Oswald" }}
       >
-        {!isGetInTouch ? t("RecommendedExcursions") : getInTouchHeader}
+        {heading}
       </h3>
       <div className="w-[96px] h-[4px] bg-accent"></div>
       <h4
         className={`max-w-[700px] text-[16px] lg:text-[18px] font-[400] leading-[150%] ${subHeadingStyles}`}
       >
-        {!isGetInTouch ? t("ExcursionsThatWillReveal") : getInTouchSub}
+        {subHeading}
       </h4>
     </div>
   );
