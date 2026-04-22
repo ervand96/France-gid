@@ -9,7 +9,7 @@ import whatsAppLogo from "@/assets/contacts/whatsapp.png";
 export default function CallToAction() {
   const t = useTranslations("CallToAction");
 
-  const [showCTA, setShowCTA] = useState(false);
+  const [showCTA, setShowCTA] = useState<boolean>(false);
   const message = encodeURIComponent(t("QuickOffer"));
 
   return (
