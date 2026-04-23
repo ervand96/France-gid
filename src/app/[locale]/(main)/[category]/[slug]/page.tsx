@@ -47,7 +47,7 @@ export default function TourCardSlug() {
                 return (
                   <Card
                     key={index}
-                    stylesOfCard="flex flex-col gap-[12px] items-center justify-center bg-accent/10 px-[96px] py-[24px] rounded-[10px]"
+                    stylesOfCard="flex flex-col gap-[12px] items-center justify-center bg-secondary px-[96px] py-[24px] rounded-[10px] border border-accent"
                     img={elm.image}
                     imageAltText="Card Icon"
                     imgStyles="w-[32px] h-[32px]"
@@ -292,7 +292,7 @@ export default function TourCardSlug() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="sticky top-[100px]">
             <AsideCard />
           </div>
         </div>

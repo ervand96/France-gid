@@ -42,8 +42,17 @@
     "ExcursionsInParis": "Excursions in Paris",
     "ExcursionsToTheSuburbs": "Excursions to the suburbs of Paris",
     "RegionsOfFrance": "Excursions to the regions of France",
+    "Discover": "Discover the magic of Paris by night, the grandeur of the Louvre and the bohemian spirit of Montmartre in a personalized format.",
+    "TheLuxury": "The luxury of Versailles, the gardens of Giverny and the grandeur of the castles around the capital.",
+    "WineTours": "Wine tours, lavender fields and the ocean coast of Normandy.",
     "ShowMore": "Show more",
-    "ShowLess": "Show less"
+    "ShowLess": "Show less",
+    "Popular": "Popular",
+    "History": "History",
+    "Journey": "Journey",
+    "Hours": "Hours",
+    "People": "person",
+    "Details": "Read more"
   },
   "CallToAction": {
     "QuickOffer": "Hello! I want to get a quick offer for the excursion.",

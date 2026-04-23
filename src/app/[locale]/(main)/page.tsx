@@ -22,7 +22,7 @@ export default async function Home() {
         <Container>
           <div className="flex flex-col items-center">
             <Header
-              blockStyles="items-center"
+              blockStyles="items-center mb-[50px]"
               heading={t("RecommendedExcursions")}
               subHeading={t("ExcursionsThatWillReveal")}
               isDark

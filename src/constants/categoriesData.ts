@@ -1,59 +1,55 @@
-
-
 import { StaticImageData } from "next/image";
 import { PathnameEnum } from "./pathName";
-import sample from "@/assets/elements/placeholder.jpg"
+import parisImg from "@/assets/categories/paris.jpg";
+import niceImg from "@/assets/categories/nice.png";
+import vercaillesImg from "@/assets/categories/versailles.jpg";
 
 export type CategoryItem = {
-    id: number,
-    title: string;
-    description: string,
-    image: string | StaticImageData;
-    href?: string;
-    duration?: string;
-    group?: string;
-    rating?: string;
-    category?: string;
-    isLarge?: boolean;
+  id: number;
+  title: string;
+  description: string;
+  image: string | StaticImageData;
+  href?: string;
+  duration?: string;
+  group?: string;
+  rating?: string;
+  category: string;
+  isLarge?: boolean;
 };
 
 export const CategoriesData: CategoryItem[] = [
-    {
-        id: 1,
-        title: "ExcursionsInParis",
-        description:
-            "Откройте для себя магию ночного Парижа, величие Лувра и богемный дух Монмартра в индивидуальном формате.",
-        image: sample,
-        duration: "4-8 Часов",
-        group: "1-6 чел.",
-        rating: "5.0",
-        category: "Популярное",
-        isLarge: true,
-        href: PathnameEnum.ExcursionsInParis
-    },
-    {
-        id: 2,
-        title: "ExcursionsToTheSuburbsOfParis",
-        description:
-            "Роскошь Версаля, сады Живерни и величие замков в окрестностях столицы.",
-        image: sample,
-        duration: "6 Часов",
-        group: "1-4 чел.",
-        rating: "4.9",
-        category: "История",
-        href: PathnameEnum.ExcursionsToTheSuburbsOfParis
-    },
-    {
-        id: 3,
-        title: "ToursOfFrance",
-        description:
-            "Винные туры, лавандовые поля и океанское побережье Нормандии.",
-        image: sample,
-        duration: "1-2 Дня",
-        group: "Инд.",
-        rating: "4.8",
-        category: "Путешествие",
-        href: PathnameEnum.ToursOfFrance
-
-    },
+  {
+    id: 1,
+    title: "ExcursionsInParis",
+    description: "Discover",
+    image: parisImg,
+    duration: "4-8",
+    group: "1-6",
+    rating: "5.0",
+    category: "Popular",
+    isLarge: true,
+    href: PathnameEnum.ExcursionsInParis,
+  },
+  {
+    id: 2,
+    title: "ExcursionsToTheSuburbs",
+    description: "TheLuxury",
+    image: niceImg,
+    duration: "6",
+    group: "1-4",
+    rating: "4.9",
+    category: "History",
+    href: PathnameEnum.ExcursionsToTheSuburbsOfParis,
+  },
+  {
+    id: 3,
+    title: "RegionsOfFrance",
+    description: "WineTours",
+    image: vercaillesImg,
+    duration: "36-48",
+    group: "1-2",
+    rating: "4.8",
+    category: "Journey",
+    href: PathnameEnum.ToursOfFrance,
+  },
 ];
