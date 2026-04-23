@@ -25,14 +25,13 @@ type Props = {
 
 export default function TourCardSlug({ tour }: Props) {
   const t = useTranslations("DetailsPage");
+  console.log(tour);
 
   const array = [
     { value: "7", image: clockIcon, text: t("Duration") },
     { value: "2-12", image: groupIcon, text: t("GroupSize") },
     { value: "May 15", image: calendarIcon, text: t("NextTour") },
   ];
-
-  console.log(tour.gallery, "tours ");
 
   const arrayImg = [
     placeholder.src,
@@ -54,7 +53,7 @@ export default function TourCardSlug({ tour }: Props) {
                 return (
                   <Card
                     key={index}
-                    stylesOfCard="flex flex-col gap-[12px] items-center justify-center bg-accent/10 px-[96px] py-[24px] rounded-[10px]"
+                    stylesOfCard="flex flex-col gap-[12px] items-center justify-center bg-secondary px-[96px] py-[24px] rounded-[10px] border border-accent"
                     img={elm.image}
                     imageAltText="Card Icon"
                     imgStyles="w-[32px] h-[32px]"
@@ -299,7 +298,7 @@ export default function TourCardSlug({ tour }: Props) {
               </div>
             </div>
           </div>
-          <div>
+          <div className="sticky top-[100px]">
             <AsideCard />
           </div>
         </div>
