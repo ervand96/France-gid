@@ -2,19 +2,24 @@ import Card from "@/app/shared/Card";
 import { fetchTourCards } from "lib/api/strapi/toursCard";
 import { TourCard } from "lib/utils/tourCardType";
 
-const strapiURL = process.env.NEXT_PRIVATE_STRAPI_URL;
+const strapiURL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
-export default async function NewStrapiCard({ locale }: { locale: string }) {
-  const tours = await fetchTourCards(locale);
-
-  console.log(tours?.data, "tours");
-
+export default async function NewStrapiCard({
+  locale,
+  category,
+}: {
+  locale: string;
+  category: string;
+}) {
+  const tours = await fetchTourCards(locale, category);
   return (
     <div className="flex flex-wrap justify-center items-center gap-x-[24px] gap-y-[40px] my-[64px]">
       {tours ? (
         tours &&
         tours?.data?.map((tour: TourCard) => {
-          const imageUrl = `${tour.bgImg.formats?.medium?.url}`;
+          const imageUrl = `${tour?.bgImg?.formats?.medium?.url}`;
+          console.log(tour, "tours");
+
           return (
             <div key={tour.id} className="shadow-xl/50 rounded-lg group">
               <Card

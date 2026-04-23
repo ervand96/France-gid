@@ -4,6 +4,7 @@ export type TourCard = {
   duration: string;
   category: string;
   slug?: string;
+  filterCategory: string;
   bgImg: {
     url: string;
     formats?: {

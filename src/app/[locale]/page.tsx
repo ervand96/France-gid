@@ -3,18 +3,11 @@ import { getTranslations } from "next-intl/server";
 import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
-import NewStrapiCard from "../features/newStrapiCard";
 import GetInTouch from "@/app/shared/getInTouch";
 import CallToAction from "@/app/features/CallToAction";
 import CategoryCards from "@/app/shared/category";
 
-export default async function Home({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const { locale } = params;
-
+export default async function Home() {
   const t = await getTranslations("HeroSection");
 
   return (
