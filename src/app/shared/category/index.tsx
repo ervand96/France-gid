@@ -5,26 +5,20 @@ import { useLocale } from "next-intl";
 import { ArrowRight, Star, Clock, Users } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import parisNew from "@/assets/elements/paris_new.avif";
-import beautiful from "@/assets/elements/beautiful.avif";
-import river from "@/assets/elements/river.avif";
 import { CategoriesData } from "@/constants/categoriesData";
-import { useTranslations } from "next-intl";
-
 
 interface ExcursionProps {
   id: number;
   title: string;
   description: string;
   image: string | StaticImageData;
-  duration: string;
-  group: string;
-  rating: string;
-  category: string;
+  duration?: string;
+  group?: string;
+  rating?: string;
+  category?: string;
   isLarge?: boolean;
   href?: string;
 }
-
 
 const ExcursionCard = ({
   image,
@@ -106,14 +100,21 @@ export default function CategoryCards() {
       <main className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
           <div className="lg:col-span-2">
-            <ExcursionCard {...CategoriesData[0]} title={CategoriesData[0].title} />
+            <ExcursionCard
+              {...CategoriesData[0]}
+              title={CategoriesData[0].title}
+            />
           </div>
-
           <div className="flex flex-col gap-8">
-            <ExcursionCard {...CategoriesData[1]} title={CategoriesData[1].title} />
-            <ExcursionCard {...CategoriesData[2]} title={CategoriesData[2].title} />
+            <ExcursionCard
+              {...CategoriesData[1]}
+              title={CategoriesData[1].title}
+            />
+            <ExcursionCard
+              {...CategoriesData[2]}
+              title={CategoriesData[2].title}
+            />
           </div>
-
         </div>
       </main>
     </div>
