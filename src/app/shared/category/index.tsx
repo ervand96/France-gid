@@ -8,6 +8,9 @@ import Link from "next/link";
 import parisNew from "@/assets/elements/paris_new.avif";
 import beautiful from "@/assets/elements/beautiful.avif";
 import river from "@/assets/elements/river.avif";
+import { CategoriesData } from "@/constants/categoriesData";
+import { useTranslations } from "next-intl";
+
 
 interface ExcursionProps {
   id: number;
@@ -19,17 +22,18 @@ interface ExcursionProps {
   rating: string;
   category: string;
   isLarge?: boolean;
-  href: string;
+  href?: string;
 }
 
+
 const ExcursionCard = ({
+  image,
   title,
   description,
-  image,
-  duration,
-  group,
   rating,
   category,
+  duration,
+  group,
   isLarge,
   href,
 }: ExcursionProps) => {
@@ -97,58 +101,19 @@ const ExcursionCard = ({
 };
 
 export default function CategoryCards() {
-  const excursions: ExcursionProps[] = [
-    {
-      id: 1,
-      title: "Экскурсии в Париже",
-      description:
-        "Откройте для себя магию ночного Парижа, величие Лувра и богемный дух Монмартра в индивидуальном формате.",
-      image: parisNew,
-      duration: "4-8 Часов",
-      group: "1-6 чел.",
-      rating: "5.0",
-      category: "Популярное",
-      isLarge: true,
-      href: "/excursions-in-paris",
-    },
-    {
-      id: 2,
-      title: "Предместья Парижа",
-      description:
-        "Роскошь Версаля, сады Живерни и величие замков в окрестностях столицы.",
-      image: beautiful,
-      duration: "6 Часов",
-      group: "1-4 чел.",
-      rating: "4.9",
-      category: "История",
-      href: "/excursions-to-the-suburbs-of-paris",
-    },
-    {
-      id: 3,
-      title: "Регионы Франции",
-      description:
-        "Винные туры, лавандовые поля и океанское побережье Нормандии.",
-      image: river,
-      duration: "1-2 Дня",
-      group: "Инд.",
-      rating: "4.8",
-      category: "Путешествие",
-      href: "/excursions-to-the-regions-of-france",
-    },
-  ];
-
   return (
-    <div className="w-[100%] flex flex-col">
-      <main className="W-full">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-[100%]">
+    <div className="w-full flex flex-col">
+      <main className="w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
           <div className="lg:col-span-2">
-            <ExcursionCard {...excursions[0]} />
+            <ExcursionCard {...CategoriesData[0]} title={CategoriesData[0].title} />
           </div>
 
           <div className="flex flex-col gap-8">
-            <ExcursionCard {...excursions[1]} />
-            <ExcursionCard {...excursions[2]} />
+            <ExcursionCard {...CategoriesData[1]} title={CategoriesData[1].title} />
+            <ExcursionCard {...CategoriesData[2]} title={CategoriesData[2].title} />
           </div>
+
         </div>
       </main>
     </div>

@@ -24,8 +24,8 @@ export default async function NewStrapiCard({
             <div key={tour.id} className="shadow-xl/50 rounded-lg group">
               <Card
                 stylesOfCard="relative w-[200px] h-[300px] lg:w-[300px] lg:h-[400px] rounded-lg flex flex-col items-start justify-end gap-[8px] p-[12px] lg:p-[24px] cursor-pointer group transition-all duration-500 hover:scale-110"
-                // bgImage={imageUrl}
-                bgImage={`${strapiURL}${imageUrl}`}
+                bgImage={imageUrl}
+                // bgImage={`${strapiURL}${imageUrl}`}
                 primaryText={tour.primaryText}
                 primaryTextStyles="text-[16px] lg:text-[24px] font-[500] leading-[120%] text-secondary transition-all duration-500"
                 textBlockStyles="w-full flex flex-col lg:flex-row justify-between lg:items-center items-start gap-y-[8px]"
