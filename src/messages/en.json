@@ -3,7 +3,7 @@
     "Home": "Home",
     "ExcursionsInParis": "Excursions in Paris",
     "ExcursionsToTheSuburbsOfParis": "Excursions to the suburbs of Paris",
-    "ToursOfFrance": "Tours of France",
+    "ToursOfFrance": "Excursions to the regions of France",
     "BookATour": "Book a tour"
   },
   "HeroSection": {
@@ -68,5 +68,24 @@
     "QuickResponses": "Quick responses",
     "SuccessMessage": "Message was sent successfully",
     "FailedMessage": "Message was not sent"
+  },
+  "DetailsPage": {
+    "From": "From",
+    "BestPrice": "Best price guaranteed",
+    "Breakdown": "Price Breakdown",
+    "BasePrice": "Base price",
+    "Accommodations": "Accommodations",
+    "GuidedTours": "Guided tours",
+    "Total": "Total",
+    "BookNow": "Book Now",
+    "ContactUs": "Contact us",
+    "TourOverview": "Tour Overview",
+    "EmbarkOn": "Embark on an unforgettable journey through the heart of France, where timeless elegance meets provincial charm. From the iconic boulevards of Paris to the lavender-scented fields of Provence, this carefully curated experience offers an authentic taste of French culture, cuisine, and hospitality. Discover hidden gems, savor world-class wines, and immerse yourself in the rich history that has shaped this magnificent country. Our expert local guides will ensure every moment is filled with wonder and delight.",
+    "Gallery": "Photo Gallery",
+    "Duration": "Duration",
+    "GroupSize": "Group Size",
+    "NextTour": "Next Tour",
+    "TourHighlights": "Tour Highlights",
+    "Included": "What's Included"
   }
 }

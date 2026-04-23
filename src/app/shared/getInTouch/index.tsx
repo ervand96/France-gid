@@ -89,12 +89,11 @@ export default function GetInTouch() {
         <Container>
           <div className="flex flex-col gap-[64px]">
             <Header
-              isGetInTouch
               blockStyles="items-center"
               isDark={false}
               subHeadingStyles="text-center"
-              getInTouchHeader={t("GetInTouch")}
-              getInTouchSub={t("ReadyToExplore")}
+              heading={t("GetInTouch")}
+              subHeading={t("ReadyToExplore")}
             />
             <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-[48px] px-[20px]">
               <div className="w-full flex flex-row lg:flex-col flex-wrap justify-between items-start gap-[32px] mt-[50px] lg:mt-[0px]">
@@ -131,12 +130,12 @@ export default function GetInTouch() {
                   className="text-[28px] font-[500] leading-[150%]"
                   style={{ fontFamily: "Oswald" }}
                 >
-                  Send a Message
+                  {t("SendMessage")}
                 </h3>
 
                 <form
                   onSubmit={submitForm}
-                  className="relative w-full flex flex-col items-center gap-[16px]"
+                  className="w-full flex flex-col items-center gap-[16px]"
                 >
                   <input
                     name="name"
@@ -190,7 +189,7 @@ export default function GetInTouch() {
                     type="submit"
                     disabled={loading}
                     text={loading ? "Sending..." : t("SendMessage")}
-                    styles="absolute bottom-[-82px] w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                    styles="w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
                   />
                 </form>
               </div>

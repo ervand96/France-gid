@@ -1,5 +1,11 @@
 export enum CategoryEnum {
-  EXCURSIONSINPARIS = "ExcursionsInParis",
-  EXCURSIONSTOTHESUBURBSOFPARIS = "ExcursionsToTheSuburbs",
-  EXCURSIONSTOTHEREGIONSOFFRANCE = "RegionsOfFrance",
+  PARIS = "paris",
+  SUBURBS = "suburb",
+  REGIONS = "region",
 }
+
+export type CategoryPageProps = {
+  params: Promise<{
+    locale: string;
+  }>;
+};

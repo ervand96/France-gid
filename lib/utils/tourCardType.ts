@@ -3,6 +3,8 @@ export type TourCard = {
   primaryText: string;
   duration: string;
   category: string;
+  slug?: string;
+  filterCategory: string;
   bgImg: {
     url: string;
     formats?: {
