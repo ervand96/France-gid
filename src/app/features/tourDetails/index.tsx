@@ -23,9 +23,9 @@ type Props = {
   tour: TourCard;
 };
 
-export default function TourCardSlug({ tour }: Props) {
+export default function TourDetail({ tour }: Props) {
   const t = useTranslations("DetailsPage");
-  console.log(tour);
+  console.log(tour, "tour");
 
   const array = [
     { value: "7", image: clockIcon, text: t("Duration") },
