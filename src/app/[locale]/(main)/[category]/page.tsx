@@ -1,15 +1,9 @@
 import NewStrapiCard from "@/app/features/newStrapiCard";
-import { CategoryEnum, CategoryPageProps } from "@/constants/categoryEnum";
+import { categoryMap, CategoryPageProps } from "@/constants/categoryEnum";
 import NotFound from "../../not-found";
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-
-  const categoryMap: Record<string, CategoryEnum> = {
-    "excursions-in-paris": CategoryEnum.PARIS,
-    "excursions-to-the-suburbs-of-paris": CategoryEnum.SUBURBS,
-    "excursions-to-the-regions-of-france": CategoryEnum.REGIONS,
-  };
 
   const selectedCategory = categoryMap[category as keyof typeof categoryMap];
 

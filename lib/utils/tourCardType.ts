@@ -3,23 +3,42 @@ export type TourCard = {
   primaryText: string;
   duration: string;
   category: string;
-  slug?: string;
   filterCategory: string;
-  bgImg: {
-    url: string;
-    formats?: {
-      medium?: {
-        url: string;
-      };
-      small?: {
-        url: string;
-      };
-      large?: {
-        url: string;
-      };
+  slug: string;
+  TourOverview?: string;
+  bgImg: StrapiImage;
+  highlights?: { id: number; text: string }[];
+  included?: { id: number; text: string }[];
+  notIncluded?: { id: number; text: string }[];
+  gallery?: {
+    id: number;
+    image: StrapiImage;
+  }[];
+};
+export type StrapiResponse<T> = {
+  data: T[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
     };
   };
 };
-export interface StrapiResponse<T> {
-  data: T[];
-}
+
+export type StrapiImage = {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  url: string;
+  formats?: {
+    small?: { url: string };
+    medium?: { url: string };
+    large?: { url: string };
+  };
+};
