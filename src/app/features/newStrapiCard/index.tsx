@@ -1,15 +1,18 @@
+import Link from "next/link";
 import Card from "@/app/shared/Card";
 import { fetchTourCards } from "lib/api/strapi/toursCard";
 import { TourCard } from "lib/utils/tourCardType";
 
-const strapiURL = process.env.NEXT_PUBLIC_STRAPI_URL;
+// const strapiURL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export default async function NewStrapiCard({
   locale,
   category,
+  categorySlug,
 }: {
   locale: string;
   category: string;
+  categorySlug?: string;
 }) {
   const tours = await fetchTourCards(locale, category);
   return (
@@ -20,7 +23,11 @@ export default async function NewStrapiCard({
           const imageUrl = `${tour?.bgImg?.formats?.medium?.url}`;
 
           return (
-            <div key={tour.id} className="shadow-xl/50 rounded-lg group">
+            <Link
+              key={tour.id}
+              href={`/${locale}/${categorySlug || category}/${tour.slug}`}
+              className="shadow-xl/50 rounded-lg group"
+            >
               <Card
                 stylesOfCard="relative w-[200px] h-[300px] lg:w-[300px] lg:h-[400px] rounded-lg flex flex-col items-start justify-end gap-[8px] p-[12px] lg:p-[24px] cursor-pointer group transition-all duration-500 hover:scale-110"
                 bgImage={imageUrl}
@@ -37,7 +44,7 @@ export default async function NewStrapiCard({
                   &#10095;
                 </span>
               </Card>
-            </div>
+            </Link>
           );
         })
       ) : (

@@ -7,5 +7,6 @@ export enum CategoryEnum {
 export type CategoryPageProps = {
   params: Promise<{
     locale: string;
+    category: string;
   }>;
 };
