@@ -1,6 +1,6 @@
 import NewStrapiCard from "@/app/features/newStrapiCard";
 import { CategoryEnum, CategoryPageProps } from "@/constants/categoryEnum";
-import NotFound from "../not-found";
+import NotFound from "../../not-found";
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
