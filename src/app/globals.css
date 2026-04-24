@@ -18,6 +18,7 @@
   --color-ebony: #1a1c23;
   --color-ivory: #f9f9f7;
   --color-gray-transparent: #111827cc;
+  --color-dark-gray: #1F2937;
 }
 
 @media (prefers-color-scheme: dark) {
