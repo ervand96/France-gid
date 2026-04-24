@@ -24,34 +24,6 @@ export function TourDetail({ tour }: Props) {
   const router = useRouter();
   const t = useTranslations("TourCard");
 
-  const schedule = [
-    {
-      time: "09:00",
-      title: "Встреча у входа",
-      description: "Сбор группы у пирамиды Лувра",
-    },
-    {
-      time: "09:30",
-      title: "Древний Египет",
-      description: "Экскурсия по египетской коллекции",
-    },
-    {
-      time: "10:30",
-      title: "Античные шедевры",
-      description: "Венера Милосская, Ника Самофракийская",
-    },
-    {
-      time: "11:30",
-      title: "Мона Лиза",
-      description: "Знаменитая картина Леонардо да Винчи",
-    },
-    {
-      time: "12:00",
-      title: "Свободное время",
-      description: "Самостоятельный осмотр музея",
-    },
-  ];
-
   const reviews = [
     {
       name: "Мария К.",
@@ -110,14 +82,6 @@ export function TourDetail({ tour }: Props) {
                     </span>
                   )}
                 </div>
-                {/* <div className="absolute top-4 right-4 flex gap-2">
-                  <button className="p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-gray-800 transition-colors">
-                    <Share2 className="w-5 h-5 text-white" />
-                  </button>
-                  <button className="p-3 bg-gray-900/80 backdrop-blur-sm rounded-full hover:bg-gray-800 transition-colors">
-                    <Heart className="w-5 h-5 text-white" />
-                  </button>
-                </div> */}
               </div>
 
               <div className="grid grid-cols-3 gap-4">
@@ -221,21 +185,22 @@ export function TourDetail({ tour }: Props) {
                 Программа экскурсии
               </h2>
               <div className="space-y-6">
-                {schedule.map((item, idx: number) => (
-                  <div key={idx} className="flex gap-6">
-                    <div className="flex-shrink-0 w-16">
-                      <div className="px-3 py-1 bg-yellow-600/20 border border-yellow-600/30 rounded-lg text-yellow-600 font-semibold text-sm text-center">
-                        {item?.time}
+                {tour &&
+                  tour?.tourPlan?.map((item, idx: number) => (
+                    <div key={idx} className="flex gap-6">
+                      <div className="flex-shrink-0 w-16">
+                        <div className="px-3 py-1 bg-yellow-600/20 border border-yellow-600/30 rounded-lg text-yellow-600 font-semibold text-sm text-center">
+                          {item?.time}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-white mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-400">{item.description}</p>
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-400">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
 
@@ -266,7 +231,7 @@ export function TourDetail({ tour }: Props) {
                     className="border-b border-gray-800 pb-6 last:border-0 last:pb-0"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="text-4xl">{review.avatar}</div>
+                      <div className="text-4xl">{review?.avatar}</div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
                           <div>
@@ -292,23 +257,35 @@ export function TourDetail({ tour }: Props) {
                   </div>
                 ))}
               </div>
-              <button className="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors">
+              <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors">
                 Показать все отзывы
-              </button>
+              </Button>
             </div>
           </div>
 
-          {/* Right Column - Booking Card */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
               <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
                 <div className="mb-6">
                   <div className="text-gray-400 text-sm mb-2">Цена от</div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-yellow-600">
-                      {tour.price ? `€ ${tour.price}` : "—"}
-                    </span>
-                    <span className="text-gray-400">/ чел</span>
+                  <div className="space-y-3 mb-6">
+                    {tour &&
+                      tour?.pricing.map((item, idx: number) => (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:border-yellow-600/50 transition-colors cursor-pointer"
+                        >
+                          <div>
+                            <div className="text-sm text-gray-400">
+                              {item?.range} человека
+                            </div>
+                            <div className="text-2xl font-bold text-yellow-600">
+                              {item?.price ? `€ ${item.price}` : "—"}
+                            </div>
+                          </div>
+                          <div className="text-xs text-gray-500">/ чел</div>
+                        </div>
+                      ))}
                   </div>
                 </div>
 
@@ -336,18 +313,16 @@ export function TourDetail({ tour }: Props) {
                       Количество человек
                     </label>
                     <select className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-yellow-600">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5+</option>
+                      <option>1-3</option>
+                      <option>4-5</option>
+                      <option>6-7</option>
                     </select>
                   </div>
                 </div>
 
-                <button className="w-full py-4 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-colors mb-4">
+                <Button styles="w-full py-4 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-colors mb-4 cursor-pointer">
                   Забронировать сейчас
-                </button>
+                </Button>
 
                 <div className="text-center text-sm text-gray-400 mb-6">
                   Бесплатная отмена за 24 часа
@@ -378,9 +353,9 @@ export function TourDetail({ tour }: Props) {
                 <p className="text-gray-400 text-sm mb-4">
                   Свяжитесь с нами для индивидуальных туров
                 </p>
-                <button className="w-full py-3 border border-yellow-600 text-yellow-600 rounded-lg hover:bg-yellow-600/10 transition-colors">
+                <Button styles="w-full py-3 border border-yellow-600 text-yellow-600 rounded-lg hover:bg-yellow-600/10 transition-colors">
                   Связаться с нами
-                </button>
+                </Button>
               </div>
             </div>
           </div>

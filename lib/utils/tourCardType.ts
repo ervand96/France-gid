@@ -27,6 +27,15 @@ export interface TourCard {
   notIncluded: NotIncluded[];
   gallery: Gallery[];
   bgImg: BgImg;
+  pricing: Pricing[];
+  tourPlan: PlanItem[];
+}
+
+export interface PlanItem {
+  id: number;
+  time: string;
+  title: string;
+  description: string;
 }
 
 export interface Highlight {
@@ -48,6 +57,12 @@ export interface Gallery {
   id: number;
   alt: string;
   image: Image[];
+}
+
+export interface Pricing {
+  price: number;
+  id: number;
+  range: string;
 }
 
 export interface Image {

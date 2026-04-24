@@ -60,7 +60,6 @@ export default function Navbar() {
                 className="w-[30px] h-[30px]"
               />
             </Button>
-
           </div>
           {isMenuOpen && (
             <div className="xl:hidden flex flex-col items-start gap-[20px] bg-primary/1 p-[20px] rounded-xl">
@@ -85,7 +84,6 @@ export default function Navbar() {
               </div>
             </div>
           )}
-
         </Container>
       </div>
     </div>
