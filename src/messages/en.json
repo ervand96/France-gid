@@ -108,5 +108,11 @@
     "Lyon": "Lyon",
     "Marseille": "Marseille",
     "GoBack": "Go back to previous page"
+  },
+  "TourCard": {
+    "Group": "Group",
+    "Recommendation": "Recommendation",
+    "ReadMore": "Read More",
+    "From": "From"
   }
 }

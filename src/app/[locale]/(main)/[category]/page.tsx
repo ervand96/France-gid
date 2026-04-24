@@ -1,6 +1,7 @@
 import NewStrapiCard from "@/app/features/newStrapiCard";
 import { categoryMap, CategoryPageProps } from "@/constants/categoryEnum";
 import NotFound from "../../not-found";
+import Container from "@/app/shared/Container";
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
@@ -16,12 +17,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main>
+    <Container>
       <NewStrapiCard
         locale={locale}
         category={selectedCategory}
         categorySlug={category}
       />
-    </main>
+    </Container>
   );
 }

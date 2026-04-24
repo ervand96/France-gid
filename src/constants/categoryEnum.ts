@@ -18,3 +18,7 @@ export const categoryMap = {
 } as const;
 
 export type CategoryKey = keyof typeof categoryMap;
+
+export const reverseCategoryMap = Object.fromEntries(
+  Object.entries(categoryMap).map(([key, value]) => [value, key]),
+) as Record<CategoryEnum, string>;

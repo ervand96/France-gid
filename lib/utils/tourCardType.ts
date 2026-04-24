@@ -1,44 +1,52 @@
+export type TourItem = {
+  id: number;
+  text: string;
+};
+
+export type GalleryItem = {
+  id: number;
+  image: StrapiImage[];
+  alt: string;
+};
+
+export type StrapiImage = {
+  url: string;
+  formats?: {
+    large?: { url: string };
+    medium?: { url: string };
+    small?: { url: string };
+    thumbnail?: { url: string };
+  };
+};
+
 export type TourCard = {
   id: number;
   primaryText: string;
   duration: string;
   category: string;
+  slug?: string;
   filterCategory: string;
-  slug: string;
-  TourOverview?: string;
+  isRecommended: boolean;
   bgImg: StrapiImage;
-  highlights?: { id: number; text: string }[];
-  included?: { id: number; text: string }[];
-  notIncluded?: { id: number; text: string }[];
-  gallery?: {
-    id: number;
-    image: StrapiImage;
-  }[];
-};
-export type StrapiResponse<T> = {
-  data: T[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
+  price: string;
+  rating: string;
 };
 
-export type StrapiImage = {
-  id: number;
-  documentId: string;
-  name: string;
-  alternativeText: string | null;
-  caption: string | null;
-  width: number;
-  height: number;
-  url: string;
-  formats?: {
-    small?: { url: string };
-    medium?: { url: string };
-    large?: { url: string };
-  };
+export type TourCardDetail = TourCard & {
+  groupSize: string;
+  nextTour: string;
+  TourOverview: string;
+  price: number;
+  gallery: GalleryItem[];
+  highlights: TourItem[];
+  included: TourItem[];
+  notIncluded: TourItem[];
 };
+
+export interface StrapiResponse<T> {
+  data: T[];
+}
+
+export interface StrapiSingleResponse<T> {
+  data: T;
+}
