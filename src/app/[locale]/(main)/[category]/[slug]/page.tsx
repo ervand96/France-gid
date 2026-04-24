@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchTourDetails } from "lib/api/strapi/fetchTourDetails";
-import TourDetail from "@/app/features/tourDetails";
+import { TourDetail } from "@/app/features/tourDetails";
 
 type Props = {
   params: Promise<{

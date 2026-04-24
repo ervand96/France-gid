@@ -11,10 +11,14 @@ export function ImageWithFallback(props: ImageProps) {
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setDidError(true);
-    if (props.onError) props.onError(e); // Сохраняем поддержку внешнего onError
+    if (props.onError) props.onError(e);
   };
 
   const { src, alt, style, className, ...rest } = props;
+
+  if (!src) {
+    return <div className="bg-gray-800 animate-pulse w-full h-full" />;
+  }
 
   if (didError) {
     return (
