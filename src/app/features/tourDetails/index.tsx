@@ -14,7 +14,6 @@ import {
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import { TourCard } from "lib/utils/tourCardType";
 import Button from "@/app/shared/Button";
-import { STRAPI_URL } from "lib/strapi";
 
 type Props = {
   tour: TourCard;
@@ -23,6 +22,10 @@ type Props = {
 export function TourDetail({ tour }: Props) {
   const router = useRouter();
   const t = useTranslations("TourCard");
+
+  const allGalleryImages = tour.gallery?.flatMap((g) => g.image) || [];
+
+  console.log(tour?.highlights.length, "tour?.highlights.length");
 
   const reviews = [
     {
@@ -52,6 +55,13 @@ export function TourDetail({ tour }: Props) {
     router.back();
   };
 
+  const getImageUrl = (url?: string) => {
+    if (!url) return null;
+    return url.startsWith("http")
+      ? url
+      : `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
+  };
+
   return (
     <div className="min-h-screen bg-gray-950 mt-20">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -70,7 +80,7 @@ export function TourDetail({ tour }: Props) {
                 <ImageWithFallback
                   width={100}
                   height={100}
-                  src={`${STRAPI_URL}${tour?.bgImg.formats.large.url}`}
+                  src={getImageUrl(tour?.bgImg?.formats?.large?.url) || ""}
                   alt="Лувр"
                   className="w-full h-full object-cover"
                   unoptimized
@@ -85,25 +95,23 @@ export function TourDetail({ tour }: Props) {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                {tour?.gallery[0]?.image?.slice(1).map((img, idx) => (
+                {allGalleryImages?.map((img, idx: number) => (
                   <div
                     key={img.id || idx}
                     className="relative h-32 rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
                   >
                     <ImageWithFallback
-                      width={100}
-                      height={100}
-                      src={`${STRAPI_URL}${img.url}`}
+                      src={getImageUrl(img.url) || ""}
                       alt={img.alternativeText || `Gallery ${idx + 1}`}
                       className="w-full h-full object-cover"
                       unoptimized
+                      fill
                     />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Title and Rating */}
             <div>
               <h1 className="text-4xl font-bold text-white mb-4">
                 {tour?.primaryText}
@@ -119,19 +127,19 @@ export function TourDetail({ tour }: Props) {
                     ))}
                   </div>
                   <span className="text-white font-semibold">
-                    {tour.rating}
+                    {tour?.rating}
                   </span>
                   <span>(2,847 отзывов)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  <span>Париж, Франция</span>
+                  <span>{tour?.category}</span>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
                 <Clock className="w-8 h-8 text-yellow-600 mb-3" />
                 <div className="text-sm text-gray-400 mb-1">
                   Продолжительность
@@ -140,14 +148,12 @@ export function TourDetail({ tour }: Props) {
                   {tour?.duration}
                 </div>
               </div>
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
                 <Users className="w-8 h-8 text-yellow-600 mb-3" />
                 <div className="text-sm text-gray-400 mb-1">Размер группы</div>
-                <div className="text-xl font-semibold text-white">
-                  До 15 чел
-                </div>
+                <div className="text-xl font-semibold text-white">До 7 чел</div>
               </div>
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
                 <Calendar className="w-8 h-8 text-yellow-600 mb-3" />
                 <div className="text-sm text-gray-400 mb-1">Доступно</div>
                 <div className="text-xl font-semibold text-white">
@@ -156,73 +162,95 @@ export function TourDetail({ tour }: Props) {
               </div>
             </div>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Описание</h2>
-              <div className="text-gray-300 space-y-4 leading-relaxed">
-                {tour?.TourOverview}
-              </div>
-            </div>
+            {tour?.contentSections?.length > 0 && (
+              <div className="space-y-12">
+                {tour?.contentSections?.map((section, idx: number) => (
+                  <div
+                    key={idx}
+                    className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700"
+                  >
+                    {section?.title && (
+                      <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <div className="w-1 h-6 bg-yellow-600 rounded-full" />{" "}
+                        {section?.title}
+                      </h2>
+                    )}
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Основные моменты
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tour?.highlights.map((item, idx: number) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="mt-1 p-1 bg-yellow-600/20 rounded-full">
-                      <Check className="w-4 h-4 text-yellow-600" />
+                    <div className="text-gray-300 space-y-4 leading-relaxed whitespace-pre-line text-base">
+                      {section?.description}
                     </div>
-                    <span className="text-gray-300">{item.text}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            )}
 
-            {/* Schedule */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Программа экскурсии
-              </h2>
-              <div className="space-y-6">
-                {tour &&
-                  tour?.tourPlan?.map((item, idx: number) => (
-                    <div key={idx} className="flex gap-6">
-                      <div className="flex-shrink-0 w-16">
-                        <div className="px-3 py-1 bg-yellow-600/20 border border-yellow-600/30 rounded-lg text-yellow-600 font-semibold text-sm text-center">
-                          {item?.time}
-                        </div>
+            {tour?.highlights?.length > 0 && (
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  Основные моменты
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {tour?.highlights?.map((item, idx: number) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className="mt-1 p-1 bg-yellow-600/20 rounded-full">
+                        <Check className="w-4 h-4 text-yellow-600" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-gray-400">{item.description}</p>
-                      </div>
+                      <span className="text-white">{item.text}</span>
                     </div>
                   ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Schedule */}
+            {tour?.tourPlan?.length > 0 && (
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  Программа экскурсии
+                </h2>
+                <div className="space-y-6">
+                  {tour &&
+                    tour?.tourPlan?.map((item, idx: number) => (
+                      <div key={idx} className="flex gap-6">
+                        <div className="flex-shrink-0 w-16">
+                          <div className="px-3 py-1 bg-yellow-600/20 border border-yellow-600/30 rounded-lg text-yellow-600 font-semibold text-sm text-center">
+                            {item?.time}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-white mb-1">
+                            {item?.title}
+                          </h3>
+                          <p className="text-gray-400">{item?.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
 
             {/* What's Included */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Что включено
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tour?.included?.map((item, idx: number) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="p-1 bg-green-600/20 rounded-full">
-                      <Check className="w-5 h-5 text-green-500" />
+
+            {tour?.included?.length > 0 && (
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  Что включено
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {tour?.included?.map((item, idx: number) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className="p-1 bg-green-600/20 rounded-full">
+                        <Check className="w-5 h-5 text-green-500" />
+                      </div>
+                      <span className="text-white">{item?.text}</span>
                     </div>
-                    <span className="text-gray-300">{item?.text}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Reviews */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
+            <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-6">Отзывы</h2>
               <div className="space-y-6">
                 {reviews.map((review, idx) => (
@@ -265,7 +293,7 @@ export function TourDetail({ tour }: Props) {
 
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
                 <div className="mb-6">
                   <div className="text-gray-400 text-sm mb-2">Цена от</div>
                   <div className="space-y-3 mb-6">
@@ -280,7 +308,7 @@ export function TourDetail({ tour }: Props) {
                               {item?.range} человека
                             </div>
                             <div className="text-2xl font-bold text-yellow-600">
-                              {item?.price ? `€ ${item.price}` : "—"}
+                              {item?.price ? `€ ${item?.price}` : "—"}
                             </div>
                           </div>
                           <div className="text-xs text-gray-500">/ чел</div>
@@ -346,7 +374,7 @@ export function TourDetail({ tour }: Props) {
                 </div>
               </div>
 
-              <div className="mt-6 bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
+              <div className="mt-6 bg-gray-900/30 border border-gray-800/50 rounded-2xl p-8 transition-all hover:border-gray-700">
                 <h3 className="text-lg font-semibold text-white mb-4">
                   Нужна помощь?
                 </h3>

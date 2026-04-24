@@ -29,6 +29,13 @@ export interface TourCard {
   bgImg: BgImg;
   pricing: Pricing[];
   tourPlan: PlanItem[];
+  contentSections: ContentSection[];
+}
+
+export interface ContentSection {
+  id: number;
+  title?: string;
+  description: string;
 }
 
 export interface PlanItem {

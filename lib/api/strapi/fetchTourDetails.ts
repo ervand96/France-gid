@@ -10,6 +10,7 @@ const TOUR_DETAILS_POPULATE = [
   "gallery",
   "pricing",
   "tourPlan",
+  "contentSections",
 ]
   .map((field) => `populate[${field}][populate]=*`)
   .join("&");
