@@ -163,7 +163,7 @@ export function TourDetail({ tour }: Props) {
             </div>
 
             {tour?.contentSections?.length > 0 && (
-              <div className="space-y-12">
+              <div className="space-y-6">
                 {tour?.contentSections?.map((section, idx: number) => (
                   <div
                     key={idx}
