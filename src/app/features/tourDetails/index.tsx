@@ -390,13 +390,13 @@ export function TourDetail({ tour }: Props) {
         </div>
       </main>
 
-      <footer className="bg-gray-900/50 border-t border-gray-800 mt-20">
+      {/* <footer className="bg-gray-900/50 border-t border-gray-800 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-400 text-sm">
             <p>&copy; 2026 Elite Paris Guide. Все права защищены.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }
