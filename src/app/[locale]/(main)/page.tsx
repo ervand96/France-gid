@@ -1,5 +1,6 @@
-import { getTranslations } from "next-intl/server";
+"use client";
 
+import { useTranslations } from "next-intl";
 import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
@@ -7,8 +8,8 @@ import GetInTouch from "@/app/shared/getInTouch";
 import CallToAction from "@/app/features/CallToAction";
 import CategoryCards from "@/app/shared/category";
 
-export default async function Home() {
-  const t = await getTranslations("HeroSection");
+export default function Home() {
+  const t = useTranslations("HeroSection");
 
   return (
     <div>
