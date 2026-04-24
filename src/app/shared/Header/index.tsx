@@ -13,10 +13,10 @@ export default function Header({
 
   return (
     <div
-      className={`${isDark ? "text-primary" : "text-secondary"} flex flex-col justify-center gap-[24px] ${blockStyles}`}
+      className={`${isDark ? "text-primary" : "text-secondary"} flex flex-col justify-center gap-[24px] px-[10px] ${blockStyles}`}
     >
       <h3
-        className={`text-[32px] sm:text-[44px] lg:text-[72px] font-[500] leading-[110%] ${headingStyles}`}
+        className={`text-[28px] sm:text-[44px] lg:text-[72px] font-[500] leading-[110%] ${headingStyles}`}
         style={{ fontFamily: "Oswald" }}
       >
         {heading}

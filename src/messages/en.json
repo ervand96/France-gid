@@ -96,5 +96,17 @@
     "NextTour": "Next Tour",
     "TourHighlights": "Tour Highlights",
     "Included": "What's Included"
+  },
+  "NotFound": {
+    "LostInFrance": "Lost in France?",
+    "ThisPage": "This page seems lost, like a wanderer on the streets of Paris. Let's get back on track!",
+    "ReturnHome": "Return home",
+    "ExploreDirections": "Explore directions",
+    "PopularDestinations": "Popular Destinations",
+    "Paris": "Paris",
+    "Nice": "Nice",
+    "Lyon": "Lyon",
+    "Marseille": "Marseille",
+    "GoBack": "Go back to previous page"
   }
 }

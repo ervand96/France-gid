@@ -35,7 +35,7 @@ export default function HeroSection({
     <section className="relative bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
       <Container>
         <div
-          className={`flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] pt-[150px] ${generalStyles}`}
+          className={`flex flex-col items-center justify-center min-h-screen gap-[48px] px-[10px] pt-[150px] pb-[50px] ${generalStyles}`}
         >
           <div className="flex flex-col items-center justify-center text-center gap-[24px]">
             <h1
