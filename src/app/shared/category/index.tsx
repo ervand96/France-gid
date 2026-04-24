@@ -17,7 +17,7 @@ export default function CategoryCards() {
           />
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-row md:flex-col gap-4">
+        <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-between gap-4">
           <div className="w-1/2 md:w-full">
             <ExcursionCard
               {...CategoriesData[1]}
