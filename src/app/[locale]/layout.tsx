@@ -1,6 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
 import { ReactNode } from "react";
-import Navbar from "../shared/Navbar";
 
 type Props = {
   children: ReactNode;
@@ -21,7 +20,6 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={currentLocale} messages={messages}>
-      <Navbar />
       {children}
     </NextIntlClientProvider>
   );

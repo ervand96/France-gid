@@ -11,6 +11,11 @@ const nextConfig = {
         port: "1337",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "**",
+      },
     ],
   },
 } satisfies import("next").NextConfig;
