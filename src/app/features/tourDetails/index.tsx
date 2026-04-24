@@ -14,6 +14,7 @@ import {
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import { TourCard } from "lib/utils/tourCardType";
 import Button from "@/app/shared/Button";
+import { STRAPI_URL } from "lib/strapi";
 
 type Props = {
   tour: TourCard;
@@ -22,13 +23,6 @@ type Props = {
 export function TourDetail({ tour }: Props) {
   const router = useRouter();
   const t = useTranslations("TourCard");
-
-  const tourImages = [
-    "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
-    "https://images.unsplash.com/photo-1541253354-f7e1c81b8e18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
-    "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
-    "https://images.unsplash.com/photo-1564399579883-451a5d44ec08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200",
-  ];
 
   const schedule = [
     {
@@ -82,8 +76,6 @@ export function TourDetail({ tour }: Props) {
     },
   ];
 
-  console.log(tour?.gallery[0], "tourrr s");
-
   const handleBack = () => {
     router.back();
   };
@@ -106,9 +98,10 @@ export function TourDetail({ tour }: Props) {
                 <ImageWithFallback
                   width={100}
                   height={100}
-                  src={tourImages[0]}
+                  src={`${STRAPI_URL}${tour?.bgImg.formats.large.url}`}
                   alt="Лувр"
                   className="w-full h-full object-cover"
+                  unoptimized
                 />
                 <div className="absolute top-4 left-4">
                   {tour?.isRecommended && (
@@ -130,15 +123,16 @@ export function TourDetail({ tour }: Props) {
               <div className="grid grid-cols-3 gap-4">
                 {tour?.gallery[0]?.image?.slice(1).map((img, idx) => (
                   <div
-                    key={idx}
+                    key={img.id || idx}
                     className="relative h-32 rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
                   >
                     <ImageWithFallback
                       width={100}
                       height={100}
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
+                      src={`${STRAPI_URL}${img.url}`}
+                      alt={img.alternativeText || `Gallery ${idx + 1}`}
                       className="w-full h-full object-cover"
+                      unoptimized
                     />
                   </div>
                 ))}
