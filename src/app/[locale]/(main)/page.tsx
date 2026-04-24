@@ -5,7 +5,6 @@ import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
 import GetInTouch from "@/app/shared/getInTouch";
-import CallToAction from "@/app/features/CallToAction";
 import CategoryCards from "@/app/shared/category";
 
 export default function Home() {
@@ -34,7 +33,6 @@ export default function Home() {
         </Container>
       </section>
 
-      <CallToAction />
       <GetInTouch />
     </div>
   );

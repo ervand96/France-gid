@@ -1,3 +1,4 @@
+import CallToAction from "@/app/features/CallToAction";
 import Navbar from "../../shared/Navbar";
 
 export default function MainLayout({
@@ -9,6 +10,7 @@ export default function MainLayout({
     <>
       <Navbar />
       {children}
+      <CallToAction />
     </>
   );
 }

@@ -12,11 +12,12 @@
   --font-mono: var(--font-geist-mono);
   --color-primary: #0a1628;
   --color-secondary: #faf8f5;
-  --color-accent: #d4a574;
+  --color-accent: #CA8A04;
   --color-secondary-transparent: #faf8f51a;
   --color-gold: #d4af37;
   --color-ebony: #1a1c23;
   --color-ivory: #f9f9f7;
+  --color-gray-transparent: #111827cc;
 }
 
 @media (prefers-color-scheme: dark) {

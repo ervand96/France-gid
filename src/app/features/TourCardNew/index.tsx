@@ -31,7 +31,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
 
   return (
     <Link href={tourHref} className="group block h-full w-full">
-      <div className="relative bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800 hover:border-yellow-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-600/10 h-full w-full flex flex-col">
+      <div className="relative bg-gray-transparent rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 h-full w-full flex flex-col">
         <div className="relative h-72 overflow-hidden shrink-0">
           <ImageWithFallback
             src={imageUrl}
@@ -43,27 +43,29 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
 
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            {tour?.isRecommended && (
-              <span className="px-3 py-1 bg-yellow-600 text-white text-[10px] font-bold rounded-full uppercase tracking-wider">
-                {t("Recommendation")}
+          <div className="absolute top-4 left-4 flex flex-col items-start flex-wrap gap-2">
+            {tour?.category && (
+              <span className="px-[12px] py-[4px] bg-gray-transparent backdrop-blur-sm text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider">
+                {tour.category}
               </span>
             )}
-            {tour?.category && (
-              <span className="px-3 py-1 bg-gray-800/90 backdrop-blur-sm text-gray-100 text-[10px] font-bold rounded-full uppercase tracking-wider">
-                {tour.category}
+            {tour?.isRecommended && (
+              <span className="px-[12px] py-[4px] bg-accent text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider">
+                {t("Recommendation")}
               </span>
             )}
           </div>
 
-          <div className="absolute top-4 right-4 flex items-center gap-1 bg-gray-900/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
-            <Star className="w-3.5 h-3.5 fill-yellow-500 text-yellow-500" />
-            <span className="text-white font-bold text-xs">
+          <div className="absolute top-4 right-4 flex items-center gap-1 bg-gray-transparent backdrop-blur-sm px-2.5 py-1 rounded-full">
+            <Star className="w-3.5 h-3.5 fill-accent text-accent" />
+            <span className="text-[12px] font-[600] leading-[143%]">
               {tour?.rating || "5.0"}
             </span>
           </div>
 
-          <h3 className="absolute bottom-4 left-4 right-4 text-white text-lg font-semibold leading-tight line-clamp-2">
+
+
+          <h3 className="absolute bottom-4 left-4 right-4 text-secondary text-[20px] font-[600] leading-[140%] line-clamp-2">
             {tour.primaryText}
           </h3>
         </div>
@@ -71,11 +73,11 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
         <div className="p-5 flex flex-col flex-grow">
           <div className="flex items-center gap-4 mb-6 text-gray-400 text-xs">
             <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-yellow-600/80" />
+              <Clock className="w-4 h-4 text-accent/80" />
               <span>{tour.duration}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-yellow-600/80" />
+              <Users className="w-4 h-4 text-accent/80" />
               <span>{t("Group")}</span>
             </div>
           </div>
@@ -85,11 +87,11 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
               <span className="text-gray-500 text-[10px] uppercase font-bold tracking-widest">
                 {t("From")}
               </span>
-              <span className="text-yellow-600 text-2xl font-black">
+              <span className="text-accent text-2xl font-black">
                 {tour.price ? `€ ${tour.price}` : "—"}
               </span>
             </div>
-            <div className="px-5 py-2.5 bg-yellow-600 group-hover:bg-yellow-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-yellow-900/20 uppercase tracking-wide">
+            <div className="px-5 py-2.5 bg-accent group-hover:bg-accent/80 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-accent/20 uppercase tracking-wide">
               {t("ReadMore")}
             </div>
           </div>

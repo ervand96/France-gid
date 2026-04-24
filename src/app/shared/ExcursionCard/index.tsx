@@ -64,7 +64,7 @@ export default function ExcursionCard({
                     </h3>
 
                     <p className={`hidden md:block text-secondary/60 leading-relaxed transition-all duration-500 overflow-hidden
-                        ${isLarge ? "text-base md:mb-6 max-h-24" : "text-sm md:mb-4 max-h-0 group-hover:max-h-12"}`}
+                        ${isLarge ? "text-base md:mb-6 max-h-0 group-hover:max-h-24" : "text-sm md:mb-4 max-h-0 group-hover:max-h-12"}`}
                     >
                         {t(description)}
                     </p>
@@ -80,9 +80,9 @@ export default function ExcursionCard({
                                 {group + " " + t("People")}
                             </span>
                         </div>
-                        <div className="hidden md:flex items-center gap-1 md:gap-2 text-secondary font-bold text-[9px] md:text-[11px] uppercase tracking-widest group/btn">
+                        <div className="hidden md:flex items-center gap-1 md:gap-2 text-secondary font-bold text-[9px] md:text-[11px] uppercase tracking-widest">
                             <span>{t("Details")}</span>
-                            <ArrowRight className="h-3 w-3 md:h-4 md:w-4 text-accent group-hover/btn:translate-x-1 transition-transform" />
+                            <ArrowRight className="h-3 w-3 md:h-4 md:w-4 text-accent group-hover:translate-x-1 transition-transform" />
                         </div>
                     </div>
                 </div>
