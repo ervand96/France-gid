@@ -9,14 +9,17 @@ import { navData } from "@/constants/navbarData";
 import Container from "../Container";
 import Button from "@/app/shared/Button";
 import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
+import { PathnameEnum } from "@/constants/pathName";
 
 import menuIcon from "@/assets/elements/menu.png";
 import closeIcon from "@/assets/elements/close.png";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const t = useTranslations("Navbar");
   const locale = useLocale();
+  const pathname = usePathname();
+  const t = useTranslations("Navbar");
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -37,14 +40,32 @@ export default function Navbar() {
 
             <ul className="hidden xl:flex justify-center items-center xl:gap-[32px]">
               {navData &&
-                navData.map((item, index) => (
-                  <li
-                    key={index}
-                    className="text-[16px] font-[400] leading-[150%] text-secondary hover:text-gray-500"
-                  >
-                    <Link href={`/${locale}${item.path}`}>{t(item.key)}</Link>
-                  </li>
-                ))}
+                navData.map((item, index) => {
+                  const fullPath = `/${locale}${item.path}`;
+                  const isActive =
+                    item.path === PathnameEnum.HOME
+                      ? pathname === `/${locale}` || pathname === `/${locale}/`
+                      : pathname.startsWith(fullPath);
+                  return (
+                    <Link
+                      key={index}
+                      href={fullPath}
+                      className="text-[16px] text-secondary relative py-1 group transition-colors duration-300"
+                    >
+                      {t(item.key)}
+
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-500 ease-out
+                  ${
+                    isActive
+                      ? "w-full opacity-100 shadow-[0_0_8px_rgba(202,138,4,0.4)]"
+                      : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-50"
+                  }
+                `}
+                      />
+                    </Link>
+                  );
+                })}
               <Button
                 text={t("BookATour")}
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
