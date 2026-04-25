@@ -137,6 +137,23 @@
     "RussianSpeakingGuide": "Russian-speaking guide",
     "NeedHelp": "Need help?",
     "IndividualTours": "Contact us for custom tours",
-    "ContactUs": "Contact us"
+    "ContactUs": "Contact us",
+    "NotSelected": "Not Selected",
+    "PleaseSelectDate": "Please select date"
+  },
+  "BookingModal": {
+    "BookATour": "Book a tour",
+    "Date": "Date",
+    "Time": "Time",
+    "Guests": "Guests",
+    "ToBePaid": "To be paid",
+    "YourName": "Your Name",
+    "AlexanderPushkin": "Alexander Pushkin",
+    "CommentOnTheOrder": "Comment on the order",
+    "SpecialWishes": "Special wishes...",
+    "ConfirmYourBooking": "Confirm your booking",
+    "ApplicationAccepted": "Application accepted",
+    "WeHaveReceivedYourReservation": "We've received your request. Our guide will contact you within 15 minutes via WhatsApp or phone to confirm the details.",
+    "Great": "Great"
   }
 }
