@@ -71,7 +71,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
         </div>
 
         <div className="p-5 flex flex-col flex-grow">
-          <div className="flex items-center gap-4 mb-6 text-gray-400 text-xs">
+          <div className="flex items-center gap-4 mb-6 text-secondary/50 text-[14px] font-[600] leading-[143%]">
             <div className="flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-accent/80" />
               <span>{tour.duration}</span>
@@ -84,14 +84,14 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
 
           <div className="mt-auto flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-gray-500 text-[10px] uppercase font-bold tracking-widest">
+              <span className="text-secondary/50 text-[14px] uppercase font-[600] tracking-widest">
                 {t("From")}
               </span>
-              <span className="text-accent text-2xl font-black">
+              <span className="text-accent text-[24px] font-[700] leading-[133%]">
                 {tour.price ? `€ ${tour.price}` : "—"}
               </span>
             </div>
-            <div className="px-5 py-2.5 bg-accent group-hover:bg-accent/80 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-accent/20 uppercase tracking-wide">
+            <div className="px-5 py-2.5 bg-accent group-hover:bg-accent/80 text-secondary text-[14px] font-[600] leading-[143%] rounded-[10px] transition-all shadow-lg shadow-accent/20 uppercase tracking-wide">
               {t("ReadMore")}
             </div>
           </div>
