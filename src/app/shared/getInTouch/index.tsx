@@ -85,7 +85,7 @@ export default function GetInTouch() {
 
   return (
     <>
-      <section className="bg-primary text-secondary py-[100px]">
+      <section className="bg-primary text-secondary py-[100px]" id="getInTouch">
         <Container>
           <div className="flex flex-col gap-[64px]">
             <Header

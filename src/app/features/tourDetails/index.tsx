@@ -116,10 +116,10 @@ export function TourDetail({ tour }: Props) {
               </div>
 
               <div>
-                <h1 className="text-[36px] font-[700] leading-[111%] text-secondary mb-4">
+                <h1 className="text-[24px] md:text-[36px] font-[700] leading-[111%] text-secondary mb-4">
                   {tour?.primaryText}
                 </h1>
-                <div className="flex items-center gap-6 text-gray-400">
+                <div className="flex flex-col md:flex-row items-center gap-6 text-gray-400">
                   <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => (
@@ -141,27 +141,33 @@ export function TourDetail({ tour }: Props) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+              <div className="md:grid grid-cols-3 gap-4 flex flex-wrap">
+                <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                   <Clock className="w-8 h-8 text-accent mb-3" />
-                  <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                    {t("Duration")}
-                  </div>
-                  <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                    {tour?.duration}
+                  <div>
+                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                      {t("Duration")}
+                    </div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                      {tour?.duration}
+                    </div>
                   </div>
                 </div>
-                <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                   <Users className="w-8 h-8 text-accent mb-3" />
-                  <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">{t("GroupSize")}</div>
-                  <div className="text-[20px] font-[600] leading-[140%] text-secondary">{t("UpTo") + " " + "7" + " " + t("People")}</div>
+                  <div>
+                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">{t("GroupSize")}</div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">{t("UpTo") + " " + "7" + " " + t("People")}</div>
+                  </div>
                 </div>
-                <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                   <Calendar className="w-8 h-8 text-accent mb-3" />
                   <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">{t("Available")}
-                  </div>
-                  <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                    {t("Daily")}
+                    <div>
+                    </div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                      {t("Daily")}
+                    </div>
                   </div>
                 </div>
               </div>

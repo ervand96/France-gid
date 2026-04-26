@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -10,10 +11,9 @@ import Container from "../Container";
 import Button from "@/app/shared/Button";
 import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
 import { PathnameEnum } from "@/constants/pathName";
-
+import { Logo } from "../Logo";
 import menuIcon from "@/assets/elements/menu.png";
 import closeIcon from "@/assets/elements/close.png";
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -30,12 +30,8 @@ export default function Navbar() {
       <div className="fixed z-[888] inset-x-0 bg-primary/90">
         <Container>
           <div className="flex justify-between items-center py-[18px] px-[20px]">
-            <Link
-              href={"/"}
-              className="text-[24px] leading-[133%] font-[400]"
-              style={{ fontFamily: "Oswald" }}
-            >
-              Elite Paris Guide
+            <Link href={"/"} style={{ fontFamily: "Oswald" }}>
+              <Logo />
             </Link>
 
             <ul className="hidden xl:flex justify-center items-center xl:gap-[32px]">
@@ -69,7 +65,6 @@ export default function Navbar() {
               <Button
                 text={t("BookATour")}
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-                onClick={() => console.log("aaa")}
               />
               <LanguageSwitcher />
             </ul>
