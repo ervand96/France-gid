@@ -11,6 +11,6 @@ export type AboutItem = {
 
 export const AboutData: AboutItem[] = [
   { title: years, subTitle: "Experience", icon: Clock },
-  { title: "3000K+", subTitle: "Tourists", icon: Users },
+  { title: "3K+", subTitle: "Tourists", icon: Users },
   { title: 4.9, subTitle: "Rating", icon: Star },
 ];
