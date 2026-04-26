@@ -34,7 +34,16 @@ export function TourDetail({ tour }: Props) {
 
   const router = useRouter();
   const t = useTranslations("TourCard");
+
   const allGalleryImages = tour.gallery?.flatMap((g) => g.image) || [];
+
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // Добавляем 1 день к текущей дате
+    return tomorrow.toISOString().split("T")[0]; // Получаем формат "YYYY-MM-DD"
+  };
+
+  const minDate = getTomorrowDate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -48,7 +57,12 @@ export function TourDetail({ tour }: Props) {
     tour?.price;
 
   const handleBookClick = () => {
-    if (!bookingData.date) {
+    const selectedDate = new Date(bookingData.date);
+    const tomorrow = new Date();
+    tomorrow.setHours(0, 0, 0, 0);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    if (!bookingData.date || selectedDate < tomorrow) {
       setDateError(true);
 
       setTimeout(() => setDateError(false), 3000);
@@ -386,6 +400,7 @@ export function TourDetail({ tour }: Props) {
                         <input
                           type="date"
                           name="date"
+                          min={minDate}
                           value={bookingData?.date}
                           onChange={(e) => {
                             handleChange(e);
