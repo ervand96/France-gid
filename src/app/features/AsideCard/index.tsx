@@ -36,12 +36,14 @@ export default function AsideCard() {
         <div className="flex flex-col gap-[12px] my-[24px]">
             <Button
                 text={t("BookNow")}
-                styles="w-full py-[16px] text-secondary text-[18px] leading-[156%] font-[500] bg-accent border-[2px] border-accent rounded-[6px] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                styles="w-full py-[16px] text-[18px] leading-[156%] font-[500] border-[2px] rounded-[6px]"
+                designType="gold"
                 onClick={() => console.log("aaa")}
             />
             <Button
                 text={t("ContactUs")}
-                styles="w-full py-[16px] text-secondary text-[18px] leading-[156%] font-[500] border-[2px] border-secondary rounded-[6px] hover:bg-primary hover:border-primary transition-all duration-500"
+                styles="w-full py-[16px] text-[18px] leading-[156%] font-[500] border-[2px] rounded-[6px]"
+                designType="transparent"
                 onClick={() => console.log("aaa")}
             />
         </div>

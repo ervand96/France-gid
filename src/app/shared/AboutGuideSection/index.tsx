@@ -10,6 +10,7 @@ import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
 import restaurantImg from "@/assets/about/restaurantImg.jpg";
+import Button from "../Button";
 
 export default function AboutGuideSection() {
   const locale = useLocale();
@@ -22,9 +23,15 @@ export default function AboutGuideSection() {
     icon: LucideIcon;
   };
 
+  const handleContactClick = () => {
+    document
+      .getElementById("getInTouch")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
-      <div className="flex-1 flex flex-col items-center bg-secondary rounded-xl p-2 md:p-6 md:w-[160px] text-center shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="flex-1 flex flex-col items-center bg-secondary/10 rounded-xl p-2 md:p-6 md:w-[160px] text-center shadow-md hover:shadow-lg transition-shadow duration-300">
         <div className="w-14 h-14 md:mx-auto md:mb-4 bg-accent/10 flex items-center justify-center rounded-xl">
           <Icon className="w-6 h-6 text-yellow-600" />
         </div>
@@ -84,13 +91,26 @@ export default function AboutGuideSection() {
               })}
           </div>
 
-          <Link
-            href={`${locale}/about-us`}
-            className="group inline-flex items-center gap-2 px-6 py-3 ml-[10px] bg-accent hover:bg-accent/50 text-secondary font-semibold rounded-lg transition-all"
-          >
-            {t("FindOutMore")}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <div className="flex items-center justify-center gap-2 px-[10px]">
+            <Button
+            styles="px-6 py-3 rounded-lg font-semibold"
+            designType="gold">
+              <Link
+              href={`${locale}/about-us`}
+              className="group inline-flex items-center gap-2"
+            >
+              {t("FindOutMore")}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            </Button>
+            <Button
+              onClick={handleContactClick}
+              styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
+              designType="white"
+            >
+              <p>{t("ContactMe")}</p>
+            </Button>
+          </div>
         </div>
 
         <div className="hidden md:block space-y-8 pr-[10px] md:col-span-3">

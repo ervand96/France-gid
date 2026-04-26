@@ -195,7 +195,8 @@ export default function BookingModal({
                   <Button
                     type="submit"
                     disabled={status === "loading"}
-                    styles="w-full mt-6 py-4 bg-yellow-600 hover:bg-yellow-500 disabled:bg-gray-700 cursor-pointer text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 group"
+                    styles="w-full mt-6 py-4 disabled:bg-gray-700 font-bold rounded-xl flex items-center justify-center gap-2 group"
+                    designType="gold"
                   >
                     {status === "loading" ? (
                       <Loader2 className="w-5 h-5 animate-spin" />
@@ -262,7 +263,8 @@ function SuccessState({ onClose }: { onClose: () => void }) {
       </p>
       <Button
         onClick={onClose}
-        styles="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors cursor-pointer"
+        styles="w-full py-4 font-bold rounded-xl"
+        designType="white"
       >
         {t("Great")}
       </Button>
