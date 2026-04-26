@@ -22,11 +22,10 @@ export default function Home() {
         <Container>
           <div className="flex flex-col items-center">
             <Header
-              blockStyles="items-center mb-[50px]"
+              blockStyles="text-center items-center mb-[50px]"
               heading={t("RecommendedExcursions")}
               subHeading={t("ExcursionsThatWillReveal")}
               isDark
-              subHeadingStyles="text-center"
             />
             <CategoryCards />
             <AboutGuideSection />
