@@ -117,7 +117,6 @@ export function TourDetail({ tour }: Props) {
 
   return (
     <>
-      return (
       <div className="bg-gray-950 mt-20">
         <Container>
           <main className="mx-auto px-[20px] py-[32px]">
