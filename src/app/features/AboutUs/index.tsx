@@ -1,10 +1,10 @@
+import CTASection from "@/app/shared/CTASection";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
-import { Logo } from "@/app/shared/Logo";
-import { Award, Clock, Users, Globe, Heart, Star, MapPin } from "lucide-react";
+import { Award, Clock, Users, Globe, Heart, Star } from "lucide-react";
 
 export function AboutUs() {
   const stats = [
-    { icon: Users, value: "15,000+", label: "Довольных туристов" },
+    { icon: Users, value: "3000+", label: "Довольных туристов" },
     { icon: Clock, value: "12 лет", label: "Опыта работы" },
     { icon: Award, value: "500+", label: "Проведенных туров" },
     { icon: Star, value: "4.9", label: "Средний рейтинг" },
@@ -254,26 +254,7 @@ export function AboutUs() {
         </div>
       </section>
 
-      {/* CTA Section - Light */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200 rounded-3xl p-12 text-center shadow-lg">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Готовы открыть Париж вместе со мной?
-          </h2>
-          <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
-            Забронируйте экскурсию прямо сейчас и получите незабываемые
-            впечатления от города влюбленных
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="px-8 py-4 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-colors shadow-md">
-              Забронировать экскурсию
-            </button>
-            <button className="px-8 py-4 bg-white border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white font-bold rounded-lg transition-colors">
-              Связаться со мной
-            </button>
-          </div>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 }

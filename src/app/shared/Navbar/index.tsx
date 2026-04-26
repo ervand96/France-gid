@@ -12,7 +12,6 @@ import Button from "@/app/shared/Button";
 import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
 import { PathnameEnum } from "@/constants/pathName";
 import { Logo } from "../Logo";
-
 import menuIcon from "@/assets/elements/menu.png";
 import closeIcon from "@/assets/elements/close.png";
 
@@ -66,7 +65,6 @@ export default function Navbar() {
               <Button
                 text={t("BookATour")}
                 styles="bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-                onClick={() => console.log("aaa")}
               />
               <LanguageSwitcher />
             </ul>

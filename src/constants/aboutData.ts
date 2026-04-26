@@ -4,7 +4,7 @@ const START_YEAR = 2014;
 const years = new Date().getFullYear() - START_YEAR;
 
 export type AboutItem = {
-  title: any;
+  title: string | number;
   subTitle: string;
   icon: LucideIcon;
 };
