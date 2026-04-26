@@ -14,6 +14,7 @@ import {
 import { useTranslations } from "next-intl";
 import { SEND_EMAIL_API } from "@/app/api/contact/api";
 import Button from "../Button";
+import { useScrollLock } from "@/lib/hooks/useScrollLock";
 
 interface Props {
   isOpen: boolean;
@@ -65,6 +66,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  useScrollLock(isOpen);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -102,20 +105,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     }
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      // Երբ մոդալը բացվում է, արգելում ենք սքրոլլը
-      document.body.style.overflow = "hidden";
-    } else {
-      // Երբ փակվում է, վերականգնում ենք
-      document.body.style.overflow = "unset";
-    }
-
-    // Senior++ Clean-up: եթե կոմպոնենտը ջնջվի (unmount), սքրոլլը անպայման կվերականգնվի
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  if (!isOpen) return null;
 
   return (
     <AnimatePresence>

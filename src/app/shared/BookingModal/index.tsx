@@ -8,6 +8,8 @@ import { X, CheckCircle2, Loader2, Send } from "lucide-react";
 import { BookingFormValues, BookingSchema } from "lib/schemas/bookingSchema";
 import Button from "../Button";
 import { useTranslations } from "next-intl";
+import { useScrollLock } from "@/lib/hooks/useScrollLock";
+import { SEND_EMAIL_API } from "@/app/api/contact/api";
 
 interface Props {
   isOpen: boolean;
@@ -33,6 +35,7 @@ export default function BookingModal({
   >("idle");
 
   const t = useTranslations("BookingModal");
+  useScrollLock(isOpen);
 
   const {
     register,
@@ -48,7 +51,7 @@ export default function BookingModal({
     setStatus("loading");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(SEND_EMAIL_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -85,6 +88,8 @@ export default function BookingModal({
       resetForm();
     }, 300);
   };
+
+  if (!isOpen) return null;
 
   return (
     <AnimatePresence>
