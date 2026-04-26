@@ -16,10 +16,11 @@ export default function HeroSection({
   headingStyles,
   subHeading,
   subHeadingStyles,
+  onContactClick,
 }: HeroProps) {
   const t = useTranslations("HeroSection");
 
-  const [hideScrollIcon, setHideScrollIcon] = useState(false);
+  const [hideScrollIcon, setHideScrollIcon] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +31,12 @@ export default function HeroSection({
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleContactClick = () => {
+    document
+      .getElementById("getInTouch")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="relative bg-[url('/paris-gif.gif')] bg-cover bg-center min-h-screen">
@@ -56,11 +63,11 @@ export default function HeroSection({
             <Button
               text={t("BookATour")}
               styles="min-w-[255px] px-[40px] py-[18px] text-primary text-[16px] leading-[150%] font-[600] bg-accent border-[2px] border-accent rounded-[6px] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
-              onClick={() => console.log("aaa")}
+              onClick={handleContactClick}
             />
             <Button
+              onClick={onContactClick}
               styles="min-w-[255px] flex justify-center items-center gap-[8px] px-[40px] py-[18px] text-secondary text-[16px] leading-[150%] font-[600] border-[2px] border-secondary rounded-[6px] hover:bg-primary hover:border-primary transition-all duration-500"
-              onClick={() => console.log("aaa")}
             >
               <Image src={phoneIcon} alt="Phone icon" width={20} height={20} />
               <p>{t("ContactUs")}</p>

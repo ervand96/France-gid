@@ -184,5 +184,17 @@
     "Contacts": "Contacts",
     "Address": "Paris, France",
     "AllRights": "All rights reserved."
+  },
+  "ContactModal": {
+    "ContactUs": "Contact us",
+    "MessageSent": "Message sent!",
+    "YourName": "Your Name",
+    "Phone": "Phone",
+    "YourQuestion": "Your question",
+    "WhatWouldYouLike": "What would you like to know about?",
+    "Sending": "Sending...",
+    "SendAMessage": "SendA a message",
+    "QuickReply": "Quick reply",
+    "Call": "Call"
   }
 }

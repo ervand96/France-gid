@@ -9,6 +9,7 @@ import Button from "../Button";
 import Card from "../Card";
 import { contactData } from "@/constants/contactItems";
 import Toast from "../toast";
+import { SEND_EMAIL_API } from "@/app/api/contact/api";
 
 export default function GetInTouch() {
   const t = useTranslations("GetInTouch");
@@ -42,7 +43,7 @@ export default function GetInTouch() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(SEND_EMAIL_API, {
         method: "POST",
         body: JSON.stringify(form),
         headers: {
