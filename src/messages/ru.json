@@ -7,7 +7,6 @@
     "BookATour": "Забронировать тур"
   },
   "HeroSection": {
-    "GuideToParis": "",
     "ExperienceParis": "Откройте для себя Париж",
     "LikeNeverBefore": "Как никогда прежде",
     "ExclusiveGuided": "Эксклюзивные экскурсии с гидом, раскрывающие скрытую душу Города Света. Подлинные впечатления, созданные для взыскательных путешественников.",
@@ -138,6 +137,24 @@
     "RussianSpeakingGuide": "Русскоязычный гид",
     "NeedHelp": "Нужна помощь?",
     "IndividualTours": "Свяжитесь с нами для индивидуальных туров",
+    "ContactUs": "Связаться с нами",
+    "NotSelected": "Не выбрано",
+    "PleaseSelectDate": "Пожалуйста, выберите дату экскурсии"
+  },
+  "BookingModal": {
+    "BookATour": "Забронировать тур",
+    "Date": "Дата",
+    "Time": "Время",
+    "Guests": "Гости",
+    "ToBePaid": "К оплате",
+    "YourName": "Ваше имя",
+    "AlexanderPushkin": "Александр Пушкин",
+    "CommentOnTheOrder": "Комментарий к заказу",
+    "SpecialWishes": "Особые пожелания...",
+    "ConfirmYourBooking": "Подтвердить бронирование",
+    "ApplicationAccepted": "Заявка принята!",
+    "WeHaveReceivedYourReservation": "Мы получили ваши данные. Гид свяжется с вами в течение 15 минут через WhatsApp или по телефону для подтверждения бронирования.",
+    "Great": "Отлично",
     "ContactUs": "Связаться с нами"
   },
   "About": {
@@ -167,6 +184,5 @@
     "Contacts": "Контакты",
     "Address": "Париж, Франция",
     "AllRights": "Все права защищены."
-
   }
 }
