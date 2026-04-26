@@ -12,7 +12,7 @@
     "ExclusiveGuided": "Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers.",
     "BookATour": "Book a tour",
     "ContactUs": "Contact us",
-    "RecommendedExcursions": "Recommended Excursions",
+    "RecommendedExcursions": "Tours of Paris and other regions of France with a Russian-speaking guide",
     "ExcursionsThatWillReveal": "Excursions that will reveal the true Paris, its suburbs, and the rest of France, beyond the tourist routes.",
     "SightseeingTourOfParis": "Sightseeing tour of Paris",
     "EveningParisTour": "Evening Paris Tour and Seine River Cruise",
@@ -154,6 +154,35 @@
     "ConfirmYourBooking": "Confirm your booking",
     "ApplicationAccepted": "Application accepted",
     "WeHaveReceivedYourReservation": "We've received your request. Our guide will contact you within 15 minutes via WhatsApp or phone to confirm the details.",
-    "Great": "Great"
+    "Great": "Great",
+    "ContactUs": "Contact us"
+  },
+  "About": {
+    "AboutGuide": "About the guide",
+    "YourGuide": "Your personal guide to Paris",
+    "Greeting": "Hello! My name is ",
+    "Name": "Garik Sahakyan",
+    "Over12Years": "and I am a professional Russian-speaking guide in Paris and the regions of France with over 12 years of experience.",
+    "OverTheYears": "Over the years, I've led over 500 tours for tourists from all over the world. My specialty isn't just showing off the sights, but",
+    "Atmoshpere": "immersion in the city's atmosphere",
+    "ItsHistory": "its history and culture.",
+    "InLoveWithParis": "I'm in love with Paris and know it like the back of my hand. I'd love to share secret spots, interesting facts, and show you the city from unusual angles.",
+    "Experience": "experience",
+    "Tourists": "tourists",
+    "Rating": "rating",
+    "FindOutMore": "Find out more"
+  },
+  "Footer": {
+    "DiscoverParis": "Discover the real Paris with one of the city's best guides",
+    "Tours": "Excursions",
+    "InParis": "In Paris",
+    "InTheSuburbs": "In the suburbs",
+    "AroundRegions": "Around the regions",
+    "Company": "Company",
+    "About": "About Us",
+    "Reviews": "Reviews",
+    "Contacts": "Contacts",
+    "Address": "Paris, France",
+    "AllRights": "All rights reserved."
   }
 }

@@ -95,6 +95,7 @@ export function TourDetail({ tour }: Props) {
 
   return (
     <>
+      return (
       <div className="bg-gray-950 mt-20">
         <Container>
           <main className="mx-auto px-[20px] py-[32px]">
@@ -120,7 +121,10 @@ export function TourDetail({ tour }: Props) {
                     />
                     <div className="absolute top-4 left-4">
                       {tour?.isRecommended && (
-                        <span className="px-[12px] py-[4px] bg-accent text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider">
+                        <span
+                          className="px-[12px] py-[4px] bg-accent text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider
+                      "
+                        >
                           {t("Recommendation")}
                         </span>
                       )}
@@ -146,10 +150,10 @@ export function TourDetail({ tour }: Props) {
                 </div>
 
                 <div>
-                  <h1 className="text-[36px] font-[700] leading-[111%] text-secondary mb-4">
+                  <h1 className="text-[24px] md:text-[36px] font-[700] leading-[111%] text-secondary mb-4">
                     {tour?.primaryText}
                   </h1>
-                  <div className="flex items-center gap-6 text-gray-400">
+                  <div className="flex flex-col md:flex-row items-center gap-6 text-gray-400">
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, i) => (
@@ -171,32 +175,37 @@ export function TourDetail({ tour }: Props) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                <div className="md:grid grid-cols-3 gap-4 flex flex-wrap">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                     <Clock className="w-8 h-8 text-accent mb-3" />
-                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                      {t("Duration")}
-                    </div>
-                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                      {tour?.duration}
+                    <div>
+                      <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                        {t("Duration")}
+                      </div>
+                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                        {tour?.duration}
+                      </div>
                     </div>
                   </div>
-                  <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                     <Users className="w-8 h-8 text-accent mb-3" />
-                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                      {t("GroupSize")}
-                    </div>
-                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                      {t("UpTo") + " " + "7" + " " + t("People")}
+                    <div>
+                      <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                        {t("GroupSize")}
+                      </div>
+                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                        {t("UpTo") + " " + "7" + " " + t("People")}
+                      </div>
                     </div>
                   </div>
-                  <div className="bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
                     <Calendar className="w-8 h-8 text-accent mb-3" />
                     <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
                       {t("Available")}
-                    </div>
-                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                      {t("Daily")}
+                      <div></div>
+                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                        {t("Daily")}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -343,16 +352,16 @@ export function TourDetail({ tour }: Props) {
                       </div>
                       <div className="space-y-3 mb-6">
                         {tour &&
-                          tour?.pricing?.map((item, idx: number) => (
+                          tour?.pricing.map((item, idx: number) => (
                             <div
                               key={idx}
                               className="flex items-center justify-between p-4 bg-dark-gray/50 border border-gray-700 rounded-[10px] hover:border-accent/50 transition-colors cursor-pointer"
                             >
                               <div>
-                                <div className="text-[16px] font-[400] leading-[143%] text-secondary/50">
+                                <div className="text-[14px] font-[400] leading-[143%] text-secondary/50">
                                   {item?.range + " " + t("People")}
                                 </div>
-                                <div className="text-[26px] font-[700] leading-[133%] text-accent">
+                                <div className="text-[24px] font-[700] leading-[133%] text-accent">
                                   {item?.price ? `€ ${item?.price}` : "—"}
                                 </div>
                               </div>
@@ -363,82 +372,34 @@ export function TourDetail({ tour }: Props) {
 
                     <div className="space-y-4 mb-6">
                       <div className="relative">
-                        <label className="block text-secondary/50 text-[16px] font-[400] mb-2">
+                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("Date")}
                         </label>
                         <input
                           type="date"
-                          name="date"
-                          value={bookingData?.date}
-                          onChange={(e) => {
-                            handleChange(e);
-                            if (dateError) setDateError(false);
-                          }}
-                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none transition-all
-                          ${
-                            dateError
-                              ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
-                              : "border-gray-700 focus:border-accent"
-                          }`}
+                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
                         />
-                        <AnimatePresence>
-                          {dateError && (
-                            <motion.span
-                              initial={{ opacity: 0, y: -10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0 }}
-                              className="absolute -bottom-6 left-0 text-[12px] text-red-500 font-medium"
-                            >
-                              {t("PleaseSelectDate")}
-                            </motion.span>
-                          )}
-                        </AnimatePresence>
                       </div>
-
                       <div className="relative">
-                        <label className="block text-secondary/50 text-[16px] font-[400] mb-2">
+                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("Time")}
                         </label>
-                        <select
-                          name="time"
-                          value={bookingData.time}
-                          onChange={handleChange}
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
-                        >
-                          {["09:00", "10:00", "11:00", "12:00", "13:00"].map(
-                            (time) => (
-                              <option key={time} value={time}>
-                                {time}
-                              </option>
-                            ),
-                          )}
+                        <select className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent">
+                          <option>09:00</option>
+                          <option>14:00</option>
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
                         </div>
                       </div>
-
                       <div className="relative">
-                        <label className="block text-secondary/50 text-[16px] font-[400] mb-2">
+                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("NumberOfPeople")}
                         </label>
-                        <select
-                          name="guests"
-                          value={bookingData.guests}
-                          onChange={handleChange}
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
-                        >
-                          {tour?.pricing?.map((p) => (
-                            <option key={p.id} value={p.range}>
-                              {p.range} {t("People")}
-                            </option>
-                          )) || (
-                            <>
-                              <option value="1-3">1-3</option>
-                              <option value="4-5">4-5</option>
-                              <option value="6-7">6-7</option>
-                            </>
-                          )}
+                        <select className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent">
+                          <option>1-3</option>
+                          <option>4-5</option>
+                          <option>6-7</option>
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
@@ -446,31 +407,28 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     </div>
 
-                    <Button
-                      onClick={handleBookClick}
-                      styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer"
-                    >
+                    <Button styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer">
                       {t("BookNow")}
                     </Button>
 
-                    <div className="text-center text-secondary/50 text-[16px] font-[400] leading-[143%] mb-6">
+                    <div className="text-center text-secondary/50 text-[14px] font-[400] leading-[143%] mb-6">
                       {t("FreeCancel")}
                     </div>
 
                     <div className="border-t border-gray-700 pt-6 space-y-3">
-                      <div className="flex items-center gap-3 text-[16px] font-[400] leading-[143%]">
+                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
                         <Check className="w-5 h-5 text-green-500" />
                         <span className="text-secondary/80">
                           {t("Confirmation")}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3 text-[16px] font-[400] leading-[143%]">
+                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
                         <Check className="w-5 h-5 text-green-500" />
                         <span className="text-secondary/80">
                           {t("ElectronicTicket")}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3 text-[16px] font-[400] leading-[143%]">
+                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
                         <Check className="w-5 h-5 text-green-500" />
                         <span className="text-secondary/80">
                           {t("RussianSpeakingGuide")}
@@ -483,7 +441,7 @@ export function TourDetail({ tour }: Props) {
                     <h3 className="text-[18px] font-[600] leading-[156%] text-secondary mb-4">
                       {t("NeedHelp")}
                     </h3>
-                    <p className="text-secondary/50 text-[16px] font-[400] leading-[143%] mb-4">
+                    <p className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-4">
                       {t("IndividualTours")}
                     </p>
                     <Button styles="w-full py-3 border border-accent text-accent rounded-lg hover:bg-accent/10 transition-colors">
@@ -496,6 +454,7 @@ export function TourDetail({ tour }: Props) {
           </main>
         </Container>
       </div>
+      );
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -4,8 +4,8 @@ import { useTranslations } from "next-intl";
 import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
-import GetInTouch from "@/app/shared/getInTouch";
 import CategoryCards from "@/app/shared/category";
+import AboutGuideSection from "@/app/shared/AboutGuideSection";
 
 export default function Home() {
   const t = useTranslations("HeroSection");
@@ -22,17 +22,16 @@ export default function Home() {
         <Container>
           <div className="flex flex-col items-center">
             <Header
-              blockStyles="items-center mb-[50px]"
+              blockStyles="text-center items-center mb-[50px]"
               heading={t("RecommendedExcursions")}
               subHeading={t("ExcursionsThatWillReveal")}
               isDark
-              subHeadingStyles="text-center"
             />
             <CategoryCards />
+            <AboutGuideSection />
           </div>
         </Container>
       </section>
-
     </div>
   );
 }
