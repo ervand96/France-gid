@@ -377,29 +377,77 @@ export function TourDetail({ tour }: Props) {
                         </label>
                         <input
                           type="date"
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
+                          name="date"
+                          value={bookingData?.date}
+                          onChange={(e) => {
+                            handleChange(e);
+                            if (dateError) setDateError(false);
+                          }}
+                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent
+                          ${
+                            dateError
+                              ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
+                              : "border-gray-700 focus:border-accent"
+                          }`}
                         />
+                        <AnimatePresence>
+                          {dateError && (
+                            <motion.span
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0 }}
+                              className="absolute -bottom-6 left-0 text-[12px] text-red-500 font-medium"
+                            >
+                              {t("PleaseSelectDate")}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
                       </div>
+
                       <div className="relative">
                         <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("Time")}
                         </label>
-                        <select className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent">
-                          <option>09:00</option>
-                          <option>14:00</option>
+                        <select
+                          name="time"
+                          value={bookingData.time}
+                          onChange={handleChange}
+                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
+                        >
+                          {["09:00", "10:00", "11:00", "12:00", "13:00"].map(
+                            (time) => (
+                              <option key={time} value={time}>
+                                {time}
+                              </option>
+                            ),
+                          )}
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
                         </div>
                       </div>
+
                       <div className="relative">
                         <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("NumberOfPeople")}
                         </label>
-                        <select className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent">
-                          <option>1-3</option>
-                          <option>4-5</option>
-                          <option>6-7</option>
+                        <select
+                          name="guests"
+                          value={bookingData.guests}
+                          onChange={handleChange}
+                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
+                        >
+                          {tour?.pricing?.map((p) => (
+                            <option key={p.id} value={p.range}>
+                              {p.range} {t("People")}
+                            </option>
+                          )) || (
+                            <>
+                              <option value="1-3">1-3</option>
+                              <option value="4-5">4-5</option>
+                              <option value="6-7">6-7</option>
+                            </>
+                          )}
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
@@ -407,7 +455,10 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     </div>
 
-                    <Button styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer">
+                    <Button
+                      onClick={handleBookClick}
+                      styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer"
+                    >
                       {t("BookNow")}
                     </Button>
 
