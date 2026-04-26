@@ -58,6 +58,14 @@ export function TourDetail({ tour }: Props) {
     setIsModalOpen(true);
   };
 
+  const resetBookingForm = () => {
+    setBookingData({
+      date: "",
+      time: "09:00",
+      guests: "1-3",
+    });
+  };
+
   const reviews = [
     {
       name: "Мария К.",
@@ -509,6 +517,7 @@ export function TourDetail({ tour }: Props) {
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        resetForm={resetBookingForm}
         tourData={{
           title: tour.primaryText,
           date: bookingData.date || t("NotSelected"),

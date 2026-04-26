@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  resetForm: () => void;
   tourData: {
     title: string;
     date: string;
@@ -21,7 +22,12 @@ interface Props {
   };
 }
 
-export default function BookingModal({ isOpen, onClose, tourData }: Props) {
+export default function BookingModal({
+  isOpen,
+  onClose,
+  tourData,
+  resetForm,
+}: Props) {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -76,6 +82,7 @@ export default function BookingModal({ isOpen, onClose, tourData }: Props) {
     setTimeout(() => {
       setStatus("idle");
       reset();
+      resetForm();
     }, 300);
   };
 
