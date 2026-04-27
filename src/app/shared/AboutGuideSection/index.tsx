@@ -92,7 +92,7 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
           <div className="flex items-center justify-center gap-2 px-[10px]">
             <Button
               styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
-              onClick={() => router.push(`/${locale}/about-us`)}
+              onClick={() => router.push(`/${locale}/about`)}
               designType="gold"
             >
               <span className="group inline-flex items-center gap-2">
