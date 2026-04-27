@@ -8,9 +8,10 @@ import Container from "@/app/shared/Container";
 import CategoryCards from "@/app/shared/category";
 import AboutGuideSection from "@/app/shared/AboutGuideSection";
 import ContactModal from "@/app/shared/ContactModal";
+import TransferPromo from "@/app/features/TransferPromo";
 
 export default function Home() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
 
   const t = useTranslations("HeroSection");
 
@@ -36,6 +37,7 @@ export default function Home() {
             <AboutGuideSection onContactClick={() => setIsContactOpen(true)} />
           </div>
         </Container>
+        <TransferPromo />
       </section>
       <ContactModal
         isOpen={isContactOpen}

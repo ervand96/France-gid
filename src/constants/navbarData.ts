@@ -6,11 +6,11 @@ export type NavItem = {
 };
 
 export const navData: NavItem[] = [
-  { key: "Home", path: PathnameEnum.HOME },
   { key: "ExcursionsInParis", path: PathnameEnum.ExcursionsInParis },
   {
     key: "ExcursionsToTheSuburbsOfParis",
     path: PathnameEnum.ExcursionsToTheSuburbsOfParis,
   },
   { key: "ToursOfFrance", path: PathnameEnum.ToursOfFrance },
+  { key: "Transfer", path: PathnameEnum.Transfer },
 ];
