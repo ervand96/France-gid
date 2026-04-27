@@ -187,5 +187,19 @@
     "SendAMessage": "SendA a message",
     "QuickReply": "Quick reply",
     "Call": "Call"
+  },
+  "Transfer": {
+    "LuxuryTravel": "Luxury travel",
+    "PremiumPrivateService": "Premium Private Service",
+    "SafetyAndSilence": "Safety and silence.",
+    "PrivateTransfers": "Private transfers by ",
+    "WithPersonalDriver": " with a personal driver throughout France.",
+    "License": "License",
+    "Service": "Service",
+    "ProfessionalInsurance": "Professional insurance for passengers and luggage.",
+    "TaxFree": "Meet with a sign and assistance with Tax Free registration.",
+    "PopularRoute": "Popular Route",
+    "FixedRate": "Fixed rate",
+    "ViewAllRates": "View all rates"
   }
 }
