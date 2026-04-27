@@ -69,12 +69,12 @@
     "YourDream": "Tell us about your dream Paris experience...",
     "Phone": "Phone",
     "Email": "Email",
-    "Location": "Location",
+    "Viber": "Viber",
     "WhatsApp": "WhatsApp",
     "Availability": "Available 9:00 - 21:00",
     "Response": "Response within 24 hours",
-    "Appointment": "By appointment only",
-    "QuickResponses": "Quick responses",
+    "ConvenientCommunication": "Convenient communication at any time.",
+    "QuickResponses": "Quick responses.",
     "SuccessMessage": "Message was sent successfully",
     "FailedMessage": "Message was not sent"
   },
@@ -93,9 +93,7 @@
     "Gallery": "Photo Gallery",
     "Duration": "Duration",
     "GroupSize": "Group Size",
-    "NextTour": "Next Tour",
-    "TourHighlights": "Tour Highlights",
-    "Included": "What's Included"
+    "NextTour": "Next Tour"
   },
   "NotFound": {
     "LostInFrance": "Lost in France?",
@@ -110,8 +108,7 @@
     "GoBack": "Go back to previous page"
   },
   "TourCard": {
-    "Group": "Group",
-    "Recommendation": "Recommendation",
+    "Individual": "Individual",
     "ReadMore": "Read More",
     "From": "From",
     "BackToExcursions": "Back to excursions",
@@ -121,23 +118,15 @@
     "Available": "Available",
     "Daily": "Daily",
     "UpTo": "Up to",
+    "FromGroup": "From a group of",
     "People": "people",
-    "KeyPoints": "Key Points",
-    "Program": "Excursion program",
-    "WhatsIncluded": "What's included",
+    "WhatsIncluded": "What is included in the price?",
     "ShowReviews": "Show all reviews",
-    "PriceFrom": "Price from",
+    "Pricing": "Price",
     "Date": "Date",
     "Time": "Time",
     "NumberOfPeople": "Number of people",
     "BookNow": "Book now",
-    "FreeCancel": "Free cancellation within 24 hours",
-    "Confirmation": "Instant confirmation",
-    "ElectronicTicket": "Electronic ticket",
-    "RussianSpeakingGuide": "Russian-speaking guide",
-    "NeedHelp": "Need help?",
-    "IndividualTours": "Contact us for custom tours",
-    "ContactUs": "Contact us",
     "NotSelected": "Not Selected",
     "PleaseSelectDate": "Please select date"
   },
@@ -170,19 +159,32 @@
     "Experience": "experience",
     "Tourists": "tourists",
     "Rating": "rating",
-    "FindOutMore": "Find out more"
+    "FindOutMore": "Find out more",
+    "ContactMe": "Contact me"
   },
   "Footer": {
     "DiscoverParis": "Discover the real Paris with one of the city's best guides",
     "Tours": "Excursions",
-    "InParis": "In Paris",
-    "InTheSuburbs": "In the suburbs",
-    "AroundRegions": "Around the regions",
+    "ExcursionsInParis": "Excursions in Paris",
+    "ExcursionsToTheSuburbsOfParis": "Excursions to the suburbs of Paris",
+    "ToursOfFrance": "Excursions to the regions of France",
     "Company": "Company",
     "About": "About Us",
     "Reviews": "Reviews",
     "Contacts": "Contacts",
     "Address": "Paris, France",
     "AllRights": "All rights reserved."
+  },
+  "ContactModal": {
+    "ContactUs": "Contact us",
+    "MessageSent": "Message sent!",
+    "YourName": "Your Name",
+    "Phone": "Phone",
+    "YourQuestion": "Your question",
+    "WhatWouldYouLike": "What would you like to know about?",
+    "Sending": "Sending...",
+    "SendAMessage": "SendA a message",
+    "QuickReply": "Quick reply",
+    "Call": "Call"
   }
 }

@@ -37,13 +37,11 @@ export function TourDetail({ tour }: Props) {
 
   const allGalleryImages = tour.gallery?.flatMap((g) => g.image) || [];
 
-  const getTomorrowDate = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1); // Добавляем 1 день к текущей дате
-    return tomorrow.toISOString().split("T")[0]; // Получаем формат "YYYY-MM-DD"
+  const getTodayDate = () => {
+    return new Date().toISOString().split("T")[0];
   };
 
-  const minDate = getTomorrowDate();
+  const minDate = getTodayDate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -57,14 +55,21 @@ export function TourDetail({ tour }: Props) {
     tour?.price;
 
   const handleBookClick = () => {
-    const selectedDate = new Date(bookingData.date);
-    const tomorrow = new Date();
-    tomorrow.setHours(0, 0, 0, 0);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    if (!bookingData.date || selectedDate < tomorrow) {
+    if (!bookingData.date) {
       setDateError(true);
+      setTimeout(() => setDateError(false), 3000);
+      return;
+    }
 
+    const selectedDateTime = new Date(
+      `${bookingData.date}T${bookingData.time}`,
+    );
+
+    const minAllowedTime = new Date();
+    minAllowedTime.setHours(minAllowedTime.getHours() + 1);
+
+    if (selectedDateTime < minAllowedTime) {
+      setDateError(true);
       setTimeout(() => setDateError(false), 3000);
       return;
     }
@@ -117,7 +122,6 @@ export function TourDetail({ tour }: Props) {
 
   return (
     <>
-      return (
       <div className="bg-gray-950 mt-20">
         <Container>
           <main className="mx-auto px-[20px] py-[32px]">
@@ -141,16 +145,6 @@ export function TourDetail({ tour }: Props) {
                       className="w-full h-full object-cover"
                       unoptimized
                     />
-                    <div className="absolute top-4 left-4">
-                      {tour?.isRecommended && (
-                        <span
-                          className="px-[12px] py-[4px] bg-accent text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider
-                      "
-                        >
-                          {t("Recommendation")}
-                        </span>
-                      )}
-                    </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4">
@@ -232,6 +226,26 @@ export function TourDetail({ tour }: Props) {
                   </div>
                 </div>
 
+                {tour?.included?.length > 0 && (
+                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                    <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
+                      {t("WhatsIncluded")}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {tour?.included?.map((item, idx: number) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div className="p-1 bg-green-600/20 rounded-full">
+                            <Check className="w-5 h-5 text-green-500" />
+                          </div>
+                          <span className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
+                            {item?.text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {tour?.contentSections?.length > 0 && (
                   <div className="space-y-6">
                     {tour?.contentSections?.map((section, idx: number) => (
@@ -251,74 +265,6 @@ export function TourDetail({ tour }: Props) {
                         </div>
                       </div>
                     ))}
-                  </div>
-                )}
-
-                {tour?.highlights?.length > 0 && (
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-gray-700">
-                    <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6 flex items-center gap-3">
-                      {t("KeyPoints")}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {tour?.highlights?.map((item, idx: number) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div className="mt-1 p-1 bg-accent/20 rounded-full">
-                            <Check className="w-4 h-4 text-accent" />
-                          </div>
-                          <span className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
-                            {item.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {tour?.tourPlan?.length > 0 && (
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
-                    <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
-                      {t("Program")}
-                    </h2>
-                    <div className="space-y-6">
-                      {tour &&
-                        tour?.tourPlan?.map((item, idx: number) => (
-                          <div key={idx} className="flex gap-6">
-                            <div className="flex-shrink-0 w-16">
-                              <div className="px-3 py-1 bg-accent/20 border border-accent/30 rounded-lg text-accent font-semibold text-sm text-center">
-                                {item?.time}
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-[18px] font-[600] leading-[156%] text-secondary mb-1">
-                                {item?.title}
-                              </h3>
-                              <p className="text-[16px] font-[400] leading-[150%] text-secondary/50 space-y-4 whitespace-pre-line text-base">
-                                {item?.description}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-
-                {tour?.included?.length > 0 && (
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
-                    <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
-                      {t("WhatsIncluded")}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {tour?.included?.map((item, idx: number) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div className="p-1 bg-green-600/20 rounded-full">
-                            <Check className="w-5 h-5 text-green-500" />
-                          </div>
-                          <span className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
-                            {item?.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 )}
 
@@ -370,7 +316,7 @@ export function TourDetail({ tour }: Props) {
                   <div className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-dark-gray">
                     <div className="mb-6">
                       <div className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
-                        {t("PriceFrom")}
+                        {t("Pricing")}
                       </div>
                       <div className="space-y-3 mb-6">
                         {tour &&
@@ -381,7 +327,11 @@ export function TourDetail({ tour }: Props) {
                             >
                               <div>
                                 <div className="text-[14px] font-[400] leading-[143%] text-secondary/50">
-                                  {item?.range + " " + t("People")}
+                                  {t("FromGroup") +
+                                    " " +
+                                    item?.range +
+                                    " " +
+                                    t("People")}
                                 </div>
                                 <div className="text-[24px] font-[700] leading-[133%] text-accent">
                                   {item?.price ? `€ ${item?.price}` : "—"}
@@ -437,13 +387,27 @@ export function TourDetail({ tour }: Props) {
                           onChange={handleChange}
                           className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
                         >
-                          {["09:00", "10:00", "11:00", "12:00", "13:00"].map(
-                            (time) => (
-                              <option key={time} value={time}>
-                                {time}
-                              </option>
-                            ),
-                          )}
+                          {[
+                            "09:00",
+                            "10:00",
+                            "11:00",
+                            "12:00",
+                            "13:00",
+                            "14:00",
+                            "15:00",
+                            "16:00",
+                            "17:00",
+                            "18:00",
+                            "19:00",
+                            "20:00",
+                            "21:00",
+                            "22:00",
+                            "23:00",
+                          ].map((time) => (
+                            <option key={time} value={time}>
+                              {time}
+                            </option>
+                          ))}
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
@@ -484,43 +448,6 @@ export function TourDetail({ tour }: Props) {
                     >
                       {t("BookNow")}
                     </Button>
-
-                    <div className="text-center text-secondary/50 text-[14px] font-[400] leading-[143%] mb-6">
-                      {t("FreeCancel")}
-                    </div>
-
-                    <div className="border-t border-gray-700 pt-6 space-y-3">
-                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
-                        <Check className="w-5 h-5 text-green-500" />
-                        <span className="text-secondary/80">
-                          {t("Confirmation")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
-                        <Check className="w-5 h-5 text-green-500" />
-                        <span className="text-secondary/80">
-                          {t("ElectronicTicket")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 text-[14px] font-[400] leading-[143%]">
-                        <Check className="w-5 h-5 text-green-500" />
-                        <span className="text-secondary/80">
-                          {t("RussianSpeakingGuide")}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-gray-700">
-                    <h3 className="text-[18px] font-[600] leading-[156%] text-secondary mb-4">
-                      {t("NeedHelp")}
-                    </h3>
-                    <p className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-4">
-                      {t("IndividualTours")}
-                    </p>
-                    <Button styles="w-full py-3 border border-accent text-accent rounded-lg hover:bg-accent/10 transition-colors">
-                      {t("ContactUs")}
-                    </Button>
                   </div>
                 </div>
               </div>
@@ -528,7 +455,6 @@ export function TourDetail({ tour }: Props) {
           </main>
         </Container>
       </div>
-      );
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

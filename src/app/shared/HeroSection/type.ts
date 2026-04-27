@@ -5,4 +5,5 @@ export type HeroProps = {
   subHeading?: string;
   headingStyles?: string;
   subHeadingStyles?: string;
+  onContactClick: () => void;
 };

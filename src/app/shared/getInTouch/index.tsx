@@ -9,6 +9,7 @@ import Button from "../Button";
 import Card from "../Card";
 import { contactData } from "@/constants/contactItems";
 import Toast from "../toast";
+import { SEND_EMAIL_API } from "@/app/api/contact/api";
 
 export default function GetInTouch() {
   const t = useTranslations("GetInTouch");
@@ -42,7 +43,7 @@ export default function GetInTouch() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(SEND_EMAIL_API, {
         method: "POST",
         body: JSON.stringify(form),
         headers: {
@@ -114,7 +115,7 @@ export default function GetInTouch() {
                     <Card
                       stylesOfCard="flex flex-col items-start gap-[4px]"
                       primaryText={t(item.key)}
-                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary"
+                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary/80"
                       textBlockStyles="flex flex-col items-start gap-[4px]"
                       secondaryText={item.value}
                       secondaryTextStyles="text-[12px] sm:text-[16px] font-[400] leading-[150%] text-accent"
@@ -189,7 +190,8 @@ export default function GetInTouch() {
                     type="submit"
                     disabled={loading}
                     text={loading ? "Sending..." : t("SendMessage")}
-                    styles="w-full h-[50px] bg-accent text-primary text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600] hover:bg-accent/50 hover:text-[#fff] transition-all duration-500"
+                    styles="w-full h-[50px] text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600]"
+                    designType="gold"
                   />
                 </form>
               </div>

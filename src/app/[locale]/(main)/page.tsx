@@ -1,13 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import HeroSection from "@/app/shared/HeroSection";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
 import CategoryCards from "@/app/shared/category";
 import AboutGuideSection from "@/app/shared/AboutGuideSection";
+import ContactModal from "@/app/shared/ContactModal";
 
 export default function Home() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   const t = useTranslations("HeroSection");
 
   return (
@@ -16,6 +20,7 @@ export default function Home() {
         heading={t("ExperienceParis")}
         coloredPart={t("LikeNeverBefore")}
         subHeading={t("ExclusiveGuided")}
+        onContactClick={() => setIsContactOpen(true)}
       />
 
       <section className="bg-white py-[100px]">
@@ -28,10 +33,14 @@ export default function Home() {
               isDark
             />
             <CategoryCards />
-            <AboutGuideSection />
+            <AboutGuideSection onContactClick={() => setIsContactOpen(true)} />
           </div>
         </Container>
       </section>
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+      />
     </div>
   );
 }

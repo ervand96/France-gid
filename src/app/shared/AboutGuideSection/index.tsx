@@ -1,30 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
+import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
 import { ArrowRight, LucideIcon } from "lucide-react";
 import Container from "../Container";
 import Header from "../Header";
+import Button from "../Button";
 import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
 import restaurantImg from "@/assets/about/restaurantImg.jpg";
 
-export default function AboutGuideSection() {
+type Props = {
+  value: number | string;
+  label: string;
+  icon: LucideIcon;
+};
+
+type ModalProp = {
+  onContactClick: () => void;
+};
+
+export default function AboutGuideSection({ onContactClick }: ModalProp) {
   const locale = useLocale();
-
+  const router = useRouter();
   const t = useTranslations("About");
-
-  type Props = {
-    value: number | string;
-    label: string;
-    icon: LucideIcon;
-  };
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
-      <div className="flex-1 flex flex-col items-center bg-secondary rounded-xl p-2 md:p-6 md:w-[160px] text-center shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="flex-1 flex flex-col items-center bg-secondary/10 rounded-xl p-2 md:p-6 md:w-[160px] text-center shadow-md hover:shadow-lg transition-shadow duration-300">
         <div className="w-14 h-14 md:mx-auto md:mb-4 bg-accent/10 flex items-center justify-center rounded-xl">
           <Icon className="w-6 h-6 text-yellow-600" />
         </div>
@@ -84,13 +89,25 @@ export default function AboutGuideSection() {
               })}
           </div>
 
-          <Link
-            href={`${locale}/about-us`}
-            className="group inline-flex items-center gap-2 px-6 py-3 ml-[10px] bg-accent hover:bg-accent/50 text-secondary font-semibold rounded-lg transition-all"
-          >
-            {t("FindOutMore")}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <div className="flex items-center justify-center gap-2 px-[10px]">
+            <Button
+              styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
+              onClick={() => router.push(`/${locale}/about-us`)}
+              designType="gold"
+            >
+              <span className="group inline-flex items-center gap-2">
+                {t("FindOutMore")}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Button>
+            <Button
+              onClick={onContactClick}
+              styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
+              designType="white"
+            >
+              <p>{t("ContactMe")}</p>
+            </Button>
+          </div>
         </div>
 
         <div className="hidden md:block space-y-8 pr-[10px] md:col-span-3">
