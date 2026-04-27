@@ -358,7 +358,7 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     ))}
                   </div>
-                  <Button styles="mt-6 w-full py-3 border rounded-lg" designType="transparent">
+                  <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 hover:bg-dark-gray transition-colors">
                     {t("ShowReviews")}
                   </Button>
                 </div>
@@ -406,10 +406,11 @@ export function TourDetail({ tour }: Props) {
                             if (dateError) setDateError(false);
                           }}
                           className={`appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent
-                          ${dateError
+                          ${
+                            dateError
                               ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
                               : "border-gray-700 focus:border-accent"
-                            }`}
+                          }`}
                         />
                         <AnimatePresence>
                           {dateError && (
@@ -463,12 +464,12 @@ export function TourDetail({ tour }: Props) {
                               {p.range} {t("People")}
                             </option>
                           )) || (
-                              <>
-                                <option value="1-3">1-3</option>
-                                <option value="4-5">4-5</option>
-                                <option value="6-7">6-7</option>
-                              </>
-                            )}
+                            <>
+                              <option value="1-3">1-3</option>
+                              <option value="4-5">4-5</option>
+                              <option value="6-7">6-7</option>
+                            </>
+                          )}
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
@@ -478,8 +479,7 @@ export function TourDetail({ tour }: Props) {
 
                     <Button
                       onClick={handleBookClick}
-                      styles="w-full py-4 font-bold rounded-[10px] mb-4"
-                      designType="gold"
+                      styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer"
                     >
                       {t("BookNow")}
                     </Button>
@@ -517,8 +517,7 @@ export function TourDetail({ tour }: Props) {
                     <p className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-4">
                       {t("IndividualTours")}
                     </p>
-                    <Button styles="w-full py-3 border rounded-lg"
-                      designType="transparent">
+                    <Button styles="w-full py-3 border border-accent text-accent rounded-lg hover:bg-accent/10 transition-colors">
                       {t("ContactUs")}
                     </Button>
                   </div>
@@ -528,7 +527,6 @@ export function TourDetail({ tour }: Props) {
           </main>
         </Container>
       </div>
-      );
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
