@@ -94,7 +94,7 @@ export default function BookingModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center">
+        <div className="fixed inset-0 z-[999] flex items-center justify-center px-[20px]">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,15 +121,15 @@ export default function BookingModal({
               <SuccessState onClose={handleFullClose} />
             ) : (
               <>
-                <div className="mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                <div className="mb-2 md:mb-8">
+                  <h2 className="text-xl md:text-3xl font-bold text-white mb-2">
                     {t("BookATour")}
                   </h2>
                   <p className="text-gray-400 text-sm">{tourData.title}</p>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                  <div className="grid grid-cols-2 gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-800 text-xs mb-6">
+                  <div className="grid grid-cols-2 gap-1 md:gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-800 text-xs mb-2 xl:mb-6">
                     {[
                       { label: t("Date"), value: tourData.date },
                       { label: t("Time"), value: tourData.time },
@@ -153,7 +153,7 @@ export default function BookingModal({
                     ))}
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="xl:space-y-4">
                     <InputGroup
                       label={t("YourName")}
                       error={errors.name?.message}
@@ -165,7 +165,7 @@ export default function BookingModal({
                       />
                     </InputGroup>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-2">
                       <InputGroup label="Email" error={errors.email?.message}>
                         <input
                           {...register("email")}
@@ -182,7 +182,8 @@ export default function BookingModal({
                       </InputGroup>
                     </div>
 
-                    <InputGroup label={t("CommentOnTheOrder")}>
+                   <div className="mt-2">
+                     <InputGroup label={t("CommentOnTheOrder")}>
                       <textarea
                         {...register("comment")}
                         rows={3}
@@ -190,12 +191,13 @@ export default function BookingModal({
                         className={inputStyles}
                       />
                     </InputGroup>
+                   </div>
                   </div>
 
                   <Button
                     type="submit"
                     disabled={status === "loading"}
-                    styles="w-full mt-6 py-4 disabled:bg-gray-700 font-bold rounded-xl flex items-center justify-center gap-2 group"
+                    styles="w-full md:mt-6 py-2 md:py-4 disabled:bg-gray-700 font-bold rounded-xl flex items-center justify-center gap-2 group"
                     designType="gold"
                   >
                     {status === "loading" ? (
@@ -218,7 +220,7 @@ export default function BookingModal({
 }
 
 const inputStyles =
-  "w-full bg-[#161920] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:border-yellow-600 outline-none transition-all placeholder:text-gray-600";
+  "w-full bg-[#161920] border border-gray-800 rounded-xl px-4 py-2 md:py-3 text-white text-sm focus:border-yellow-600 outline-none transition-all placeholder:text-gray-600";
 
 function InputGroup({
   label,
