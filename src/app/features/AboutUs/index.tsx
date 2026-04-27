@@ -4,7 +4,7 @@ import { Award, Clock, Users, Globe, Heart, Star } from "lucide-react";
 
 export function AboutUs() {
   const stats = [
-    { icon: Users, value: "3000K+", label: "Довольных туристов" },
+    { icon: Users, value: "3K+", label: "Довольных туристов" },
     { icon: Clock, value: "12 лет", label: "Опыта работы" },
     { icon: Award, value: "500+", label: "Проведенных туров" },
     { icon: Star, value: "4.9", label: "Средний рейтинг" },
