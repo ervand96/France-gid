@@ -35,7 +35,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     },
     {
       id: "viber",
-      href: "viber://chat?number=33609572780",
+      href: "https://viber.com",
       icon: <MessageSquare className="text-purple-500" />,
       label: "Viber",
       sub: t("QuickReply"),
