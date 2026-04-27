@@ -1,33 +1,47 @@
 "use client";
 
-import Link from "next/link";
-import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
 import { ArrowRight, LucideIcon } from "lucide-react";
 import Container from "../Container";
 import Header from "../Header";
+import Button from "../Button";
 import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
 import restaurantImg from "@/assets/about/restaurantImg.jpg";
-import Button from "../Button";
+import BookingModal from "../BookingModal";
 
 export default function AboutGuideSection() {
   const locale = useLocale();
-
+  const router = useRouter();
   const t = useTranslations("About");
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [bookingData, setBookingData] = useState({
+    date: "",
+    time: "09:00",
+    guests: "1-3",
+  });
   type Props = {
     value: number | string;
     label: string;
     icon: LucideIcon;
   };
 
-  const handleContactClick = () => {
-    document
-      .getElementById("getInTouch")
-      ?.scrollIntoView({ behavior: "smooth" });
+  const handleBookClick = () => {
+    setIsModalOpen(true);
   };
+
+  const resetBookingForm = () => {
+    setBookingData({
+      date: "",
+      time: "09:00",
+      guests: "1-3",
+    });
+  };
+
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
@@ -93,18 +107,16 @@ export default function AboutGuideSection() {
 
           <div className="flex items-center justify-center gap-2 px-[10px]">
             <Button
-            styles="px-6 py-3 rounded-lg font-semibold"
-            designType="gold">
-              <Link
-              href={`${locale}/about-us`}
-              className="group inline-flex items-center gap-2"
-            >
-              {t("FindOutMore")}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+              styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
+              onClick={() => router.push(`/${locale}/about-us`)}
+              designType="gold">
+              <span className="group inline-flex items-center gap-2">
+                {t("FindOutMore")}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Button>
             <Button
-              onClick={handleContactClick}
+              onClick={() => handleBookClick()}
               styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
               designType="white"
             >
@@ -155,6 +167,18 @@ export default function AboutGuideSection() {
           </div>
         </div>
       </section>
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        resetForm={resetBookingForm}
+        tourData={{
+          title: "tour.primaryText",
+          date: bookingData.date,
+          time: bookingData.time,
+          guests: bookingData.guests,
+          price: "price",
+        }}
+      />
     </Container>
   );
 }
