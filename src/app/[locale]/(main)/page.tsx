@@ -33,7 +33,7 @@ export default function Home() {
               isDark
             />
             <CategoryCards />
-            <AboutGuideSection />
+            <AboutGuideSection onContactClick={() => setIsContactOpen(true)} />
           </div>
         </Container>
       </section>

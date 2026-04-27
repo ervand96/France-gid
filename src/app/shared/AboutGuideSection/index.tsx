@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
@@ -12,36 +11,21 @@ import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
 import restaurantImg from "@/assets/about/restaurantImg.jpg";
-import BookingModal from "../BookingModal";
 
-export default function AboutGuideSection() {
+type Props = {
+  value: number | string;
+  label: string;
+  icon: LucideIcon;
+};
+
+type ModalProp = {
+  onContactClick: () => void;
+};
+
+export default function AboutGuideSection({ onContactClick }: ModalProp) {
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("About");
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [bookingData, setBookingData] = useState({
-    date: "",
-    time: "09:00",
-    guests: "1-3",
-  });
-  type Props = {
-    value: number | string;
-    label: string;
-    icon: LucideIcon;
-  };
-
-  const handleBookClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const resetBookingForm = () => {
-    setBookingData({
-      date: "",
-      time: "09:00",
-      guests: "1-3",
-    });
-  };
-
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
@@ -109,14 +93,15 @@ export default function AboutGuideSection() {
             <Button
               styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
               onClick={() => router.push(`/${locale}/about-us`)}
-              designType="gold">
+              designType="gold"
+            >
               <span className="group inline-flex items-center gap-2">
                 {t("FindOutMore")}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Button>
             <Button
-              onClick={() => handleBookClick()}
+              onClick={onContactClick}
               styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
               designType="white"
             >
@@ -167,18 +152,6 @@ export default function AboutGuideSection() {
           </div>
         </div>
       </section>
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        resetForm={resetBookingForm}
-        tourData={{
-          title: "tour.primaryText",
-          date: bookingData.date,
-          time: bookingData.time,
-          guests: bookingData.guests,
-          price: "price",
-        }}
-      />
     </Container>
   );
 }
