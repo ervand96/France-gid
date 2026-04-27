@@ -5,7 +5,6 @@ import { TourCard } from "../../utils/tourCardType";
 const TOUR_DETAILS_POPULATE = [
   "bgImg",
   "included",
-  "notIncluded",
   "gallery",
   "pricing",
   "contentSections",

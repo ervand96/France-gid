@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -10,6 +10,7 @@ import {
   Phone,
   Mail,
   CheckCircle2,
+  MessageSquare,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SEND_EMAIL_API } from "@/app/api/contact/api";
@@ -33,11 +34,18 @@ export default function ContactModal({ isOpen, onClose }: Props) {
       sub: t("QuickReply"),
     },
     {
-      id: t("Phone"),
-      href: "tel:+33609572780",
-      icon: <Phone className="text-blue-500" />,
-      label: t("Call"),
-      sub: "+33 6 09 57 27 80",
+      id: "viber",
+      href: "viber://chat?number=33609572780",
+      icon: <MessageSquare className="text-purple-500" />,
+      label: "Viber",
+      sub: t("QuickReply"),
+    },
+    {
+      id: "telegram",
+      href: "https://t.me",
+      icon: <Send className="text-sky-400" />,
+      label: "Telegram",
+      sub: "@username",
     },
     {
       id: "email",
@@ -47,11 +55,11 @@ export default function ContactModal({ isOpen, onClose }: Props) {
       sub: "garik@france-gid.ru",
     },
     {
-      id: "telegram",
-      href: "https://t.me",
-      icon: <Send className="text-sky-400" />,
-      label: "Telegram",
-      sub: "@username",
+      id: t("Phone"),
+      href: "tel:+33609572780",
+      icon: <Phone className="text-blue-500" />,
+      label: t("Call"),
+      sub: "+33 6 09 57 27 80",
     },
   ];
 
@@ -64,7 +72,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   });
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   useScrollLock(isOpen);
 
@@ -137,7 +145,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                 {t("ContactUs")}
               </h2>
               <div className="space-y-6">
-                <div className="space-y-8">
+                <div className="space-y-4 md:space-y-5">
                   {CONTACT_METHODS.map((method) => (
                     <ContactLink key={method.id} {...method} />
                   ))}

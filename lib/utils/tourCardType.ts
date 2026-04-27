@@ -22,7 +22,6 @@ export interface TourCard {
   price: string;
   rating: string;
   included: Included[];
-  notIncluded: NotIncluded[];
   gallery: Gallery[];
   bgImg: BgImg;
   pricing: Pricing[];
@@ -48,11 +47,6 @@ export interface Highlight {
 }
 
 export interface Included {
-  id: number;
-  text: string;
-}
-
-export interface NotIncluded {
   id: number;
   text: string;
 }

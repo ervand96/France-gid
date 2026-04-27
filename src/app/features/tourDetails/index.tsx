@@ -37,13 +37,11 @@ export function TourDetail({ tour }: Props) {
 
   const allGalleryImages = tour.gallery?.flatMap((g) => g.image) || [];
 
-  const getTomorrowDate = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1); // Добавляем 1 день к текущей дате
-    return tomorrow.toISOString().split("T")[0]; // Получаем формат "YYYY-MM-DD"
+  const getTodayDate = () => {
+    return new Date().toISOString().split("T")[0];
   };
 
-  const minDate = getTomorrowDate();
+  const minDate = getTodayDate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -57,14 +55,21 @@ export function TourDetail({ tour }: Props) {
     tour?.price;
 
   const handleBookClick = () => {
-    const selectedDate = new Date(bookingData.date);
-    const tomorrow = new Date();
-    tomorrow.setHours(0, 0, 0, 0);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    if (!bookingData.date || selectedDate < tomorrow) {
+    if (!bookingData.date) {
       setDateError(true);
+      setTimeout(() => setDateError(false), 3000);
+      return;
+    }
 
+    const selectedDateTime = new Date(
+      `${bookingData.date}T${bookingData.time}`,
+    );
+
+    const minAllowedTime = new Date();
+    minAllowedTime.setHours(minAllowedTime.getHours() + 1);
+
+    if (selectedDateTime < minAllowedTime) {
+      setDateError(true);
       setTimeout(() => setDateError(false), 3000);
       return;
     }
@@ -322,7 +327,11 @@ export function TourDetail({ tour }: Props) {
                             >
                               <div>
                                 <div className="text-[14px] font-[400] leading-[143%] text-secondary/50">
-                                  {t("FromGroup") + " " + item?.range + " " + t("People")}
+                                  {t("FromGroup") +
+                                    " " +
+                                    item?.range +
+                                    " " +
+                                    t("People")}
                                 </div>
                                 <div className="text-[24px] font-[700] leading-[133%] text-accent">
                                   {item?.price ? `€ ${item?.price}` : "—"}
@@ -378,13 +387,27 @@ export function TourDetail({ tour }: Props) {
                           onChange={handleChange}
                           className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
                         >
-                          {["09:00", "10:00", "11:00", "12:00", "13:00"].map(
-                            (time) => (
-                              <option key={time} value={time}>
-                                {time}
-                              </option>
-                            ),
-                          )}
+                          {[
+                            "09:00",
+                            "10:00",
+                            "11:00",
+                            "12:00",
+                            "13:00",
+                            "14:00",
+                            "15:00",
+                            "16:00",
+                            "17:00",
+                            "18:00",
+                            "19:00",
+                            "20:00",
+                            "21:00",
+                            "22:00",
+                            "23:00",
+                          ].map((time) => (
+                            <option key={time} value={time}>
+                              {time}
+                            </option>
+                          ))}
                         </select>
                         <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
                           ▼
