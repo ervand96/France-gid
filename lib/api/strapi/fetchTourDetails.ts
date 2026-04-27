@@ -4,12 +4,10 @@ import { TourCard } from "../../utils/tourCardType";
 
 const TOUR_DETAILS_POPULATE = [
   "bgImg",
-  "highlights",
   "included",
   "notIncluded",
   "gallery",
   "pricing",
-  "tourPlan",
   "contentSections",
 ]
   .map((field) => `populate[${field}][populate]=*`)

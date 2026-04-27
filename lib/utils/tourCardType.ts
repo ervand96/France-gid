@@ -19,16 +19,13 @@ export interface TourCard {
   slug: string;
   filterCategory: string;
   TourOverview: string;
-  isRecommended: boolean;
   price: string;
   rating: string;
-  highlights: Highlight[];
   included: Included[];
   notIncluded: NotIncluded[];
   gallery: Gallery[];
   bgImg: BgImg;
   pricing: Pricing[];
-  tourPlan: PlanItem[];
   contentSections: ContentSection[];
 }
 
@@ -237,7 +234,6 @@ export interface Related {
   slug: string;
   filterCategory: string;
   TourOverview: string;
-  isRecommended: boolean;
   price: string;
   rating: string;
 }

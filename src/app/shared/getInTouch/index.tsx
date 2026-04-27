@@ -115,7 +115,7 @@ export default function GetInTouch() {
                     <Card
                       stylesOfCard="flex flex-col items-start gap-[4px]"
                       primaryText={t(item.key)}
-                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary"
+                      primaryTextStyles="text-[16px] sm:text-[20px] font-[500] leading-[150%] text-secondary/80"
                       textBlockStyles="flex flex-col items-start gap-[4px]"
                       secondaryText={item.value}
                       secondaryTextStyles="text-[12px] sm:text-[16px] font-[400] leading-[150%] text-accent"

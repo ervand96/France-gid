@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import phoneIcon from "@/assets/contacts/phone.png";
 import emailIcon from "@/assets/contacts/email.png";
-import locationIcon from "@/assets/contacts/location.png";
+import viberIcon from "@/assets/contacts/viber.png";
 import whatsAppIcon from "@/assets/contacts/wp.png";
 
 export type ContactItem = {
@@ -25,10 +25,10 @@ export const contactData: ContactItem[] = [
     sub: "Response",
   },
   {
-    icon: locationIcon,
-    key: "Location",
-    value: "12 Rue de Rivoli, 75001 Paris",
-    sub: "Appointment",
+    icon: viberIcon,
+    key: "Viber",
+    value: "+33-609-57-27-80",
+    sub: "ConvenientCommunication",
   },
   {
     icon: whatsAppIcon,

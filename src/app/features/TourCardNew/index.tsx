@@ -49,11 +49,6 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
                 {tour.category}
               </span>
             )}
-            {tour?.isRecommended && (
-              <span className="px-[12px] py-[4px] bg-accent text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider">
-                {t("Recommendation")}
-              </span>
-            )}
           </div>
 
           <div className="absolute top-4 right-4 flex items-center gap-1 bg-gray-transparent backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -78,7 +73,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
             </div>
             <div className="flex items-center gap-1.5">
               <Users className="w-4 h-4 text-accent/80" />
-              <span>{t("Group")}</span>
+              <span>{t("Individual")}</span>
             </div>
           </div>
 
