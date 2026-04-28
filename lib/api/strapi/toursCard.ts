@@ -12,6 +12,9 @@ export async function fetchTourCards(
 
   const res = await fetch(`${STRAPI_URL}/api/tour-cards?${params.toString()}`, {
     next: { revalidate: 60 },
+    headers: {
+      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    },
   });
 
   if (!res.ok) throw new Error("Failed fetch tours");
