@@ -56,8 +56,8 @@ export default function AboutGuideSection({ aboutData }: AboutDataProps) {
       <section className="w-full py-[100px] grid md:grid-cols-7 gap-12 items-start">
         <div className="flex flex-col gap-[30px] items-start md:col-span-4">
           <Header
-            heading={t("AboutGuide")}
-            subHeading={t("YourGuide")}
+            heading={aboutData?.title}
+            subHeading={aboutData?.subTitle}
             isDark={true}
           />
           <div className="flex flex-col gap-[20px] px-[10px] text-gray-transparent text-[16px] leading-[170%]">
