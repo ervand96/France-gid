@@ -14,7 +14,7 @@ export default async function Page({ params }: Props) {
   const { locale, category, slug } = await params;
   const data = await fetchTourDetails(locale, category, slug);
 
-  if (!data) notFound();
+  if (!data) notFound(); 
 
   return <TourDetail tour={data} />;
 }

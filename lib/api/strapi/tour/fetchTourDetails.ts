@@ -1,4 +1,3 @@
-import { STRAPI_URL } from "../../../strapi";
 import { categoryMap } from "@/constants/categoryEnum";
 import { TourCard } from "../../../utils/tourCardType";
 
@@ -30,13 +29,14 @@ export async function fetchTourDetails(
     "filters[filterCategory][$eq]": dbCategory,
   });
 
-  const url = `${STRAPI_URL}/api/tour-cards?${queryParams.toString()}&${TOUR_DETAILS_POPULATE}`;
+  const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tour-cards?${queryParams.toString()}&${TOUR_DETAILS_POPULATE}`;
 
   try {
     const res = await fetch(url, {
       cache: "no-store",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
     });
 
