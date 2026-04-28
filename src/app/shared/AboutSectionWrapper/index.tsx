@@ -1,5 +1,6 @@
 import { fetchAboutData } from "lib/api/strapi/about/aboutSection";
 import AboutGuideSection from "../AboutGuideSection";
+import { notFound } from "next/navigation";
 
 export default async function AboutSectionWrapper({
   locale,
@@ -9,7 +10,7 @@ export default async function AboutSectionWrapper({
   const aboutData = await fetchAboutData(locale);
   console.log(aboutData, "AboutGuideSection");
 
-  if (!aboutData) return null;
+  if (!aboutData) notFound();
 
   return <AboutGuideSection aboutData={aboutData} />;
 }
