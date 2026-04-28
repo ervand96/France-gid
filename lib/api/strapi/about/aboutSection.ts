@@ -8,6 +8,10 @@ export async function fetchAboutData(locale: string) {
 
   const res = await fetch(url, {
     next: { revalidate: 60 },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    },
   });
 
   if (!res.ok) {
