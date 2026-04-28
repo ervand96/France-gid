@@ -1,6 +1,6 @@
 "use client";
 
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -10,9 +10,12 @@ import Header from "@/app/shared/Header";
 import Button from "@/app/shared/Button";
 import mercedes from "@/assets/transfer/vClass.webp";
 
+
 export default function TransferZenith() {
   const locale = useLocale();
   const t = useTranslations("Transfer")
+  const router = useRouter();
+
   return (
     <section className="relative py-12 bg-white overflow-hidden px-[20px]">
       <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-secondary/50 blur-[150px] rounded-full pointer-events-none" />
@@ -144,7 +147,7 @@ export default function TransferZenith() {
             <div className="flex">
               <Button
                 styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
-                onClick={() => Router.push(`/${locale}/transfer`)}
+                onClick={() => router.push(`/${locale}/transfer`)}
                 designType="gold"
               >
                 <span className="group inline-flex items-center gap-2">
