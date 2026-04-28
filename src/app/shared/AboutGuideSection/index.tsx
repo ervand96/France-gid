@@ -10,7 +10,8 @@ import Header from "../Header";
 import Button from "../Button";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
-import { STRAPI_URL } from "lib/strapi";
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 const icons = [Clock, Users, Star];
 
