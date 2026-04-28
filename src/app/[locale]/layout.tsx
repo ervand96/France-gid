@@ -1,5 +1,7 @@
+import { ModalProvider } from "@/context/ModalContext";
 import { NextIntlClientProvider } from "next-intl";
 import { ReactNode } from "react";
+import ContactModalWrapper from "../shared/ContactModalWrapper";
 
 type Props = {
   children: ReactNode;
@@ -20,7 +22,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={currentLocale} messages={messages}>
-      {children}
+      <ModalProvider>
+        <ContactModalWrapper />
+        {children}
+      </ModalProvider>
     </NextIntlClientProvider>
   );
 }

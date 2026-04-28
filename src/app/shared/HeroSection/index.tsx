@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useModals } from "@/context/ModalContext";
+
 import Button from "@/app/shared/Button";
 import Container from "@/app/shared/Container";
 import phoneIcon from "@/assets/elements/phone.png";
@@ -16,9 +18,9 @@ export default function HeroSection({
   headingStyles,
   subHeading,
   subHeadingStyles,
-  onContactClick,
 }: HeroProps) {
   const t = useTranslations("HeroSection");
+  const { openContact } = useModals();
 
   const [hideScrollIcon, setHideScrollIcon] = useState<boolean>(false);
 
@@ -67,7 +69,7 @@ export default function HeroSection({
               onClick={handleContactClick}
             />
             <Button
-              onClick={onContactClick}
+              onClick={openContact}
               styles="min-w-[255px] flex justify-center items-center gap-[8px] px-[40px] py-[18px] text-[16px] leading-[150%] font-[600] border-[2px] rounded-[6px]"
               designType="transparent"
             >

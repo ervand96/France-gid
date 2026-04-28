@@ -1,4 +1,4 @@
-import { fetchTourCards } from "lib/api/strapi/toursCard";
+import { fetchTourCards } from "lib/api/strapi/tour/toursCard";
 import { TourCardNew } from "../TourCardNew";
 import { TourCard } from "lib/utils/tourCardType";
 

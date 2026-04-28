@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { fetchTourDetails } from "lib/api/strapi/fetchTourDetails";
+import { fetchTourDetails } from "lib/api/strapi/tour/fetchTourDetails";
 import { TourDetail } from "@/app/features/tourDetails";
 
 type Props = {

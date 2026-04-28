@@ -11,6 +11,7 @@ import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
 import restaurantImg from "@/assets/about/restaurantImg.jpg";
+import { useModals } from "@/context/ModalContext";
 
 type Props = {
   value: number | string;
@@ -18,14 +19,13 @@ type Props = {
   icon: LucideIcon;
 };
 
-type ModalProp = {
-  onContactClick: () => void;
-};
-
-export default function AboutGuideSection({ onContactClick }: ModalProp) {
+export default function AboutGuideSection() {
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("About");
+  const { openContact } = useModals();
+
+  console.log(openContact, "openContactopenContactopenContact");
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
@@ -101,7 +101,7 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
               </span>
             </Button>
             <Button
-              onClick={onContactClick}
+              onClick={openContact}
               styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
               designType="white"
             >

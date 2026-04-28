@@ -1,5 +1,5 @@
-import { STRAPI_URL } from "../../strapi";
-import { StrapiResponse, TourCard } from "../../utils/tourCardType";
+import { STRAPI_URL } from "../../../strapi";
+import { StrapiResponse, TourCard } from "../../../utils/tourCardType";
 
 export async function fetchTourCards(
   locale: string,
