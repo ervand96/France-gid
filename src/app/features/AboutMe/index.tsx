@@ -1,17 +1,20 @@
 "use client"
 
-import { useTranslations } from "next-intl";
-import { Award, Users, Globe, Heart, Star, Quote, GraduationCap, CheckCircle, LucideIcon } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { Award, Users, Globe, Heart, Star, Quote, GraduationCap, CheckCircle, LucideIcon, ArrowLeft } from "lucide-react";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
 import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
+import Button from "@/app/shared/Button";
+import { useRouter } from "next/navigation";
 
 export function AboutMe() {
 
   const t = useTranslations("About")
-
+  const locale = useLocale();
+  const router = useRouter();
   // const text = "Впервые я приехал в Париж как турист в 2010 году, и это была любовь с первого взгляда. Город покорил меня своей атмосферой, архитектурой, историей. Я понял, что хочу здесь жить. Через год я уже учился в Сорбонне на факультете истории искусств. Параллельно с учебой я изучал город — бродил по улицам, посещал музеи, читал книги об истории Парижа. Каждый камень здесь имеет свою историю, и я хотел узнать их все. В 2014 году, после получения диплома и лицензии гида, я провел свою первую экскурсию. Я до сих пор помню волнение и радость, когда увидел, как люди слушают мои рассказы, задают вопросы, делятся впечатлениями. С тех пор прошло 12 лет, я провел более 500 экскурсий для 15,000+ туристов из разных стран. Для меня экскурсия — это не просто пересказ фактов из путеводителя. Это возможность показать Париж таким, каким я его вижу и чувствую: живым, многогранным, полным неожиданных открытий. Я люблю показывать не только знаменитые достопримечательности, но и скрытые уголки города, о которых знают только парижане. Каждая экскурсия для меня — это новая история, новые люди, новые эмоции. И моя главная цель — чтобы после экскурсии вы не только узнали много нового о Париже и Франции, но и по-настоящему полюбили эту страну, как когда-то полюбил ее я сам."
   const newText = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, ipsa iure expedita, odit esse at tempore pariatur placeat quo error optio vel quam doloribus magnam obcaecati, rem neque earum saepe?"
 
@@ -115,11 +118,19 @@ export function AboutMe() {
     );
   };
 
+
   return (
     <main className="bg-secondary py-[50px] md:py-[100px]">
       <Container>
-        <section className="py-20">
-          <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-[50px]">
+          <Button
+            onClick={() => router.push(`/${locale}`)}
+            styles="flex items-center gap-2 mb-6 cursor-pointer hover:bg-transparent group px-[20px]"
+          >
+            <ArrowLeft className="w-4 h-4 text-primary group-hover:text-primary/10 transition-colors duration-300" />
+            <span className="text-primary group-hover:text-primary/10 transition-colors duration-300">{t("BackToHome")}</span>
+          </Button>
+          <div className="relative mx-auto px-[10px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <Header
