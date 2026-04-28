@@ -1,32 +1,23 @@
-"use client";
-import { useTranslations } from "next-intl";
-import HeroSection from "@/app/shared/HeroSection";
-import Header from "@/app/shared/Header";
 import Container from "@/app/shared/Container";
 import CategoryCards from "@/app/shared/category";
-import AboutGuideSection from "@/app/shared/AboutGuideSection";
+import AboutSectionWrapper from "@/app/shared/AboutSectionWrapper";
+import HeroSectionHome from "@/app/features/HeroSectionHome";
 
-export default function Home() {
-  const t = useTranslations("HeroSection");
-
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   return (
     <div>
-      <HeroSection
-        heading={t("ExperienceParis")}
-        coloredPart={t("LikeNeverBefore")}
-        subHeading={t("ExclusiveGuided")}
-      />
+      <HeroSectionHome isHero />
       <section className="bg-white py-[100px]">
         <Container>
           <div className="flex flex-col items-center">
-            <Header
-              blockStyles="text-center items-center mb-[50px]"
-              heading={t("RecommendedExcursions")}
-              subHeading={t("ExcursionsThatWillReveal")}
-              isDark
-            />
+            <HeroSectionHome />
             <CategoryCards />
-            <AboutGuideSection />
+            <AboutSectionWrapper locale={locale} />
           </div>
         </Container>
       </section>

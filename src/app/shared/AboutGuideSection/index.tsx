@@ -19,13 +19,18 @@ type Props = {
   icon: LucideIcon;
 };
 
-export default function AboutGuideSection() {
+export default function AboutGuideSection(aboutData: AboutDataProps) {
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("About");
   const { openContact } = useModals();
 
-  console.log(openContact, "openContactopenContactopenContact");
+  if (!aboutData)
+    return (
+      <div className="text-center py-10 text-gray-400 italic">
+        Настройте контент в Strapi...
+      </div>
+    );
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
