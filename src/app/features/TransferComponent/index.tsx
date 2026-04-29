@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, MapPin, Users, Car, Check } from "lucide-react";
+import { ShieldCheck, MapPin, Users, Car, Check, ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "@/app/shared/Container";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import mercedes from "@/assets/transfer/vClass.webp";
+import Button from "@/app/shared/Button";
+import Header from "@/app/shared/Header";
 
 export default function TransferPage() {
   const transfers = [
@@ -24,40 +26,38 @@ export default function TransferPage() {
   ];
 
   return (
-    <main className="bg-[#0B0D11] min-h-screen pt-32 pb-24 text-white overflow-hidden">
+    <main className="bg-primary pt-[50px] xl:pt-[100px] px-[10px] text-secondary overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full -z-10" />
 
       <Container>
-        <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-accent mb-4"
+        <div className="mt-[50px]">
+          <Button
+            styles="flex items-center gap-2 text-secondary/50 hover:text-secondary mb-6 transition-colors cursor-pointer"
           >
-            <div className="h-[1px] w-12 bg-accent" />
-            <span className="uppercase tracking-[4px] text-[10px] font-bold">
-              Premium Transport
-            </span>
-          </motion.div>
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Home page</span>
+          </Button>
+
+        </div>
+
+
+
+        <div className="flex flex-col justify-center items-center gap-[60px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black uppercase leading-tight italic"
           >
-            Первоклассные <br /> <span className="text-accent">Трансферы</span>
+            <Header heading="Первоклассные Трансферы" subHeading="Для вашего удобства" blockStyles="items-center" />
           </motion.h1>
-        </div>
-
-        <div className="relative mb-32">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-[60px]">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              className="lg:col-span-8 relative group"
+              className="flex-2 relative group"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-transparent rounded-[40px] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000" />
-              <div className="relative rounded-[32px] overflow-hidden border border-white/5 bg-[#161920]">
+              <div className="relative rounded-[32px] overflow-hidden border border-secondary/5 bg-dark-gray">
                 <ImageWithFallback
                   src={mercedes}
                   width={1000}
@@ -84,16 +84,16 @@ export default function TransferPage() {
               </div>
             </motion.div>
 
-            <div className="lg:col-span-4 space-y-8">
-              <h2 className="text-3xl font-bold italic tracking-tighter uppercase underline decoration-accent decoration-2 underline-offset-8">
+            <div className="flex-1 flex flex-col items-start gap-[20px]">
+              <h2 className="text-3xl font-[500] underline decoration-accent decoration-2 underline-offset-8">
                 Mercedes V-Class
               </h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
+              <p className="text-secondary/50 leading-relaxed text-lg">
                 Профессиональный сервис с лицензией. Встречаем в зоне выхода с
                 табличкой, помогаем с багажом и оформлением Tax Free.
                 Безупречность в каждой детали.
               </p>
-              <ul className="space-y-4">
+              <ul className="flex flex-col gap-[5px]">
                 {[
                   "Профессиональный водитель",
                   "Детские кресла бесплатно",
@@ -110,45 +110,62 @@ export default function TransferPage() {
                   </li>
                 ))}
               </ul>
+              <div className="flex items-center justify-center gap-2">
+                <Button
+                  styles="px-6 py-3 rounded-lg font-[600] group inline-flex items-center gap-2"
+                  designType="gold"
+                >
+                  <span className="group inline-flex items-center gap-2">
+                    Contact
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Button>
+                <Button
+                  styles="group inline-flex items-center px-6 py-3 ml-[10px] font-[600] rounded-lg shadow-md hover:shadow-lg"
+                  designType="white"
+                >
+                  <p>Contact</p>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="relative group">
-          <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/30 to-transparent rounded-[40px] blur opacity-20" />
-          <div className="relative bg-[#161920]/80 backdrop-blur-2xl rounded-[40px] border border-white/5 overflow-hidden">
-            <div className="grid grid-cols-12 p-8 border-b border-white/5 bg-white/5 items-center">
-              <div className="col-span-6 text-[14px] uppercase tracking-[3px] font-bold text-gray-500">
+        <div className="relative group mt-[100px]">
+          <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/30 to-transparent rounded-[10px] blur opacity-20" />
+          <div className="relative bg-dark-gray/10 backdrop-blur-2xl rounded-[10px] border border-secondary/5 overflow-hidden">
+            <div className="grid grid-cols-12 p-2 md:p-8 border-b border-secondary/5 bg-secondary/5 items-center gap-[10px]">
+              <div className="col-span-6 text-[10px] md:text-[14px] uppercase tracking-[1px] md:tracking-[3px] font-[500] text-secondary/50">
                 Направление
               </div>
-              <div className="col-span-2 text-center text-[14px] uppercase font-bold text-gray-500">
+              <div className="col-span-2 text-center text-[10px] md:text-[14px] uppercase font-[500] text-secondary/50">
                 1-3 чел с группы
               </div>
-              <div className="col-span-2 text-center text-[14px] uppercase font-bold text-gray-500">
+              <div className="col-span-2 text-center text-[10px] md:text-[14px] uppercase font-[500] text-secondary/50">
                 4-5 чел с группы
               </div>
-              <div className="col-span-2 text-center text-[14px] uppercase font-bold text-gray-500">
+              <div className="col-span-2 text-center text-[10px] md:text-[14px] uppercase font-[500] text-secondary/50">
                 6-7 чел с группы
               </div>
             </div>
 
             <div className="divide-y divide-white/5">
-              {transfers.map((item, idx) => (
+              {transfers.map((item, index) => (
                 <motion.div
-                  key={idx}
+                  key={index}
                   whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.02)" }}
-                  className="grid grid-cols-12 p-8 items-center transition-all group/row"
+                  className="grid grid-cols-12 p-2 md:p-4 items-center transition-all group/row"
                 >
                   <div className="col-span-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20 group-hover/row:border-accent transition-colors">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-5 h-5 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20 group-hover/row:border-accent transition-colors">
                         <MapPin className="w-4 h-4 text-accent" />
                       </div>
                       <div>
-                        <div className="text-[10px] text-accent font-bold uppercase tracking-widest">
+                        <div className="text-[10px] text-accent font-[900] uppercase md:tracking-widest">
                           {item.from}
                         </div>
-                        <div className="text-xl font-bold flex items-center gap-2 italic">
+                        <div className="text-[14px] md:text-xl font-[500] flex items-center">
                           {item.to}
                         </div>
                       </div>
@@ -178,7 +195,7 @@ function PriceCell({
   return (
     <div className="col-span-2 text-center">
       <div
-        className={`text-2xl font-black ${highlight ? "text-accent drop-shadow-[0_0_10px_rgba(202,138,4,0.3)]" : "text-white/80"}`}
+        className={`md:text-2xl  ${highlight ? "text-accent drop-shadow-[0_0_10px_rgba(202,138,4,0.3)]" : "text-secondary/80"}`}
       >
         €{price}
       </div>

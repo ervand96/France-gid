@@ -17,12 +17,13 @@ export default function Footer() {
     <footer className="bg-primary border-t border-dark-gray">
       <Container>
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-wrap justify-start md:justify-between gap-[20px] mb-8">
+          <div className="flex flex-col xl:flex-row justify-start md:justify-between gap-[20px] mb-8">
             <div>
               <Logo className="mb-4" />
               <p className="text-secondary/50 text-sm">{t("DiscoverParis")}</p>
             </div>
-            <div>
+            <div className="w-full flex justify-between gap-[20px] flex-wrap">
+              <div>
               <h4 className="text-secondary font-semibold mb-4">
                 {t("Tours")}
               </h4>
@@ -41,44 +42,44 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            <div>
-              <h4 className="text-secondary font-semibold mb-4">
-                {t("Company")}
-              </h4>
-              <ul className="space-y-2 text-secondary/50 text-sm">
-                <li>
-                  <a
-                    href={`${locale}${"/about-us"}`}
-                    className="hover:text-accent transition-colors"
-                  >
-                    {t("About")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition-colors">
-                    {t("Reviews")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition-colors">
-                    {t("Contacts")}
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-secondary font-semibold mb-4">
-                {t("Contacts")}
-              </h4>
-              <ul className="space-y-2 text-secondary/50 text-sm">
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>{t("Address")}</span>
-                </li>
-                <li>+33-609-57-27-80</li>
-                <li>garik@france-gid.ru</li>
-              </ul>
+              <div>
+                <h4 className="text-secondary font-semibold mb-4">
+                  {t("Company")}
+                </h4>
+                <ul className="space-y-2 text-secondary/50 text-sm">
+                  <li>
+                    <a
+                      href={`${locale}${"/about-us"}`}
+                      className="hover:text-accent transition-colors"
+                    >
+                      {t("About")}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-accent transition-colors">
+                      {t("Reviews")}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-accent transition-colors">
+                      {t("Contacts")}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-secondary font-semibold mb-4">
+                  {t("Contacts")}
+                </h4>
+                <ul className="space-y-2 text-secondary/50 text-sm">
+                  <li className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{t("Address")}</span>
+                  </li>
+                  <li>+33-609-57-27-80</li>
+                  <li>garik@france-gid.ru</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="mb-8">

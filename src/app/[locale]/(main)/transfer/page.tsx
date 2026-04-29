@@ -4,8 +4,6 @@ import React from "react";
 
 export default function Transfer() {
   return (
-    <Container>
-      <TransferPage />
-    </Container>
+    <TransferPage />
   );
 }

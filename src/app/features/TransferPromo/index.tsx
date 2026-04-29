@@ -26,26 +26,6 @@ export default function TransferZenith() {
           blockStyles="text-center items-center mb-[50px]"
           isDark={true}
         />
-        {/* <div className="flex flex-col items-center text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-4 mb-6"
-          >
-            <span className="text-accent text-[10px] font-[900] uppercase tracking-[8px]">
-              Premium Private Service
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-6xl md:text-9xl font-[900] text-slate-900 leading-none uppercase tracking-tighter italic"
-          >
-            Voyage <span className="text-accent">Elite</span>
-          </motion.h1>
-        </div> */}
 
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 lg:order-2 relative">
@@ -124,26 +104,12 @@ export default function TransferZenith() {
                 <p className="text-3xl font-[900] text-primary group-hover:text-accent transition-colors tracking-tighter">
                   €90
                 </p>
-                <p className="text-[9px] uppercase font-bold text-gray-transparent/60">
+                <p className="text-[9px] uppercase font-bold text-gray-transparent/60 group-hover:text-accent">
                   {t("FixedRate")}
                 </p>
               </div>
             </motion.div>
 
-            {/* <Link
-              href={`/${locale}/transfer`}
-              className="group relative flex items-center w-fit py-2"
-            >
-              <div className="relative flex items-center bg-accent rounded-full h-16 w-16 transition-all duration-700 ease-[0.23,1,0.32,1] group-hover:w-[340px] shadow-lg shadow-accent/20 overflow-hidden">
-                <div className="flex items-center justify-center min-w-[64px] shrink-0">
-                  <MoveRight className="text-black w-6 h-6 transition-transform duration-500 group-hover:translate-x-1" />
-                </div>
-              </div>
-
-              <span className="absolute left-20 whitespace-nowrap text-[11px] uppercase font-[900] tracking-[4px] text-slate-900 border-b border-slate-200 transition-colors duration-500 group-hover:text-black group-hover:border-transparent">
-                Посмотреть все тарифы
-              </span>
-            </Link> */}
             <div className="flex">
               <Button
                 styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
