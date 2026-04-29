@@ -8,7 +8,6 @@ export default async function AboutSectionWrapper({
   locale: string;
 }) {
   const aboutData = await fetchAboutData(locale);
-  console.log(aboutData, "AboutGuideSection");
 
   if (!aboutData) notFound();
 
