@@ -122,7 +122,7 @@ export default function Carousel() {
   };
 
   return (
-    <>
+    <div className="px-[20px]">
       <style>{`
         .carousel-wrap .slick-dots li { margin: 0; width: auto; height: auto; }
         .carousel-wrap .slick-dots li.slick-active div { background: white !important; transform: scale(1.3); }
@@ -184,6 +184,6 @@ export default function Carousel() {
           ))}
         </Slider>
       </div>
-    </>
+    </div>
   );
 }

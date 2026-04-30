@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-center w-full">
-      <div className="fixed z-[888] inset-x-0 bg-primary/90">
+      <div className="fixed z-[888] inset-x-0 bg-primary/90 border-b border-secondary/10">
         <Container>
           <div className="flex justify-between items-center py-[18px] px-[20px]">
             <Link href={"/"} style={{ fontFamily: "Oswald" }}>

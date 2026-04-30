@@ -1,7 +1,8 @@
 import Image from "next/image";
 import LightGallery from "lightgallery/react";
-import "lightgallery/css/lightgallery.css";
 import { GalleryType } from "./type";
+
+import "lightgallery/css/lightgallery.css";
 
 export default function ImageExpander({ images }: GalleryType) {
 

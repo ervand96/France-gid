@@ -10,7 +10,7 @@ import {
   MapPin,
   Check,
   Calendar,
-  ArrowLeft,
+  ChevronDown,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import { TourCard } from "lib/utils/tourCardType";
@@ -122,16 +122,14 @@ export function TourDetail({ tour }: Props) {
       ? url
       : `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
   };
-  console.log(allGalleryImages, "A///");
 
   return (
     <>
-      <div className="bg-gray-950 mt-20">
+      <div className="bg-gray-950 mt-[50px] md:mt-[100px]">
         <Container>
-          <main className="mx-auto px-[20px] py-[32px]">
-            <BackButton text={t("BackToExcursions")}
-              styles="flex items-center gap-2 text-secondary/50 hover:text-secondary mb-6 transition-colors cursor-pointer"
-              arrowStyles="w-4 h-4"
+          <main className="mx-auto px-[20px] py-[50px]">
+            <BackButton
+              styles="text-secondary/50 hover:text-secondary"
               onClick={handleBack}
             />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -185,7 +183,7 @@ export function TourDetail({ tour }: Props) {
                 </div>
 
                 <div className="md:grid grid-cols-3 gap-4 flex flex-wrap">
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
                     <Clock className="w-8 h-8 text-accent mb-3" />
                     <div>
                       <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
@@ -196,7 +194,7 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
                     <Users className="w-8 h-8 text-accent mb-3" />
                     <div>
                       <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
@@ -207,7 +205,7 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
+                  <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
                     <Calendar className="w-8 h-8 text-accent mb-3" />
                     <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
                       {t("Available")}
@@ -220,7 +218,7 @@ export function TourDetail({ tour }: Props) {
                 </div>
 
                 {tour?.included?.length > 0 && (
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-accent/50">
                     <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
                       {t("WhatsIncluded")}
                     </h2>
@@ -244,7 +242,7 @@ export function TourDetail({ tour }: Props) {
                     {tour?.contentSections?.map((section, idx: number) => (
                       <div
                         key={idx}
-                        className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-gray-700"
+                        className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-accent/50"
                       >
                         {section?.title && (
                           <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6 flex items-center gap-3">
@@ -261,7 +259,7 @@ export function TourDetail({ tour }: Props) {
                   </div>
                 )}
 
-                <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
+                <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-accent/50">
                   <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
                     {t("Reviews")}
                   </h2>
@@ -298,7 +296,7 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     ))}
                   </div>
-                  <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 hover:bg-dark-gray transition-colors">
+                  <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 transition-colors">
                     {t("ShowReviews")}
                   </Button>
                 </div>
@@ -306,7 +304,7 @@ export function TourDetail({ tour }: Props) {
 
               <div className="lg:col-span-1">
                 <div className="sticky top-24">
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-dark-gray">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-dark-gray">
                     <div className="mb-6">
                       <div className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                         {t("Pricing")}
@@ -337,24 +335,26 @@ export function TourDetail({ tour }: Props) {
 
                     <div className="space-y-4 mb-6">
                       <div className="relative">
-                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
-                          {t("Date")}
-                        </label>
-                        <input
-                          type="date"
-                          name="date"
-                          min={minDate}
-                          value={bookingData?.date}
-                          onChange={(e) => {
-                            handleChange(e);
-                            if (dateError) setDateError(false);
-                          }}
-                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent
-                          ${dateError
+                        <div className="relative">
+                          <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
+                            {t("Date")}
+                          </label>
+                          <input
+                            type="date"
+                            name="date"
+                            min={minDate}
+                            value={bookingData?.date}
+                            onChange={(e) => {
+                              handleChange(e);
+                              if (dateError) setDateError(false);
+                            }}
+                            className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none ${dateError
                               ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
                               : "border-gray-700 focus:border-accent"
-                            }`}
-                        />
+                              }`}
+                          />
+                          <Calendar className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
+                        </div>
                         <AnimatePresence>
                           {dateError && (
                             <motion.span
@@ -379,31 +379,13 @@ export function TourDetail({ tour }: Props) {
                           onChange={handleChange}
                           className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
                         >
-                          {[
-                            "09:00",
-                            "10:00",
-                            "11:00",
-                            "12:00",
-                            "13:00",
-                            "14:00",
-                            "15:00",
-                            "16:00",
-                            "17:00",
-                            "18:00",
-                            "19:00",
-                            "20:00",
-                            "21:00",
-                            "22:00",
-                            "23:00",
+                          {["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
+                            "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
                           ].map((time) => (
-                            <option key={time} value={time}>
-                              {time}
-                            </option>
+                            <option key={time} value={time}>{time}</option>
                           ))}
                         </select>
-                        <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
-                          ▼
-                        </div>
+                        <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
                       </div>
 
                       <div className="relative">
@@ -414,7 +396,7 @@ export function TourDetail({ tour }: Props) {
                           name="guests"
                           value={bookingData.guests}
                           onChange={handleChange}
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
+                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
                         >
                           {tour?.pricing?.map((p) => (
                             <option key={p.id} value={p.range}>
@@ -428,9 +410,7 @@ export function TourDetail({ tour }: Props) {
                               </>
                             )}
                         </select>
-                        <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
-                          ▼
-                        </div>
+                        <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
                       </div>
                     </div>
 

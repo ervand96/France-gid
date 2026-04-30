@@ -28,7 +28,7 @@ export default function AboutHero() {
   const t = useTranslations("About");
 
   return (
-    <section className="py-[50px]">
+    <section>
       <div className="relative mx-auto px-[10px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -83,7 +83,7 @@ export default function AboutHero() {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-2xl p-6 border border-gray-100">
+            <div className="absolute -top-6 right-0 2xl:-right-6 bg-white rounded-2xl shadow-2xl p-6 border border-gray-100">
               <div className="text-center">
                 <div className="text-4xl font-bold text-yellow-600 mb-1">
                   500+

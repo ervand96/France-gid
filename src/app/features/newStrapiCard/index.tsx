@@ -13,7 +13,7 @@ export default async function NewStrapiCard({
   const tours = await fetchTourCards(locale, category);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-[64px] mt-30">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {tours?.data ? (
         tours.data.map((tour: TourCard) => (
           <TourCardNew key={tour.id} tour={tour} locale={locale} />
