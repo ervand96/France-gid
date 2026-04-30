@@ -173,7 +173,6 @@ export function TourDetail({ tour }: Props) {
                       <span className="text-secondary font-[600]">
                         {tour?.rating}
                       </span>
-                      <span>{t("Reviews") + ": " + "2,847"}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
@@ -296,7 +295,8 @@ export function TourDetail({ tour }: Props) {
                       </div>
                     ))}
                   </div>
-                  <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 transition-colors">
+                  <Button styles="mt-6 w-full py-3 border rounded-lg"
+                  designType="transparent">
                     {t("ShowReviews")}
                   </Button>
                 </div>
@@ -416,7 +416,8 @@ export function TourDetail({ tour }: Props) {
 
                     <Button
                       onClick={handleBookClick}
-                      styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer"
+                      styles="w-full py-4 rounded-[10px]"
+                      designType="gold"
                     >
                       {t("BookNow")}
                     </Button>
