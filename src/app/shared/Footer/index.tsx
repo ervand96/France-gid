@@ -48,7 +48,7 @@ export default function Footer() {
               <ul className="space-y-2 text-secondary/50 text-sm">
                 <li>
                   <a
-                    href={`${locale}${"/about-us"}`}
+                    href={`${locale}${"/about"}`}
                     className="hover:text-accent transition-colors"
                   >
                     {t("About")}
