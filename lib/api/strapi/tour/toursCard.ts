@@ -1,4 +1,4 @@
-import { StrapiResponse, TourCard } from "../../utils/tourCardType";
+import { StrapiResponse, TourCard } from "../../../utils/tourCardType";
 
 export async function fetchTourCards(
   locale: string,

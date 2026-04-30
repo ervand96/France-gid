@@ -1,5 +1,5 @@
 import { categoryMap } from "@/constants/categoryEnum";
-import { TourCard } from "../../utils/tourCardType";
+import { TourCard } from "../../../utils/tourCardType";
 
 const TOUR_DETAILS_POPULATE = [
   "bgImg",
