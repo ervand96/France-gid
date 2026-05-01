@@ -134,7 +134,7 @@ export default function AboutHero({
                     </div>
                   </div>
 
-                  <div className="absolute -top-4 -right-4 bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-2xl">
+                  <div className="absolute -top-4 -right-4 bg-accent from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-2xl">
                     <div className="text-3xl font-bold">500+</div>
                     <div className="text-sm">экскурсий</div>
                   </div>

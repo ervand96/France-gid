@@ -8,13 +8,12 @@ import {
   Phone,
   Mail,
   MessageSquare,
-  MessagesSquare
+  MessagesSquare,
 } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
-
+import Button from "@/app/shared/Button";
 
 export default function CallToAction() {
-
   const t = useTranslations("ContactModal");
   const [showCTA, setShowCTA] = useState<boolean>(false);
 
@@ -56,7 +55,6 @@ export default function CallToAction() {
     },
   ];
 
-
   return (
     <div>
       <AnimatePresence>
@@ -65,12 +63,12 @@ export default function CallToAction() {
           onMouseLeave={() => setShowCTA(false)}
           className={`fixed lg:bottom-10 lg:right-10 bottom-[10px] right-[10px] py-[40px] px-[20px] md:p-[20px] z-[9999] font-body flex flex-col items-center gap-[50px] bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/30 rounded-[14px] transition-all duration-300 ease-out transform ${showCTA ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4 pointer-events-none"}`}
         >
-          <button
-            className="absolute top-2 right-2 cursor-pointer text-xl"
+          <Button
+            styles="absolute top-2 right-2 cursor-pointer text-xl"
             onClick={() => setShowCTA(false)}
           >
             ✕
-          </button>
+          </Button>
           <h3 className="max-w-[300px] text-secondary">{t("ContactOffer")}</h3>
           <div className="space-y-6">
             <div className="space-y-4 md:space-y-5 grid grid-cols-2">
@@ -79,16 +77,19 @@ export default function CallToAction() {
               ))}
             </div>
           </div>
-          <p className="max-w-[300px] text-white italic text-[14px]">{t("PlanYourTour")}</p>
+          <p className="max-w-[300px] text-white italic text-[14px]">
+            {t("PlanYourTour")}
+          </p>
         </div>
       </AnimatePresence>
       {!showCTA && (
-        <div className="fixed bg-primary/50 bottom-[10px] right-[10px] lg:bottom-10 lg:right-10 w-[50px] h-[50px] md:w-[60px] md:h-[60px] p-[10px] rounded-full z-[158] flex items-center justify-center transition-all duration-300"
-          onMouseEnter={() => setShowCTA(true)}>
+        <div
+          className="fixed bg-primary/50 bottom-[10px] right-[10px] lg:bottom-10 lg:right-10 w-[50px] h-[50px] md:w-[60px] md:h-[60px] p-[10px] rounded-full z-[158] flex items-center justify-center transition-all duration-300"
+          onMouseEnter={() => setShowCTA(true)}
+        >
           <MessagesSquare className="text-secondary w-6 h-6" />
         </div>
       )}
-
     </div>
   );
 }
@@ -117,7 +118,9 @@ function ContactLink({
         <div className="text-[14px] md:text-[16px] font-bold group-hover:text-accent transition-colors">
           {label}
         </div>
-        <div className="text-secondary/50 text-[12px] md:text-[14px]">{sub}</div>
+        <div className="text-secondary/50 text-[12px] md:text-[14px]">
+          {sub}
+        </div>
       </div>
     </a>
   );
