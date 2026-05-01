@@ -145,7 +145,7 @@ export function TourDetail({ tour }: Props) {
                   />
                 </div>
 
-                <div className="w-full max-w-2xl mt-6">
+                <div className="w-full mt-6">
                   <ImageExpander
                     images={allGalleryImages?.map((img, idx) => ({
                       src: getImageUrl(img.url) || "",
