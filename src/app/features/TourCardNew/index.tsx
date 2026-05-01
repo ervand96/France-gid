@@ -35,7 +35,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
         <div className="relative h-72 overflow-hidden shrink-0">
           <ImageWithFallback
             src={imageUrl}
-            alt={tour.primaryText}
+            alt={tour?.primaryText}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             width={600}
             height={400}
@@ -46,22 +46,20 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
           <div className="absolute top-4 left-4 flex flex-col items-start flex-wrap gap-2">
             {tour?.category && (
               <span className="px-[12px] py-[4px] bg-gray-transparent backdrop-blur-sm text-secondary text-[12px] font-[600] leading-[133%] rounded-full uppercase tracking-wider">
-                {tour.category}
+                {tour?.category}
               </span>
             )}
           </div>
 
           <div className="absolute top-4 right-4 flex items-center gap-1 bg-gray-transparent backdrop-blur-sm px-2.5 py-1 rounded-full">
             <Star className="w-3.5 h-3.5 fill-accent text-accent" />
-            <span className="text-[12px] text-accent font-[600] leading-[143%]">
+            <span className="text-[12px] text-secondary font-[600] leading-[143%]">
               {tour?.rating || "5.0"}
             </span>
           </div>
 
-
-
           <h3 className="absolute bottom-4 left-4 right-4 text-secondary text-[20px] font-[600] leading-[140%] line-clamp-2">
-            {tour.primaryText}
+            {tour?.primaryText}
           </h3>
         </div>
 

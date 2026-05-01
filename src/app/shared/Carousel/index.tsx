@@ -1,35 +1,8 @@
 "use client";
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-const slides = [
-  {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80",
-    label: "Mountains",
-    sub: "Explore the peaks",
-  },
-  {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80",
-    label: "Ocean",
-    sub: "Dive into the blue",
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1400&q=80",
-    label: "Forest",
-    sub: "Walk through the wild",
-  },
-  {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80",
-    label: "Valley",
-    sub: "Breathe the silence",
-  },
-];
+import { CarouselItemProps } from "./type";
+import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
 
 function PrevArrow({ onClick }: { onClick?: () => void }) {
   return (
@@ -57,7 +30,7 @@ function NextArrow({ onClick }: { onClick?: () => void }) {
   );
 }
 
-export default function Carousel() {
+export default function Carousel({ data }: { data: CarouselItemProps }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -103,34 +76,77 @@ export default function Carousel() {
         className="carousel-wrap relative w-full overflow-hidden rounded-2xl shadow-2xl bg-black aspect-[1/1] md:aspect-[16/7] max-h-[520px]"
       >
         <Slider {...settings}>
-          {slides.map((slide) => (
-            <div key={slide.id} className="relative h-full">
-              <div className="relative h-full w-full">
-                <div
-                  className="w-full h-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${slide.image})` }}
-                />
+          {data?.image.map((slide, index: number) => {
+            const imgUrl = slide.formats?.large?.url || slide.url;
+            const imageUrl = imgUrl
+              ? imgUrl.startsWith("http")
+                ? imgUrl
+                : `${process.env.NEXT_PUBLIC_STRAPI_URL}${imgUrl}`
+              : "";
 
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%)",
-                  }}
-                />
+            return (
+              <div key={index}>
+                <div className="relative" style={{ height: "90vh" }}>
+                  <ImageWithFallback
+                    src={imageUrl}
+                    alt={slide.name || "Paris Moment"}
+                    priority={index === 0}
+                    fill
+                    className="object-cover transition-transform duration-[10s] hover:scale-110 ease-out"
+                    unoptimized={imageUrl.includes("localhost")}
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%, transparent 100%)",
+                    }}
+                  />
 
-                <div className="absolute top-4 left-4 md:top-12 md:left-12 text-white">
-                  <p className="text-[10px] md:text-[12px] tracking-[0.3em] uppercase opacity-60 mb-2 font-light">
-                    {slide.sub}
-                  </p>
-                  <h2 className="text-xl md:text-5xl md:text-7xl font-bold leading-none tracking-tighter italic font-serif">
-                    {slide.label}
-                  </h2>
+                  <div className="absolute bottom-20 left-12 text-white">
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        letterSpacing: "0.3em",
+                        textTransform: "uppercase",
+                        color: "rgba(255,255,255,0.6)",
+                        marginBottom: "8px",
+                        fontWeight: 300,
+                      }}
+                    >
+                      Paris Moments
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Slider>
       </div>
     </div>
   );
 }
+
+
+//  {slides.map((slide) => (
+//             <div key={slide.id} className="relative h-full">
+//               <div className="relative h-full w-full">
+//                 <div
+//                   className="w-full h-full bg-cover bg-center"
+//                   style={{ backgroundImage: `url(${slide.image})` }}
+//                 />
+
+//                 <div
+//                   className="absolute inset-0"
+//                   style={{
+//                     background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%)",
+//                   }}
+//                 />
+
+//                 <div className="absolute top-4 left-4 md:top-12 md:left-12 text-white">
+//                   <p className="text-[10px] md:text-[12px] tracking-[0.3em] uppercase opacity-60 mb-2 font-light">
+//                     {slide.sub}
+//                   </p>
+//                   <h2 className="text-xl md:text-5xl md:text-7xl font-bold leading-none tracking-tighter italic font-serif">
+//                     {slide.label}
+//                   </h2>

@@ -4,9 +4,6 @@ import HeroSectionHome from "@/app/features/HeroSectionHome";
 import AboutSectionWrapper from "@/app/shared/AboutSectionWrapper";
 import TransferPromo from "@/app/features/TransferPromo";
 
-
-
-
 export default async function Home({
   params,
 }: {
