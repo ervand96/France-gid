@@ -59,23 +59,24 @@ export default function Navbar() {
 
                       <span
                         className={`absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-500 ease-out
-                  ${isActive
-                            ? "w-full opacity-100 shadow-[0_0_8px_rgba(202,138,4,0.4)]"
-                            : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-50"
-                          }
+                  ${
+                    isActive
+                      ? "w-full opacity-100 shadow-[0_0_8px_rgba(202,138,4,0.4)]"
+                      : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-50"
+                  }
                 `}
                       />
                     </Link>
                   );
                 })}
-              <Button
-                onClick={handleContactClick}
-                text={t("BookATour")}
-                styles="text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600]"
-                designType="gold"
-              />
-              <LanguageSwitcher />
             </ul>
+            <Button
+              onClick={handleContactClick}
+              text={t("BookATour")}
+              styles="text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600]"
+              designType="gold"
+            />
+            <LanguageSwitcher />
 
             <Button text={"s"} styles="xl:hidden" onClick={toggleMenu}>
               <Image
