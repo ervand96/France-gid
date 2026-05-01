@@ -13,41 +13,38 @@ import AboutHero from "@/app/shared/AboutHero";
 import { AboutPageData } from "lib/utils/aboutPageType";
 
 export default function AboutMe({ aboutData }: { aboutData: AboutPageData }) {
-  const t = useTranslations("About");
   const locale = useLocale();
   const router = useRouter();
   return (
     <main className="bg-secondary py-[50px] md:py-[100px]">
       <Container>
-        <BackButton
-          text={t("BackToHome")}
-          styles="flex items-center gap-2 mb-6 cursor-pointer hover:bg-transparent group px-[20px]"
-          arrowStyles="w-4 h-4 text-primary group-hover:text-primary/10 transition-colors duration-300"
-          textStyles="text-primary group-hover:text-primary/10 transition-colors duration-300"
-          onClick={() => router.push(`/${locale}`)}
-        />
-        <AboutHero />
-        <AboutHimself
-          data={aboutData?.myself}
-          myselfTitle={aboutData?.myselfTitle}
-        />
-        <Carousel />
-        <Education
-          title={aboutData?.educationTitle}
-          subTitle={aboutData?.educationSubTitle}
-          items={aboutData?.educationItems || []}
-        />
-        <Principles
-          title={aboutData?.principleTitle}
-          subTitle={aboutData?.principleSubTitle}
-          items={aboutData?.principles || []}
-        />
-        <MyStory
-          title={aboutData.timelineEventTitle}
-          subTitle={aboutData.timelineEventSubTitle}
-          events={aboutData.timelineEventItem || []}
-        />
-        {/* <section>
+        <div className="py-[50px]">
+          <BackButton
+            styles="px-[20px] text-primary hover:text-primary/10"
+            onClick={() => router.push(`/${locale}`)}
+          />
+          <AboutHero />
+          <AboutHimself
+            data={aboutData?.myself}
+            myselfTitle={aboutData?.myselfTitle}
+          />
+          <Carousel />
+          <Education
+            title={aboutData?.educationTitle}
+            subTitle={aboutData?.educationSubTitle}
+            items={aboutData?.educationItems || []}
+          />
+          <Principles
+            title={aboutData?.principleTitle}
+            subTitle={aboutData?.principleSubTitle}
+            items={aboutData?.principles || []}
+          />
+          <MyStory
+            title={aboutData.timelineEventTitle}
+            subTitle={aboutData.timelineEventSubTitle}
+            events={aboutData.timelineEventItem || []}
+          />
+          {/* <section>
           <div className="mx-auto px-4 sm:px-6 lg:px-8">
             <Header
               heading={t("GuestReviews")}
@@ -136,6 +133,7 @@ export default function AboutMe({ aboutData }: { aboutData: AboutPageData }) {
             </div>
           </div>
         </section> */}
+        </div>
       </Container>
     </main>
   );

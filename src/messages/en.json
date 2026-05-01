@@ -6,6 +6,9 @@
     "ToursOfFrance": "Excursions to the regions of France",
     "BookATour": "Book a tour"
   },
+  "BackButton": {
+    "Back": "Back"
+  },
   "HeroSection": {
     "ExperienceParis": "Experience Paris",
     "LikeNeverBefore": "Like Never Before",

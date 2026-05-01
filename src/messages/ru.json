@@ -6,6 +6,9 @@
     "ToursOfFrance": "Экскурсии по регионам Франции",
     "BookATour": "Забронировать тур"
   },
+  "BackButton": {
+    "Back": "Назад"
+  },
   "HeroSection": {
     "ExperienceParis": "Откройте для себя Париж",
     "LikeNeverBefore": "Как никогда прежде",
@@ -196,7 +199,6 @@
     "GuestReviews": "Отзывы моих гостей",
     "WhatTouristsSay": "Что говорят туристы после экскурсий",
     "BackToHome": "Вернуться на главную"
-  
   },
   "Footer": {
     "DiscoverParis": "Откройте для себя настоящий Париж с одним из лучших гидов города",

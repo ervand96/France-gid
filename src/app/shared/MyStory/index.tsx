@@ -26,7 +26,7 @@ export default function MyStory({ title, subTitle, events }: MyStoryProps) {
                   className={`flex-1 ml-12 md:ml-0 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}
                 >
                   <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50 inline-block max-w-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 group">
-                    <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-accent to-yellow-600 mb-4 italic tracking-tighter">
+                    <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-accent to-yellow-600 mb-4 tracking-tighter">
                       {event.year}
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-tight group-hover:text-accent transition-colors">

@@ -121,7 +121,7 @@ export default function BookingModal({
               <SuccessState onClose={handleFullClose} />
             ) : (
               <>
-                <div className="mb-2 md:mb-8">
+                <div className="mb-2 md:mb-4">
                   <h2 className="text-xl md:text-3xl font-bold text-white mb-2">
                     {t("BookATour")}
                   </h2>
@@ -145,7 +145,7 @@ export default function BookingModal({
                           {item.label}
                         </span>
                         <span
-                          className={`font-bold ${item.isPrice ? "text-yellow-600" : "text-white"}`}
+                          className={`text-[14px] md:text-[20px] font-bold ${item.isPrice ? "text-yellow-600" : "text-white"}`}
                         >
                           {item.value}
                         </span>
@@ -153,7 +153,7 @@ export default function BookingModal({
                     ))}
                   </div>
 
-                  <div className="xl:space-y-4">
+                  <div className="xl:space-y-2">
                     <InputGroup
                       label={t("YourName")}
                       error={errors.name?.message}
@@ -182,22 +182,22 @@ export default function BookingModal({
                       </InputGroup>
                     </div>
 
-                   <div className="mt-2">
-                     <InputGroup label={t("CommentOnTheOrder")}>
-                      <textarea
-                        {...register("comment")}
-                        rows={3}
-                        placeholder={t("SpecialWishes")}
-                        className={inputStyles}
-                      />
-                    </InputGroup>
-                   </div>
+                    <div className="mt-2">
+                      <InputGroup label={t("CommentOnTheOrder")}>
+                        <textarea
+                          {...register("comment")}
+                          rows={3}
+                          placeholder={t("SpecialWishes")}
+                          className={inputStyles}
+                        />
+                      </InputGroup>
+                    </div>
                   </div>
 
                   <Button
                     type="submit"
                     disabled={status === "loading"}
-                    styles="w-full md:mt-6 py-2 md:py-4 disabled:bg-gray-700 font-bold rounded-xl flex items-center justify-center gap-2 group"
+                    styles="w-full md:mt-6 py-2 md:py-3 disabled:bg-gray-700 font-bold rounded-xl flex items-center justify-center gap-2 group"
                     designType="gold"
                   >
                     {status === "loading" ? (

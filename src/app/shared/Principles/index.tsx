@@ -45,7 +45,7 @@ export default function Principles({
                     <Icon className="w-7 h-7 text-yellow-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 uppercase tracking-tight">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-tight">
                       {principle.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
