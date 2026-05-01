@@ -1,9 +1,16 @@
 import TransferPage from "@/app/features/TransferComponent";
-import Container from "@/app/shared/Container";
-import React from "react";
+import { fetchTransferPageData } from "lib/api/strapi/transfer/transferPage";
+import { notFound } from "next/navigation";
 
-export default function Transfer() {
-  return (
-    <TransferPage />
-  );
+export default async function Transfer({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const data = await fetchTransferPageData(locale);
+
+  if (!data) notFound();
+
+  return <TransferPage data={data} />;
 }

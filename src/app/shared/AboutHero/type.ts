@@ -1,9 +1,10 @@
 export interface AboutHeroProps {
   description: string;
+  countExcursions: number;
   statistics: {
     id: number;
     value: string;
     label: string;
   }[];
-  gallery: Array<{ id: number; url: string }>;
+  aboutPageImage: Array<{ id: number; url: string }>;
 }

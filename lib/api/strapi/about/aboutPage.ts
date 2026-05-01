@@ -10,6 +10,7 @@ export async function fetchAboutPageData(
     "stats",
     "gallery",
     "myself",
+    "aboutPageImage",
     "carousel.image",
     "educationItems",
     "timelineEventItem",

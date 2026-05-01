@@ -13,8 +13,9 @@ export default function AboutMe({ aboutData }: { aboutData: AboutPageData }) {
   return (
     <>
       <AboutHero
-        gallery={aboutData?.gallery || []}
-        description={aboutData?.description || ""}
+        countExcursions={aboutData?.countExcursions || 500}
+        aboutPageImage={aboutData?.aboutPageImage || []}
+        description={aboutData?.aboutPageDescription || ""}
         statistics={aboutData?.stats || []}
       />
       <main className="bg-secondary py-[50px] md:py-[100px]">

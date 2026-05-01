@@ -1,38 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, MapPin, Users, Car, Check, ArrowRight } from "lucide-react";
+import {
+  ShieldCheck,
+  MapPin,
+  Users,
+  Car,
+  Star,
+  ArrowRight,
+  LucideIcon,
+} from "lucide-react";
 import Container from "@/app/shared/Container";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import mercedes from "@/assets/transfer/vClass.webp";
 import Button from "@/app/shared/Button";
 import Header from "@/app/shared/Header";
 import BackButton from "@/app/shared/BackButton";
+import { useModals } from "@/context/ModalContext";
+import { TransferPageData } from "lib/utils/transferType";
 
-export default function TransferPage() {
-  const transfers = [
-    { from: "Аэропорт ШДГ", to: "Париж", p1: "90", p2: "120", p3: "150" },
-    { from: "Аэропорт ШДГ", to: "Диснейленд", p1: "150", p2: "180", p3: "220" },
-    {
-      from: "Аэропорт ШДГ",
-      to: "Аэропорт Орли",
-      p1: "150",
-      p2: "180",
-      p3: "220",
-    },
-    { from: "Аэропорт Бовэ", to: "Париж", p1: "250", p2: "270", p3: "300" },
-    { from: "Париж", to: "Диснейленд", p1: "120", p2: "150", p3: "180" },
-    { from: "Париж", to: "Парк Астерикс", p1: "120", p2: "150", p3: "180" },
-    { from: "Ж/Д Вокзал", to: "Отель в Париже", p1: "70", p2: "80", p3: "90" },
-  ];
+const specIconMap: Record<number, LucideIcon> = {
+  0: Users,
+  1: Car,
+  2: ShieldCheck,
+};
+
+export default function TransferPage({ data }: { data: TransferPageData }) {
+  const { openContact } = useModals();
 
   return (
     <main className="bg-primary px-[20px] py-[100px] md:py-[150px] text-secondary overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full -z-10" />
       <Container>
-        <BackButton
-          styles="text-secondary/50 hover:text-secondary px-[20px]"
-        />
+        <BackButton styles="text-secondary/50 hover:text-secondary px-[20px]" />
 
         <div className="flex flex-col justify-center items-center gap-[60px] px-[20px]">
           <motion.h1
@@ -40,7 +40,11 @@ export default function TransferPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <Header heading="Первоклассные Трансферы" subHeading="Для вашего удобства" blockStyles="items-center" />
+            <Header
+              heading={data.titlePage}
+              subHeading={data.subTitlePage}
+              blockStyles="items-center"
+            />
           </motion.h1>
           <div className="flex flex-col lg:flex-row justify-center items-stretch gap-[60px]">
             <motion.div
@@ -59,18 +63,20 @@ export default function TransferPage() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/90 to-transparent">
                   <div className="flex gap-8">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-accent" />{" "}
-                      <span>7 мест</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Car className="w-5 h-5 text-accent" />{" "}
-                      <span>Classe V Luxe</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-5 h-5 text-accent" />{" "}
-                      <span>VIP Страховка</span>
-                    </div>
+                    {data &&
+                      data.carSpecs?.map((spec, index) => {
+                        const Icon = specIconMap[index] || Star;
+
+                        return (
+                          <div
+                            key={spec.id}
+                            className="flex items-center gap-2"
+                          >
+                            <Icon className="w-5 h-5 text-accent" />
+                            <span>{spec.text}</span>
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               </div>
@@ -78,30 +84,22 @@ export default function TransferPage() {
 
             <div className="flex-1 flex flex-col items-start gap-[20px]">
               <h2 className="text-3xl font-[500] underline decoration-accent decoration-2 underline-offset-8">
-                Mercedes V-Class
+                {data?.carTitle}
               </h2>
-              <p className="text-secondary/50 leading-relaxed text-lg">
-                Профессиональный сервис с лицензией. Встречаем в зоне выхода с
-                табличкой, помогаем с багажом и оформлением Tax Free.
-                Безупречность в каждой детали.
-              </p>
-              <ul className="flex flex-col gap-[5px]">
-                {[
-                  "Профессиональный водитель",
-                  "Детские кресла бесплатно",
-                  "Вода и Wi-Fi в салоне",
-                ].map((text, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-3 text-sm font-medium"
-                  >
-                    <div className="bg-accent/20 p-1 rounded-full">
-                      <Check className="w-3 h-3 text-accent" />
-                    </div>
-                    {text}
-                  </li>
-                ))}
-              </ul>
+              {data &&
+                data?.carDescription
+                  ?.split("\n")
+                  .map((paragraph: string, index: number) =>
+                    paragraph.trim() ? (
+                      <p
+                        className="text-secondary leading-relaxed text-md"
+                        key={index}
+                      >
+                        {paragraph}
+                      </p>
+                    ) : null,
+                  )}
+
               <div className="flex items-center justify-center gap-2">
                 <Button
                   styles="px-6 py-3 rounded-lg font-[600] group inline-flex items-center gap-2"
@@ -113,6 +111,7 @@ export default function TransferPage() {
                   </span>
                 </Button>
                 <Button
+                  onClick={openContact}
                   styles="group inline-flex items-center px-6 py-3 ml-[10px] font-[600] rounded-lg shadow-md hover:shadow-lg"
                   designType="white"
                 >
@@ -142,33 +141,36 @@ export default function TransferPage() {
             </div>
 
             <div className="divide-y divide-white/5">
-              {transfers.map((item, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.02)" }}
-                  className="grid grid-cols-12 p-2 md:p-4 items-center transition-all group/row"
-                >
-                  <div className="col-span-6">
-                    <div className="flex items-center gap-2 md:gap-4">
-                      <div className="w-5 h-5 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20 group-hover/row:border-accent transition-colors">
-                        <MapPin className="w-4 h-4 text-accent" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-accent font-[900] uppercase md:tracking-widest">
-                          {item.from}
+              {data &&
+                data.priceTable?.map((item) => (
+                  <motion.div
+                    key={item?.id}
+                    whileHover={{
+                      backgroundColor: "rgba(255, 255, 255, 0.02)",
+                    }}
+                    className="grid grid-cols-12 p-2 md:p-4 items-center transition-all group/row"
+                  >
+                    <div className="col-span-6">
+                      <div className="flex items-center gap-2 md:gap-4">
+                        <div className="w-5 h-5 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20 group-hover/row:border-accent transition-colors">
+                          <MapPin className="w-4 h-4 text-accent" />
                         </div>
-                        <div className="text-[14px] md:text-xl font-[500] flex items-center">
-                          {item.to}
+                        <div>
+                          <div className="text-[10px] text-accent font-[900] uppercase md:tracking-widest leading-none mb-1">
+                            {item?.title}
+                          </div>
+                          <div className="text-[14px] md:text-xl font-[500] flex items-center text-white">
+                            {item?.subTitle}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <PriceCell price={item.p1} />
-                  <PriceCell price={item.p2} />
-                  <PriceCell price={item.p3} highlight />
-                </motion.div>
-              ))}
+                    <PriceCell price={item?.priceStandard} />
+                    <PriceCell price={item?.priceBusiness} />
+                    <PriceCell price={item?.priceVip} highlight />
+                  </motion.div>
+                ))}
             </div>
           </div>
         </div>
@@ -181,7 +183,7 @@ function PriceCell({
   price,
   highlight,
 }: {
-  price: string;
+  price: number;
   highlight?: boolean;
 }) {
   return (

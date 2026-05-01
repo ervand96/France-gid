@@ -1,28 +1,44 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ShieldCheck, Compass, ArrowRight } from "lucide-react";
+import {
+  ShieldCheck,
+  Compass,
+  ArrowRight,
+  LucideIcon,
+  CheckCircle,
+} from "lucide-react";
 import Container from "@/app/shared/Container";
 import Header from "@/app/shared/Header";
 import Button from "@/app/shared/Button";
-import mercedes from "@/assets/transfer/vClass.webp";
+import { TransferSectionData } from "lib/utils/transferType";
+import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 
+const transferIconMap: Record<number, LucideIcon> = {
+  0: ShieldCheck,
+  1: Compass,
+};
 
-export default function TransferZenith() {
+export default function TransferPromo({ data }: { data: TransferSectionData }) {
   const locale = useLocale();
-  const t = useTranslations("Transfer")
+  const t = useTranslations("Transfer");
   const router = useRouter();
+
+  const carImageUrl = data?.carImage[0]?.url
+    ? data.carImage[0].url.startsWith("http")
+      ? data.carImage[0].url
+      : `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.carImage[0].url}`
+    : null;
 
   return (
     <section className="relative py-12 bg-white overflow-hidden px-[20px]">
       <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-secondary/50 blur-[150px] rounded-full pointer-events-none" />
       <Container>
         <Header
-          heading={t("LuxuryTravel")}
-          subHeading={t("PremiumPrivateService")}
+          heading={data?.sectionTitle}
+          subHeading={data?.sectionSubTitle}
           blockStyles="text-center items-center mb-[50px]"
           isDark={true}
         />
@@ -34,11 +50,14 @@ export default function TransferZenith() {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Image
-                src={mercedes}
+              <ImageWithFallback
+                src={carImageUrl || ""}
                 alt="Mercedes V-Class Luxe"
-                className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] transition-transform duration-700 hover:scale-105"
+                width={1000}
+                height={100}
+                className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)] transition-transform duration-700 hover:scale-105"
                 priority
+                unoptimized
               />
               <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[90%] h-10 bg-black/10 blur-[60px] rounded-full -z-10" />
             </motion.div>
@@ -50,44 +69,41 @@ export default function TransferZenith() {
               whileInView={{ opacity: 1, x: 0 }}
               className="space-y-8"
             >
-
               <div className="flex flex-col gap-[20px] px-[10px] text-gray-transparent text-[16px] leading-[170%]">
-                <p>
-                  {t("SafetyAndSilence")}
-                </p>
-                <p>
-                  {t("PrivateTransfers")} <b>Mercedes V-Class</b>, {t("WithPersonalDriver")}
-                </p>
+                {data &&
+                  data?.sectionDescription
+                    ?.split("\n")
+                    .map((paragraph: string, index: number) =>
+                      paragraph.trim() ? <p key={index}>{paragraph}</p> : null,
+                    )}
               </div>
 
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex gap-4">
-                  <ShieldCheck className="text-accent w-6 h-6 shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-[900] uppercase tracking-widest text-primary">
-                      {t("License")}
-                    </h4>
-                    <p className="text-xs text-gray-transparent/60 mt-1">
-                      {t("ProfessionalInsurance")}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Compass className="text-accent w-6 h-6 shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-[900] uppercase tracking-widest text-primary">
-                      {t("Service")}
-                    </h4>
-                    <p className="text-xs text-gray-transparent/60 mt-1">
-                      {t("TaxFree")}
-                    </p>
-                  </div>
-                </div>
+                {data &&
+                  data?.features?.map((feature, index) => {
+                    const Icon = transferIconMap[index] || CheckCircle;
+
+                    return (
+                      <div key={feature.id} className="flex gap-4">
+                        <div>
+                          <Icon className="text-accent w-6 h-6 shrink-0" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-[900] uppercase tracking-widest text-primary">
+                            {feature?.title}
+                          </h4>
+                          <p className="text-xs text-gray-transparent/60 mt-1">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             </motion.div>
 
             <motion.div
+              viewport={{ once: true }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="bg-slate-50 border border-slate-100 p-8 rounded-[40px] flex items-center justify-between group hover:bg-slate-900 transition-all duration-500"
@@ -97,12 +113,14 @@ export default function TransferZenith() {
                   {t("PopularRoute")}
                 </p>
                 <h3 className="text-2xl font-[900] text-primary group-hover:text-white transition-colors">
-                  CDG <span className="text-accent">→</span> PARIS
+                  {data?.sectionPopularRoute?.[0].from || "CDG"}{" "}
+                  <span className="text-accent">→</span>{" "}
+                  {data?.sectionPopularRoute?.[0].to || "Paris"}
                 </h3>
               </div>
               <div className="text-right">
                 <p className="text-3xl font-[900] text-primary group-hover:text-accent transition-colors tracking-tighter">
-                  €90
+                  € {data?.sectionPopularRoute?.[0].price || 90}
                 </p>
                 <p className="text-[9px] uppercase font-bold text-gray-transparent/60 group-hover:text-accent">
                   {t("FixedRate")}
@@ -122,7 +140,6 @@ export default function TransferZenith() {
                 </span>
               </Button>
             </div>
-
           </div>
         </div>
       </Container>
