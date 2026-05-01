@@ -3,6 +3,7 @@ import CategoryCards from "@/app/shared/category";
 import HeroSectionHome from "@/app/features/HeroSectionHome";
 import AboutSectionWrapper from "@/app/shared/AboutSectionWrapper";
 import TransferPromo from "@/app/features/TransferPromo";
+import TransferSectionWrapper from "@/app/shared/TransferSectionWrapper";
 
 export default async function Home({
   params,
@@ -21,7 +22,7 @@ export default async function Home({
             <AboutSectionWrapper locale={locale} />
           </div>
         </Container>
-        <TransferPromo />
+        <TransferSectionWrapper locale={locale} />
       </section>
     </div>
   );

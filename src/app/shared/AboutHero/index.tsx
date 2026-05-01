@@ -1,4 +1,5 @@
 "use client";
+
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import paris from "@/assets/about/paris.jpeg";
@@ -11,14 +12,15 @@ import { useModals } from "@/context/ModalContext";
 export default function AboutHero({
   description,
   statistics,
-  gallery,
+  aboutPageImage,
+  countExcursions,
 }: AboutHeroProps) {
   const t = useTranslations("About");
   const { openContact } = useModals();
 
   const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-  const imageURL = gallery?.[0]?.url
-    ? `${STRAPI_URL}${gallery[0].url}`
+  const imageURL = aboutPageImage?.[0]?.url
+    ? `${STRAPI_URL}${aboutPageImage[0].url}`
     : cuteSmile;
 
   const handleContactClick = () => {
@@ -135,7 +137,7 @@ export default function AboutHero({
                   </div>
 
                   <div className="absolute -top-4 -right-4 bg-accent from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-2xl">
-                    <div className="text-3xl font-bold">500+</div>
+                    <div className="text-3xl font-bold">{countExcursions} +</div>
                     <div className="text-sm">экскурсий</div>
                   </div>
                 </div>

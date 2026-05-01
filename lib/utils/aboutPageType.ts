@@ -53,7 +53,7 @@ interface Large {
   url: string;
 }
 
-interface StrapiImage {
+export interface StrapiImage {
   id: number;
   documentId: string;
   url: string;
@@ -99,7 +99,10 @@ export interface AboutPageData {
   title: string;
   subTitle: string;
   description: string;
+  aboutPageDescription: string;
+  countExcursions: number;
   stats: StatisticItem[];
+  aboutPageImage: StrapiImage[];
   gallery: StrapiImage[];
   myself: AboutMyself[];
   myselfTitle: string;
