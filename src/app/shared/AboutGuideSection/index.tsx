@@ -1,31 +1,43 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { ArrowRight, LucideIcon, Clock, Users, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
-import { ArrowRight, LucideIcon } from "lucide-react";
+import { useModals } from "@/context/ModalContext";
 import Container from "../Container";
 import Header from "../Header";
 import Button from "../Button";
-import { AboutData } from "@/constants/aboutData";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import smile from "@/assets/about/smile.jpg";
-import restaurantImg from "@/assets/about/restaurantImg.jpg";
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+
+const icons = [Clock, Users, Star];
 
 type Props = {
   value: number | string;
   label: string;
   icon: LucideIcon;
 };
-
-type ModalProp = {
-  onContactClick: () => void;
-};
-
-export default function AboutGuideSection({ onContactClick }: ModalProp) {
+export default function AboutGuideSection({ aboutData }: AboutDataProps) {
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("About");
+  const { openContact } = useModals();
+
+  if (!aboutData)
+    return (
+      <div className="text-center py-10 text-gray-400 italic">
+        Настройте контент в Strapi...
+      </div>
+    );
+
+  const getImageUrl = (index: number) => {
+    const url = aboutData?.gallery?.[index]?.url;
+    if (!url) return null;
+    return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
+  };
 
   const AboutCard = ({ value, label, icon: Icon }: Props) => {
     return (
@@ -44,55 +56,36 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
       <section className="w-full py-[100px] grid md:grid-cols-7 gap-12 items-start">
         <div className="flex flex-col gap-[30px] items-start md:col-span-4">
           <Header
-            heading={t("AboutGuide")}
-            subHeading={t("YourGuide")}
+            heading={aboutData?.title}
+            subHeading={aboutData?.subTitle}
             isDark={true}
           />
-
-          <div className="md:hidden relative rounded-2xl overflow-hidden border-4 border-secondary shadow-xl">
-            <ImageWithFallback
-              src={cuteSmile}
-              alt="guide"
-              width={10000}
-              height={100}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            />
-
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-
-            <div className="absolute bottom-4 left-4 text-secondary text-xl font-semibold">
-              {t("Name")}
-            </div>
-          </div>
-
           <div className="flex flex-col gap-[20px] px-[10px] text-gray-transparent text-[16px] leading-[170%]">
-            <p>
-              {t("Greeting")} <b>{t("Name")}</b>, {t("Over12Years")}
-            </p>
-            <p>
-              {t("OverTheYears")} <b>{t("Atmoshpere")}</b>, {t("ItsHistory")}
-            </p>
-            <p>{t("InLoveWithParis")}</p>
+            {aboutData &&
+              aboutData?.description
+                ?.split("\n")
+                .map((paragraph: string, index: number) =>
+                  paragraph.trim() ? <p key={index}>{paragraph}</p> : null,
+                )}
           </div>
 
           <div className="w-full flex flex-row justify-between gap-2 md:gap-6 px-[10px]">
-            {AboutData &&
-              AboutData.map((item, index) => {
+            {aboutData &&
+              aboutData?.stats?.map((item, index) => {
                 return (
                   <AboutCard
                     key={index}
-                    value={item.title}
-                    label={t(item.subTitle)}
-                    icon={item.icon}
+                    value={item.value}
+                    label={item.label}
+                    icon={icons[index] || Star}
                   />
                 );
               })}
           </div>
-
           <div className="flex items-center justify-center gap-2 px-[10px]">
             <Button
               styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
-              onClick={() => router.push(`/${locale}/about-us`)}
+              onClick={() => router.push(`/${locale}/about`)}
               designType="gold"
             >
               <span className="group inline-flex items-center gap-2">
@@ -101,7 +94,7 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
               </span>
             </Button>
             <Button
-              onClick={onContactClick}
+              onClick={openContact}
               styles="group inline-flex items-center px-6 py-3 ml-[10px] font-semibold rounded-lg shadow-md hover:shadow-lg"
               designType="white"
             >
@@ -113,11 +106,12 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
         <div className="hidden md:block space-y-8 pr-[10px] md:col-span-3">
           <div className="relative rounded-2xl overflow-hidden border-4 border-secondary shadow-xl">
             <ImageWithFallback
-              src={cuteSmile}
+              src={getImageUrl(0) || cuteSmile}
               alt="guide"
               width={10000}
               height={100}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              unoptimized
             />
 
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
@@ -128,27 +122,20 @@ export default function AboutGuideSection({ onContactClick }: ModalProp) {
           </div>
 
           <div className="grid grid-cols-2 gap-6">
-            <div className="relative rounded-2xl overflow-hidden border-4 border-secondary shadow-lg">
-              <ImageWithFallback
-                src={smile}
-                alt="paris"
-                width={10000}
-                height={100}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 to-transparent" />
-            </div>
-
-            <div className="relative rounded-2xl overflow-hidden border-4 border-secondary shadow-lg">
-              <ImageWithFallback
-                src={restaurantImg}
-                alt="paris"
-                width={10000}
-                height={100}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 to-transparent" />
-            </div>
+            {[1, 2].map((idx) => (
+              <div
+                key={idx}
+                className="relative h-[150px] rounded-2xl overflow-hidden border-4 border-secondary shadow-lg"
+              >
+                <ImageWithFallback
+                  src={getImageUrl(idx) || smile}
+                  alt="paris life"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  unoptimized
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>

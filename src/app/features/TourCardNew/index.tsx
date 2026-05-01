@@ -31,7 +31,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
 
   return (
     <Link href={tourHref} className="group block h-full w-full">
-      <div className="relative bg-gray-transparent rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 h-full w-full flex flex-col">
+      <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 h-full w-full flex flex-col">
         <div className="relative h-72 overflow-hidden shrink-0">
           <ImageWithFallback
             src={imageUrl}
@@ -53,7 +53,7 @@ export function TourCardNew({ tour, locale }: TourCardProps) {
 
           <div className="absolute top-4 right-4 flex items-center gap-1 bg-gray-transparent backdrop-blur-sm px-2.5 py-1 rounded-full">
             <Star className="w-3.5 h-3.5 fill-accent text-accent" />
-            <span className="text-[12px] font-[600] leading-[143%]">
+            <span className="text-[12px] text-accent font-[600] leading-[143%]">
               {tour?.rating || "5.0"}
             </span>
           </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, MapPin, Users, Car, Check, ArrowLeft, ArrowRight } from "lucide-react";
+import { ShieldCheck, MapPin, Users, Car, Check, ArrowRight } from "lucide-react";
 import Container from "@/app/shared/Container";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import mercedes from "@/assets/transfer/vClass.webp";
 import Button from "@/app/shared/Button";
 import Header from "@/app/shared/Header";
+import BackButton from "@/app/shared/BackButton";
 
 export default function TransferPage() {
   const transfers = [
@@ -26,23 +27,14 @@ export default function TransferPage() {
   ];
 
   return (
-    <main className="bg-primary pt-[50px] xl:pt-[100px] px-[10px] text-secondary overflow-hidden">
+    <main className="bg-primary px-[20px] py-[100px] md:py-[150px] text-secondary overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full -z-10" />
-
       <Container>
-        <div className="mt-[50px]">
-          <Button
-            styles="flex items-center gap-2 text-secondary/50 hover:text-secondary mb-6 transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home page</span>
-          </Button>
+        <BackButton
+          styles="text-secondary/50 hover:text-secondary px-[20px]"
+        />
 
-        </div>
-
-
-
-        <div className="flex flex-col justify-center items-center gap-[60px]">
+        <div className="flex flex-col justify-center items-center gap-[60px] px-[20px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +123,7 @@ export default function TransferPage() {
           </div>
         </div>
 
-        <div className="relative group mt-[100px]">
+        <div className="relative group mt-[100px] px-[20px]">
           <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/30 to-transparent rounded-[10px] blur opacity-20" />
           <div className="relative bg-dark-gray/10 backdrop-blur-2xl rounded-[10px] border border-secondary/5 overflow-hidden">
             <div className="grid grid-cols-12 p-2 md:p-8 border-b border-secondary/5 bg-secondary/5 items-center gap-[10px]">

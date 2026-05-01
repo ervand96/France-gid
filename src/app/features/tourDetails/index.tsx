@@ -10,7 +10,7 @@ import {
   MapPin,
   Check,
   Calendar,
-  ArrowLeft,
+  ChevronDown,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import { TourCard } from "lib/utils/tourCardType";
@@ -18,6 +18,9 @@ import Button from "@/app/shared/Button";
 import Container from "@/app/shared/Container";
 import BookingModal from "@/app/shared/BookingModal";
 import { AnimatePresence, motion } from "framer-motion";
+import BackButton from "@/app/shared/BackButton";
+import ImageExpander from "@/app/shared/ImageExpander";
+
 
 type Props = {
   tour: TourCard;
@@ -121,214 +124,216 @@ export function TourDetail({ tour }: Props) {
   };
 
   return (
-    <>
-      <div className="bg-primary mt-20">
-        <Container>
-          <main className="mx-auto px-[20px] py-[32px]">
-            <Button
-              onClick={handleBack}
-              styles="flex items-center gap-2 text-secondary/50 hover:text-secondary mb-6 transition-colors cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>{t("BackToExcursions")}</span>
-            </Button>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-8">
-                <div className="space-y-4">
-                  <div className="relative h-96 rounded-2xl overflow-hidden">
-                    <ImageWithFallback
-                      width={100}
-                      height={100}
-                      src={getImageUrl(tour?.bgImg?.formats?.large?.url) || ""}
-                      alt="Лувр"
-                      className="w-full h-full object-cover"
-                      unoptimized
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-4">
-                    {allGalleryImages?.map((img, idx: number) => (
-                      <div
-                        key={img.id || idx}
-                        className="relative h-32 rounded-[16px] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
-                      >
-                        <ImageWithFallback
-                          src={getImageUrl(img.url) || ""}
-                          alt={img.alternativeText || `Gallery ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                          unoptimized
-                          fill
-                        />
-                      </div>
-                    ))}
-                  </div>
+    <div className="bg-primary">
+      <Container>
+        <main className="px-[20px] py-[100px] md:py-[150px]">
+          <BackButton
+            styles="text-secondary/50 hover:text-secondary"
+            onClick={handleBack}
+          />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+              <div className="space-y-4">
+                <div className="relative h-96 rounded-2xl overflow-hidden">
+                  <ImageWithFallback
+                    width={100}
+                    height={100}
+                    src={getImageUrl(tour?.bgImg?.formats?.large?.url) || ""}
+                    alt="Лувр"
+                    className="w-full h-full object-cover"
+                    unoptimized
+                  />
                 </div>
 
-                <div>
-                  <h1 className="text-[24px] md:text-[36px] font-[700] leading-[111%] text-secondary mb-4">
-                    {tour?.primaryText}
-                  </h1>
-                  <div className="flex flex-col md:flex-row items-center gap-6 text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      <span>{tour?.category}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="md:grid grid-cols-3 gap-4 flex flex-wrap">
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
-                    <Clock className="w-8 h-8 text-accent mb-3" />
-                    <div>
-                      <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                        {t("Duration")}
-                      </div>
-                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                        {tour?.duration}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
-                    <Users className="w-8 h-8 text-accent mb-3" />
-                    <div>
-                      <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                        {t("GroupSize")}
-                      </div>
-                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                        {t("UpTo") + " " + "7" + " " + t("People")}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex md:block items-center gap-4 bg-secondary/2 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-secondary/20">
-                    <Calendar className="w-8 h-8 text-accent mb-3" />
-                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
-                      {t("Available")}
-                      <div></div>
-                      <div className="text-[20px] font-[600] leading-[140%] text-secondary">
-                        {t("Daily")}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {tour?.included?.length > 0 && (
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
-                    <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
-                      {t("WhatsIncluded")}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {tour?.included?.map((item, idx: number) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div className="p-1 bg-green-600/20 rounded-full">
-                            <Check className="w-5 h-5 text-green-500" />
-                          </div>
-                          <span className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
-                            {item?.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {tour?.contentSections?.length > 0 && (
-                  <div className="space-y-6">
-                    {tour?.contentSections?.map((section, idx: number) => (
-                      <div
-                        key={idx}
-                        className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-gray-700"
-                      >
-                        {section?.title && (
-                          <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6 flex items-center gap-3">
-                            <div className="w-1 h-6 bg-accent rounded-full" />{" "}
-                            {section?.title}
-                          </h2>
-                        )}
-
-                        <div className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
-                          {section?.description}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="bg-secondary/2 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-gray-700">
-                  <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
-                    {t("Reviews")}
-                  </h2>
-                  <div className="space-y-6">
-                    {reviews.map((review, idx) => (
-                      <div
-                        key={idx}
-                        className="border-b border-dark-gray pb-6 last:border-0 last:pb-0"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className="text-4xl">{review?.avatar}</div>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between mb-2">
-                              <div>
-                                <div className="text-secondary font-semibold">
-                                  {review.name}
-                                </div>
-                                <div className="text-sm text-gray-400">
-                                  {review.date}
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                {[...Array(review.rating)].map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className="w-4 h-4 fill-accent text-accent"
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                            <p className="text-gray-300">{review.text}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <Button styles="mt-6 w-full py-3 border border-gray-700 rounded-lg text-gray-300 hover:bg-dark-gray transition-colors">
-                    {t("ShowReviews")}
-                  </Button>
+                <div className="w-full max-w-2xl mt-6">
+                  <ImageExpander
+                    images={allGalleryImages?.map((img, idx) => ({
+                      src: getImageUrl(img.url) || "",
+                      alt: img.alternativeText || `Gallery ${idx + 1}`,
+                    })) || []}
+                  />
                 </div>
               </div>
 
-              <div className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <div className="bg-secondary/2 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-dark-gray">
-                    <div className="mb-6">
-                      <div className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
-                        {t("Pricing")}
+              <div>
+                <h1 className="text-[24px] md:text-[36px] font-[700] leading-[111%] text-secondary mb-4">
+                  {tour?.primaryText}
+                </h1>
+                <div className="flex flex-col md:flex-row items-center gap-6 text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-accent text-accent"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-secondary font-[600]">
+                      {tour?.rating}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{tour?.category}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:grid grid-cols-3 gap-4 flex flex-wrap">
+                <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
+                  <Clock className="w-8 h-8 text-accent mb-3" />
+                  <div>
+                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                      {t("Duration")}
+                    </div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                      {tour?.duration}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
+                  <Users className="w-8 h-8 text-accent mb-3" />
+                  <div>
+                    <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                      {t("GroupSize")}
+                    </div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                      {t("UpTo") + " " + "7" + " " + t("People")}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 flex md:block items-center gap-4 bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/10 rounded-[14px] p-8 transition-all hover:border-accent/50">
+                  <Calendar className="w-8 h-8 text-accent mb-3" />
+                  <div className="text-[14px] font-[400] leading-[143%] text-secondary/50 mb-1">
+                    {t("Available")}
+                    <div></div>
+                    <div className="text-[20px] font-[600] leading-[140%] text-secondary">
+                      {t("Daily")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {tour?.included?.length > 0 && (
+                <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-accent/50">
+                  <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
+                    {t("WhatsIncluded")}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {tour?.included?.map((item, idx: number) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <div className="p-1 bg-green-600/20 rounded-full">
+                          <Check className="w-5 h-5 text-green-500" />
+                        </div>
+                        <span className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
+                          {item?.text}
+                        </span>
                       </div>
-                      <div className="space-y-3 mb-6">
-                        {tour &&
-                          tour?.pricing.map((item, idx: number) => (
-                            <div
-                              key={idx}
-                              className="flex items-center justify-between p-4 bg-dark-gray/50 border border-gray-700 rounded-[10px] hover:border-accent/50 transition-colors cursor-pointer"
-                            >
-                              <div>
-                                <div className="text-[14px] font-[400] leading-[143%] text-secondary/50">
-                                  {t("FromGroup") +
-                                    " " +
-                                    item?.range +
-                                    " " +
-                                    t("People")}
-                                </div>
-                                <div className="text-[24px] font-[700] leading-[133%] text-accent">
-                                  {item?.price ? `€ ${item?.price}` : "—"}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {tour?.contentSections?.length > 0 && (
+                <div className="space-y-6">
+                  {tour?.contentSections?.map((section, idx: number) => (
+                    <div
+                      key={idx}
+                      className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-accent/50"
+                    >
+                      {section?.title && (
+                        <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6 flex items-center gap-3">
+                          <div className="w-1 h-6 bg-accent rounded-full" />{" "}
+                          {section?.title}
+                        </h2>
+                      )}
+
+                      <div className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
+                        {section?.description}
                       </div>
                     </div>
+                  ))}
+                </div>
+              )}
 
-                    <div className="space-y-4 mb-6">
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-2xl p-8 transition-all hover:border-accent/50">
+                <h2 className="text-[24px] font-[700] leading-[133%] text-secondary mb-6">
+                  {t("Reviews")}
+                </h2>
+                <div className="space-y-6">
+                  {reviews.map((review, idx) => (
+                    <div
+                      key={idx}
+                      className="border-b border-dark-gray pb-6 last:border-0 last:pb-0"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="text-4xl">{review?.avatar}</div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <div className="text-secondary font-semibold">
+                                {review.name}
+                              </div>
+                              <div className="text-sm text-gray-400">
+                                {review.date}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              {[...Array(review.rating)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className="w-4 h-4 fill-accent text-accent"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-300">{review.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <Button styles="mt-6 w-full py-3 border rounded-lg"
+                  designType="transparent">
+                  {t("ShowReviews")}
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <div className="sticky top-24">
+                <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-dark-gray/50 rounded-[16px] p-8 transition-all hover:border-dark-gray">
+                  <div className="mb-6">
+                    <div className="text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
+                      {t("Pricing")}
+                    </div>
+                    <div className="space-y-3 mb-6">
+                      {tour &&
+                        tour?.pricing.map((item, idx: number) => (
+                          <div
+                            key={idx}
+                            className="flex items-center justify-between p-4 bg-dark-gray/50 border border-gray-700 rounded-[10px] hover:border-accent/50 transition-colors cursor-pointer"
+                          >
+                            <div>
+                              <div className="text-[14px] font-[400] leading-[143%] text-secondary/50">
+                                {t("FromGroup") +
+                                  " " +
+                                  item?.range +
+                                  " " +
+                                  t("People")}
+                              </div>
+                              <div className="text-[24px] font-[700] leading-[133%] text-accent">
+                                {item?.price ? `€ ${item?.price}` : "—"}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div className="relative">
                       <div className="relative">
                         <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
                           {t("Date")}
@@ -342,104 +347,85 @@ export function TourDetail({ tour }: Props) {
                             handleChange(e);
                             if (dateError) setDateError(false);
                           }}
-                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent
-                          ${dateError
-                              ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
-                              : "border-gray-700 focus:border-accent"
+                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none ${dateError
+                            ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
+                            : "border-gray-700 focus:border-accent"
                             }`}
                         />
-                        <AnimatePresence>
-                          {dateError && (
-                            <motion.span
-                              initial={{ opacity: 0, y: -10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0 }}
-                              className="absolute -bottom-6 left-0 text-[12px] text-red-500 font-medium"
-                            >
-                              {t("PleaseSelectDate")}
-                            </motion.span>
-                          )}
-                        </AnimatePresence>
+                        <Calendar className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
                       </div>
-
-                      <div className="relative">
-                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
-                          {t("Time")}
-                        </label>
-                        <select
-                          name="time"
-                          value={bookingData.time}
-                          onChange={handleChange}
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
-                        >
-                          {[
-                            "09:00",
-                            "10:00",
-                            "11:00",
-                            "12:00",
-                            "13:00",
-                            "14:00",
-                            "15:00",
-                            "16:00",
-                            "17:00",
-                            "18:00",
-                            "19:00",
-                            "20:00",
-                            "21:00",
-                            "22:00",
-                            "23:00",
-                          ].map((time) => (
-                            <option key={time} value={time}>
-                              {time}
-                            </option>
-                          ))}
-                        </select>
-                        <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
-                          ▼
-                        </div>
-                      </div>
-
-                      <div className="relative">
-                        <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
-                          {t("NumberOfPeople")}
-                        </label>
-                        <select
-                          name="guests"
-                          value={bookingData.guests}
-                          onChange={handleChange}
-                          className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent"
-                        >
-                          {tour?.pricing?.map((p) => (
-                            <option key={p.id} value={p.range}>
-                              {p.range} {t("People")}
-                            </option>
-                          )) || (
-                              <>
-                                <option value="1-3">1-3</option>
-                                <option value="4-5">4-5</option>
-                                <option value="6-7">6-7</option>
-                              </>
-                            )}
-                        </select>
-                        <div className="pointer-events-none absolute w-[10px] h-[10px] right-4 top-[60%] -translate-y-1/2 text-accent">
-                          ▼
-                        </div>
-                      </div>
+                      <AnimatePresence>
+                        {dateError && (
+                          <motion.span
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute -bottom-6 left-0 text-[12px] text-red-500 font-medium"
+                          >
+                            {t("PleaseSelectDate")}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
                     </div>
 
-                    <Button
-                      onClick={handleBookClick}
-                      styles="w-full py-4 bg-accent hover:bg-accent/50 text-secondary font-bold rounded-[10px] transition-colors mb-4 cursor-pointer"
-                    >
-                      {t("BookNow")}
-                    </Button>
+                    <div className="relative">
+                      <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
+                        {t("Time")}
+                      </label>
+                      <select
+                        name="time"
+                        value={bookingData.time}
+                        onChange={handleChange}
+                        className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
+                      >
+                        {["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
+                          "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
+                        ].map((time) => (
+                          <option key={time} value={time}>{time}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
+                    </div>
+
+                    <div className="relative">
+                      <label className="block text-secondary/50 text-[14px] font-[400] leading-[143%] mb-2">
+                        {t("NumberOfPeople")}
+                      </label>
+                      <select
+                        name="guests"
+                        value={bookingData.guests}
+                        onChange={handleChange}
+                        className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
+                      >
+                        {tour?.pricing?.map((p) => (
+                          <option key={p.id} value={p.range}>
+                            {p.range} {t("People")}
+                          </option>
+                        )) || (
+                            <>
+                              <option value="1-3">1-3</option>
+                              <option value="4-5">4-5</option>
+                              <option value="6-7">6-7</option>
+                            </>
+                          )}
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
+                    </div>
                   </div>
+
+                  <Button
+                    onClick={handleBookClick}
+                    styles="w-full py-4 rounded-[10px]"
+                    designType="gold"
+                  >
+                    {t("BookNow")}
+                  </Button>
                 </div>
               </div>
             </div>
-          </main>
-        </Container>
-      </div>
+          </div>
+        </main>
+      </Container>
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -452,6 +438,6 @@ export function TourDetail({ tour }: Props) {
           price: `€ ${currentPrice}`,
         }}
       />
-    </>
+    </div>
   );
 }

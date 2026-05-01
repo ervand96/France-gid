@@ -7,6 +7,9 @@
     "BookATour": "Book a tour",
     "Transfer": "Transfer"
   },
+  "BackButton": {
+    "Back": "Back"
+  },
   "HeroSection": {
     "ExperienceParis": "Experience Paris",
     "LikeNeverBefore": "Like Never Before",
@@ -54,11 +57,6 @@
     "Hours": "Hours",
     "People": "person",
     "Details": "Read more"
-  },
-  "CallToAction": {
-    "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
-    "ContactUs": "Contact us and get a quick offer in minutes",
-    "PlanYourTour": "Plan your tour in few clicks."
   },
   "GetInTouch": {
     "GetInTouch": "Get In Touch",
@@ -148,8 +146,7 @@
     "ContactUs": "Contact us"
   },
   "About": {
-    "AboutGuide": "About the guide",
-    "YourGuide": "Your personal guide to Paris",
+    "GuideAboutHimself": "Guide about himself",
     "Greeting": "Hello! My name is ",
     "Name": "Garik Sahakyan",
     "Over12Years": "and I am a professional Russian-speaking guide in Paris and the regions of France with over 12 years of experience.",
@@ -161,7 +158,43 @@
     "Tourists": "tourists",
     "Rating": "rating",
     "FindOutMore": "Find out more",
-    "ContactMe": "Contact me"
+    "ContactMe": "Contact me",
+    "CertifiedGuide": "Certified guide with over than 12 years of experience",
+    "Conducted": "conducted",
+    "Excursions": "excursions",
+    "EducationAndQualifications": "Education and qualifications",
+    "ProfessionalTraining": "Professional training and certifications",
+    "OfficialLicense": "Official license",
+    "Education": "Education",
+    "Accreditation": "Accreditation",
+    "GuideInterpreter": "Certified guide-interpreter for Paris and Ile-de-France",
+    "Diploma": "Diploma in Art History from Sorbonne University",
+    "AccreditationAtLouvre": "Accreditation at the Louvre, Versailles and the national museums of France",
+    "MyWorkingPrinciples": "My working principles",
+    "Values": "The values ​​that determine the quality of my excursions",
+    "LoveForParis": "Love for Paris",
+    "PersonalApproach": "Personal approach",
+    "Professionalism": "Professionalism",
+    "UniqueRoutes": "Unique routes",
+    "LivedAndBreathed": "I've lived and breathed this city for over 15 years. My passion for Paris is passed on to every visitor, and I want you to love it as much as I do.",
+    "TailoredTours": "Each tour is tailored to your interests. Small groups of up to 15 people allow for individual attention.",
+    "AnOfficialLicense": "An official license, deep knowledge of history and art, and ongoing training are the key to high-quality excursions.",
+    "FamousPlace": "I show not only famous places, but also hidden gems of Paris, known only to locals.",
+    "MyStory": "My story",
+    "ThePath": "The path from tourist to professional guide",
+    "MovingToParis": "Moving to Paris",
+    "FellInLove": "I fell in love with the city and decided to connect my life with it.",
+    "EducationAtTheSorbonne": "Education at the Sorbonne",
+    "Degree": "Received a degree in art history",
+    "FirstGuideLicense": "First guide license",
+    "ProfessionalCareer": "Began his professional career as a tour guide",
+    "Confession": "Confession",
+    "Award": "Award for the best Russian-speaking guide in Paris",
+    "Today": "Today",
+    "SatisfiedTravelers": "15,000+ satisfied travelers, rating 4.9/5",
+    "GuestReviews": "Reviews from my guests",
+    "WhatTouristsSay": "What tourists say after excursions",
+    "BackToHome": "Back to home"
   },
   "Footer": {
     "DiscoverParis": "Discover the real Paris with one of the city's best guides",
@@ -186,7 +219,10 @@
     "Sending": "Sending...",
     "SendAMessage": "SendA a message",
     "QuickReply": "Quick reply",
-    "Call": "Call"
+    "Call": "Call",
+    "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
+    "ContactOffer": "Contact us and get a quick offer in minutes",
+    "PlanYourTour": "Plan your tour in few clicks."
   },
   "Transfer": {
     "LuxuryTravel": "Luxury travel",

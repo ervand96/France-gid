@@ -1,5 +1,4 @@
-import { STRAPI_URL } from "../../strapi";
-import { StrapiResponse, TourCard } from "../../utils/tourCardType";
+import { StrapiResponse, TourCard } from "../../../utils/tourCardType";
 
 export async function fetchTourCards(
   locale: string,
@@ -10,9 +9,15 @@ export async function fetchTourCards(
   params.set("populate", "bgImg");
   params.set("filters[filterCategory][$eq]", category);
 
-  const res = await fetch(`${STRAPI_URL}/api/tour-cards?${params.toString()}`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tour-cards?${params.toString()}`,
+    {
+      next: { revalidate: 60 },
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+      },
+    },
+  );
 
   if (!res.ok) throw new Error("Failed fetch tours");
 
