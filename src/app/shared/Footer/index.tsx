@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import LanguageSwitcher from "../LanguageSwitcher/languageSwitcher";
-import { Logo } from "../Logo";
-import Container from "../Container";
+import { MapPin } from "lucide-react";
+import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
+import { Logo } from "@/app/shared/Logo";
+import Container from "@/app/shared/Container";
 import { categories } from "./type";
 
 export default function Footer() {
@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="flex flex-col xl:flex-row justify-start md:justify-between gap-[50px] mb-8">
             <div className="flex-1">
               <Logo className="mb-4" />
-              <p className="text-secondary/50 text-sm">{t("DiscoverParis")}</p>
+              <p className="text-secondary/50 text-sm max-w-[200px] lg:max-w-full">{t("DiscoverParis")}</p>
             </div>
             <div className="flex-1 flex justify-between gap-[20px] flex-wrap">
               <div>
@@ -84,14 +84,14 @@ export default function Footer() {
               </div>
             </div>
           </div>
-            <div className="mb-8">
-              <LanguageSwitcher />
-            </div>
-            <div className="border-t border-dark-gray pt-8 text-center text-secondary/50 text-sm">
-              <p>
-                &copy; {CURRENT_YEAR} Elite Paris Guide. {t("AllRights")}
-              </p>
-            </div>
+          <div className="mb-8">
+            <LanguageSwitcher />
+          </div>
+          <div className="border-t border-dark-gray pt-8 text-center text-secondary/50 text-sm">
+            <p>
+              &copy; {CURRENT_YEAR} Elite Paris Guide. {t("AllRights")}
+            </p>
+          </div>
         </div>
       </Container>
     </footer>
