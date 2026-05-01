@@ -64,7 +64,7 @@ export default function CallToAction() {
           className={`fixed lg:bottom-10 lg:right-10 bottom-[10px] right-[10px] py-[40px] px-[20px] md:p-[20px] z-[9999] font-body flex flex-col items-center gap-[50px] bg-gradient-to-br from-gray-900 to-gray-800 border border-secondary/30 rounded-[14px] transition-all duration-300 ease-out transform ${showCTA ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4 pointer-events-none"}`}
         >
           <Button
-            styles="absolute top-2 right-2 cursor-pointer text-xl"
+            styles="absolute top-2 right-2 cursor-pointer text-xl text-secondary"
             onClick={() => setShowCTA(false)}
           >
             ✕
@@ -77,7 +77,7 @@ export default function CallToAction() {
               ))}
             </div>
           </div>
-          <p className="max-w-[300px] text-white italic text-[14px]">
+          <p className="max-w-[300px] italic text-[14px] text-secondary/50">
             {t("PlanYourTour")}
           </p>
         </div>

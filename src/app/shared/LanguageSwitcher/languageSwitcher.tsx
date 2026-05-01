@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
     <button
       onClick={handleSwitch}
       disabled={locked || isPending}
-      className="flex items-center gap-2 cursor-pointer disabled:opacity-50"
+      className="flex items-center gap-2 cursor-pointer disabled:opacity-50 text-secondary"
     >
       {locale === "en" ? (
         <>

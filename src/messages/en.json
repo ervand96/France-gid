@@ -4,7 +4,8 @@
     "ExcursionsInParis": "Excursions in Paris",
     "ExcursionsToTheSuburbsOfParis": "Excursions to the suburbs of Paris",
     "ToursOfFrance": "Excursions to the regions of France",
-    "BookATour": "Book a tour"
+    "BookATour": "Book a tour",
+    "Transfer": "Transfer"
   },
   "BackButton": {
     "Back": "Back"
@@ -226,5 +227,19 @@
     "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
     "ContactOffer": "Contact us and get a quick offer in minutes",
     "PlanYourTour": "Plan your tour in few clicks."
+  },
+  "Transfer": {
+    "LuxuryTravel": "Luxury travel",
+    "PremiumPrivateService": "Premium Private Service",
+    "SafetyAndSilence": "Safety and silence.",
+    "PrivateTransfers": "Private transfers by ",
+    "WithPersonalDriver": " with a personal driver throughout France.",
+    "License": "License",
+    "Service": "Service",
+    "ProfessionalInsurance": "Professional insurance for passengers and luggage.",
+    "TaxFree": "Meet with a sign and assistance with Tax Free registration.",
+    "PopularRoute": "Popular Route",
+    "FixedRate": "Fixed rate",
+    "ViewAllRates": "View all rates"
   }
 }

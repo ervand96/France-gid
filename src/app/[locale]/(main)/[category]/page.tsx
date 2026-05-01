@@ -17,6 +17,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
 
   return (
+
     <div className="bg-primary">
       <Container>
         <div className="px-[20px] py-[100px] md:py-[150px]">

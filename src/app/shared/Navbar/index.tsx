@@ -6,12 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
-import { navData } from "@/constants/navbarData";
-import Container from "../Container";
+import Container from "@/app/shared/Container";
 import Button from "@/app/shared/Button";
 import LanguageSwitcher from "@/app/shared/LanguageSwitcher/languageSwitcher";
+import { Logo } from "@/app/shared/Logo";
+import { navData } from "@/constants/navbarData";
 import { PathnameEnum } from "@/constants/pathName";
-import { Logo } from "../Logo";
 import menuIcon from "@/assets/elements/menu.png";
 import closeIcon from "@/assets/elements/close.png";
 
@@ -41,7 +41,7 @@ export default function Navbar() {
               <Logo />
             </Link>
 
-            <ul className="hidden xl:flex justify-center items-center xl:gap-[32px]">
+            <ul className="hidden lg:flex justify-center items-center lg:gap-[16px] 2xl:gap-[32px] px-[20px] 2xl:px-[0px]">
               {navData &&
                 navData.map((item, index) => {
                   const fullPath = `/${locale}${item.path}`;
@@ -53,7 +53,7 @@ export default function Navbar() {
                     <Link
                       key={index}
                       href={fullPath}
-                      className="text-[16px] text-secondary relative py-1 group transition-colors duration-300"
+                      className="lg:text-[14px] 2xl:text-[16px] text-secondary relative py-1 group transition-colors duration-300"
                     >
                       {t(item.key)}
 
@@ -68,16 +68,18 @@ export default function Navbar() {
                     </Link>
                   );
                 })}
+            </ul>
+            <div className="hidden lg:flex justify-between lg:gap-[10px] 2xl:gap-[32px]">
               <Button
                 onClick={handleContactClick}
                 text={t("BookATour")}
-                styles="text-[16px] rounded-[6px] px-[24px] py-[10px] font-[600]"
+                styles="lg:text-[12px] 2xl:text-[16px] rounded-[6px] lg:px-[12px] 2xl:px-[24px] py-[10px] font-[600]"
                 designType="gold"
               />
               <LanguageSwitcher />
-            </ul>
+            </div>
 
-            <Button text={"s"} styles="xl:hidden" onClick={toggleMenu}>
+            <Button styles="lg:hidden" onClick={toggleMenu}>
               <Image
                 src={isMenuOpen ? closeIcon : menuIcon}
                 alt={isMenuOpen ? "Navbar close icon" : "Navbar menu icon"}
