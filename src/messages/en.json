@@ -57,11 +57,6 @@
     "People": "person",
     "Details": "Read more"
   },
-  "CallToAction": {
-    "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
-    "ContactUs": "Contact us and get a quick offer in minutes",
-    "PlanYourTour": "Plan your tour in few clicks."
-  },
   "GetInTouch": {
     "GetInTouch": "Get In Touch",
     "ReadyToExplore": "Ready to explore Paris? Contact us to plan your unforgettable journey",
@@ -223,6 +218,9 @@
     "Sending": "Sending...",
     "SendAMessage": "SendA a message",
     "QuickReply": "Quick reply",
-    "Call": "Call"
+    "Call": "Call",
+    "QuickOffer": "Hello! I want to get a quick offer for the excursion.",
+    "ContactOffer": "Contact us and get a quick offer in minutes",
+    "PlanYourTour": "Plan your tour in few clicks."
   }
 }
