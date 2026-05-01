@@ -1,9 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
 import Container from "@/app/shared/Container";
-import { useRouter } from "next/navigation";
-import BackButton from "@/app/shared/BackButton";
 import Carousel from "@/app/shared/Carousel";
 import Education from "@/app/shared/Education";
 import AboutHimself from "@/app/shared/AboutHimself";
@@ -13,38 +10,39 @@ import AboutHero from "@/app/shared/AboutHero";
 import { AboutPageData } from "lib/utils/aboutPageType";
 
 export default function AboutMe({ aboutData }: { aboutData: AboutPageData }) {
-  const locale = useLocale();
-  const router = useRouter();
   return (
-    <main className="bg-secondary py-[50px] md:py-[100px]">
-      <Container>
-        <div className="py-[50px]">
-          <BackButton
-            styles="px-[20px] text-primary hover:text-primary/10"
-            onClick={() => router.push(`/${locale}`)}
-          />
-          <AboutHero />
-          <AboutHimself
-            data={aboutData?.myself}
-            myselfTitle={aboutData?.myselfTitle}
-          />
-          <Carousel />
-          <Education
-            title={aboutData?.educationTitle}
-            subTitle={aboutData?.educationSubTitle}
-            items={aboutData?.educationItems || []}
-          />
-          <Principles
-            title={aboutData?.principleTitle}
-            subTitle={aboutData?.principleSubTitle}
-            items={aboutData?.principles || []}
-          />
-          <MyStory
-            title={aboutData.timelineEventTitle}
-            subTitle={aboutData.timelineEventSubTitle}
-            events={aboutData.timelineEventItem || []}
-          />
-          {/* <section>
+    <>
+      <AboutHero
+        gallery={aboutData?.gallery || []}
+        description={aboutData?.description || ""}
+        statistics={aboutData?.stats || []}
+      />
+      <main className="bg-secondary py-[50px] md:py-[100px]">
+        <Container>
+          <div className="py-[50px]">
+            <AboutHimself
+              data={aboutData?.myself || []}
+              myselfTitle={aboutData?.myselfTitle || ""}
+            />
+            <Carousel data={aboutData?.carousel[0] || []} />
+
+            <Education
+              title={aboutData?.educationTitle || ""}
+              subTitle={aboutData?.educationSubTitle || ""}
+              items={aboutData?.educationItems || []}
+            />
+
+            <Principles
+              title={aboutData?.principleTitle || ""}
+              subTitle={aboutData?.principleSubTitle || ""}
+              items={aboutData?.principles || []}
+            />
+            <MyStory
+              title={aboutData.timelineEventTitle || ""}
+              subTitle={aboutData.timelineEventSubTitle || ""}
+              events={aboutData.timelineEventItem || []}
+            />
+            {/* <section>
           <div className="mx-auto px-4 sm:px-6 lg:px-8">
             <Header
               heading={t("GuestReviews")}
@@ -133,8 +131,9 @@ export default function AboutMe({ aboutData }: { aboutData: AboutPageData }) {
             </div>
           </div>
         </section> */}
-        </div>
-      </Container>
-    </main>
+          </div>
+        </Container>
+      </main>
+    </>
   );
 }
