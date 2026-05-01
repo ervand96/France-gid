@@ -79,7 +79,7 @@ export default function CallToAction() {
               ))}
             </div>
           </div>
-          <p className="max-w-[300px] italic text-[14px]">{t("PlanYourTour")}</p>
+          <p className="max-w-[300px] text-white italic text-[14px]">{t("PlanYourTour")}</p>
         </div>
       </AnimatePresence>
       {!showCTA && (
