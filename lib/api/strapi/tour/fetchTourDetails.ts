@@ -33,7 +33,7 @@ export async function fetchTourDetails(
 
   try {
     const res = await fetch(url, {
-      cache: "no-store",
+      next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,

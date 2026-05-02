@@ -1,27 +1,6 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-
 export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isExiting, setIsExiting] = useState(false);
-
-  useEffect(() => {
-    // Ждем 3.5 секунды анимации, затем запускаем уход (exit)
-    const timer = setTimeout(() => setIsExiting(true), 1000);
-    // Полностью удаляем из DOM через 4.5 секунды
-    const removeTimer = setTimeout(() => setIsVisible(false), 1000);
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(removeTimer);
-    };
-  }, []);
-
-  if (!isVisible) return null;
-
   return (
-    <div className={`preloader-root ${isExiting ? "exit-active" : ""}`}>
+    <div className="preloader-root">
       <style>{`
         .preloader-root {
           position: fixed;

@@ -1,33 +1,28 @@
-"use client";
-
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import paris from "@/assets/about/paris.jpeg";
 import { Star, MapPin, Sparkles } from "lucide-react";
 import { AboutHeroProps } from "./type";
-import { useTranslations } from "next-intl";
-import Button from "../Button";
-import { useModals } from "@/context/ModalContext";
+import { getTranslations } from "next-intl/server";
+import ContactButtons from "../ContactButton";
 
-export default function AboutHero({
+export default async function AboutHero({
   description,
   statistics,
   aboutPageImage,
   countExcursions,
 }: AboutHeroProps) {
-  const t = useTranslations("About");
-  const { openContact } = useModals();
+  const t = await getTranslations("About");
 
   const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-  const imageURL = aboutPageImage?.[0]?.url
-    ? `${STRAPI_URL}${aboutPageImage[0].url}`
+  const rawImageUrl = aboutPageImage?.[0]?.url;
+
+  const imageURL = rawImageUrl
+    ? rawImageUrl.startsWith("http")
+      ? rawImageUrl
+      : `${STRAPI_URL}${rawImageUrl}`
     : cuteSmile;
 
-  const handleContactClick = () => {
-    document
-      .getElementById("getInTouch")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
   return (
     <section>
       <div className="min-h-screen bg-white">
@@ -104,18 +99,7 @@ export default function AboutHero({
                 </div>
 
                 <div className="flex gap-4 pt-6">
-                  <Button
-                    onClick={handleContactClick}
-                    styles="px-8 py-4 bg-amber-500 text-white rounded-full hover:bg-amber-600 transition-all shadow-2xl font-semibold hover:scale-105"
-                  >
-                    {t("BookATour")}
-                  </Button>
-                  <Button
-                    onClick={openContact}
-                    styles="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-full hover:bg-white/20 transition-all font-semibold"
-                  >
-                    {t("Contact")}
-                  </Button>
+                  <ContactButtons />
                 </div>
               </div>
 
@@ -137,7 +121,9 @@ export default function AboutHero({
                   </div>
 
                   <div className="absolute -top-4 -right-4 bg-accent from-amber-500 to-orange-600 text-white rounded-2xl p-6 shadow-2xl">
-                    <div className="text-3xl font-bold">{countExcursions} +</div>
+                    <div className="text-3xl font-bold">
+                      {countExcursions} +
+                    </div>
                     <div className="text-sm">экскурсий</div>
                   </div>
                 </div>

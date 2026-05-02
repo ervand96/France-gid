@@ -7,15 +7,22 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "1337",
+        protocol: "https",
+        hostname: "wise-creativity-c9c0a41985.media.strapiapp.com",
+        port: "",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "**",
+        hostname: "wise-creativity-c9c0a41985.strapiapp.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
+        pathname: "/uploads/**",
       },
     ],
   },

@@ -1,5 +1,3 @@
-"use client";
-
 import Container from "@/app/shared/Container";
 import Carousel from "@/app/shared/Carousel";
 import Education from "@/app/shared/Education";

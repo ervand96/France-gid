@@ -1,11 +1,9 @@
-"use client";
-
+import { getTranslations } from "next-intl/server";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import { Star, Clock, Users } from "lucide-react";
 import { TourCard as TourCardType } from "lib/utils/tourCardType";
 import Link from "next/link";
 import { reverseCategoryMap, CategoryEnum } from "@/constants/categoryEnum";
-import { useTranslations } from "next-intl";
 
 interface TourCardProps {
   tour: TourCardType;
@@ -14,8 +12,8 @@ interface TourCardProps {
 
 const strapiURL = process.env.NEXT_PUBLIC_STRAPI_URL || "";
 
-export function TourCardNew({ tour, locale }: TourCardProps) {
-  const t = useTranslations("TourCard");
+export async function TourCardNew({ tour, locale }: TourCardProps) {
+  const t = await getTranslations("TourCard");
 
   const imagePath = tour.bgImg?.formats?.medium?.url || tour.bgImg?.url || "";
 
