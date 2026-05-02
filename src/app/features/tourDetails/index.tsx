@@ -21,7 +21,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import BackButton from "@/app/shared/BackButton";
 import ImageExpander from "@/app/shared/ImageExpander";
 
-
 type Props = {
   tour: TourCard;
 };
@@ -148,8 +147,8 @@ export function TourDetail({ tour }: Props) {
                 <div className="w-full mt-6">
                   <ImageExpander
                     images={allGalleryImages?.map((img, idx) => ({
-                      src: getImageUrl(img.url) || "",
-                      alt: img.alternativeText || `Gallery ${idx + 1}`,
+                        src: getImageUrl(img.url) || "",
+                        alt: img.alternativeText || `Gallery ${idx + 1}`,
                     })) || []}
                   />
                 </div>
@@ -249,9 +248,11 @@ export function TourDetail({ tour }: Props) {
                         </h2>
                       )}
 
-                      <div className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
-                        {section?.description}
-                      </div>
+                      {section.description && (
+                        <div className="text-[16px] font-[400] leading-[163%] text-secondary space-y-4 whitespace-pre-line text-base">
+                          {section?.description}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -348,9 +349,9 @@ export function TourDetail({ tour }: Props) {
                             if (dateError) setDateError(false);
                           }}
                           className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none ${dateError
-                            ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
-                            : "border-gray-700 focus:border-accent"
-                            }`}
+                              ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
+                              : "border-gray-700 focus:border-accent"
+                          }`}
                         />
                         <Calendar className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
                       </div>
@@ -402,12 +403,12 @@ export function TourDetail({ tour }: Props) {
                             {p.range} {t("People")}
                           </option>
                         )) || (
-                            <>
-                              <option value="1-3">1-3</option>
-                              <option value="4-5">4-5</option>
-                              <option value="6-7">6-7</option>
-                            </>
-                          )}
+                          <>
+                            <option value="1-3">1-3</option>
+                            <option value="4-5">4-5</option>
+                            <option value="6-7">6-7</option>
+                          </>
+                        )}
                       </select>
                       <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
                     </div>
