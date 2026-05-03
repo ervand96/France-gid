@@ -34,7 +34,7 @@ export default function ReviewComponent({ reviews }: { reviews: Review[] }) {
                   className={`w-4 h-4 ${i < review.rating
                       ? "fill-accent text-accent"
                       : "text-gray-700"
-                    }`}
+                  }`}
                 />
               ))}
             </div>

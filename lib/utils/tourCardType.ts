@@ -21,6 +21,7 @@ export interface TourCard {
   TourOverview: string;
   price: string;
   rating: string;
+  order: number;
   included: Included[];
   gallery: Gallery[];
   bgImg: BgImg;

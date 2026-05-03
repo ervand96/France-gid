@@ -146,10 +146,12 @@ export function TourDetail({ tour }: Props) {
 
                 <div className="w-full mt-6">
                   <ImageExpander
-                    images={allGalleryImages?.map((img, idx) => ({
+                    images={
+                      allGalleryImages?.map((img, idx) => ({
                         src: getImageUrl(img.url) || "",
                         alt: img.alternativeText || `Gallery ${idx + 1}`,
-                    })) || []}
+                      })) || []
+                    }
                   />
                 </div>
               </div>
@@ -295,8 +297,10 @@ export function TourDetail({ tour }: Props) {
                     </div>
                   ))}
                 </div>
-                <Button styles="mt-6 w-full py-3 border rounded-lg"
-                  designType="transparent">
+                <Button
+                  styles="mt-6 w-full py-3 border rounded-lg"
+                  designType="transparent"
+                >
                   {t("ShowReviews")}
                 </Button>
               </div>
@@ -348,7 +352,8 @@ export function TourDetail({ tour }: Props) {
                             handleChange(e);
                             if (dateError) setDateError(false);
                           }}
-                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none ${dateError
+                          className={`appearance-none w-full px-4 py-3 bg-dark-gray border rounded-[10px] text-secondary focus:outline-none ${
+                            dateError
                               ? "border-red-500 animate-shake shadow-[0_0_10px_rgba(239,68,68,0.2)]"
                               : "border-gray-700 focus:border-accent"
                           }`}
@@ -379,10 +384,26 @@ export function TourDetail({ tour }: Props) {
                         onChange={handleChange}
                         className="appearance-none w-full px-4 py-3 bg-dark-gray border border-gray-700 rounded-[10px] text-secondary focus:outline-none focus:border-accent cursor-pointer"
                       >
-                        {["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
-                          "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
+                        {[
+                          "09:00",
+                          "10:00",
+                          "11:00",
+                          "12:00",
+                          "13:00",
+                          "14:00",
+                          "15:00",
+                          "16:00",
+                          "17:00",
+                          "18:00",
+                          "19:00",
+                          "20:00",
+                          "21:00",
+                          "22:00",
+                          "23:00",
                         ].map((time) => (
-                          <option key={time} value={time}>{time}</option>
+                          <option key={time} value={time}>
+                            {time}
+                          </option>
                         ))}
                       </select>
                       <ChevronDown className="pointer-events-none absolute right-4 top-2/3 -translate-y-1/2 w-4 h-4 text-accent" />
