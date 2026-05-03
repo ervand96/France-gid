@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { fetchTourDetails } from "lib/api/strapi/tour/fetchTourDetails";
 import { TourDetail } from "@/app/features/tourDetails";
 
@@ -14,7 +13,7 @@ export default async function Page({ params }: Props) {
   const { locale, category, slug } = await params;
   const data = await fetchTourDetails(locale, category, slug);
 
-  if (!data) notFound(); 
+  if (!data) return <div>Страница временно недоступна. Попробуйте позже.</div>;
 
   return <TourDetail tour={data} />;
 }

@@ -1,6 +1,6 @@
-"use client"
+"use client"; 
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import BackButton from "@/app/shared/BackButton";
 import Container from "@/app/shared/Container";
 import ReviewComponent from "@/app/shared/ReviewComponent";

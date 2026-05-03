@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/navigation";
 import ReactCountryFlag from "react-country-flag";
 
 export default function LanguageSwitcher() {
@@ -13,23 +13,14 @@ export default function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
   const [locked, setLocked] = useState<boolean>(false);
 
-  const cleanPath = pathname.replace(/^\/(ru|en)(?=\/|$)/, "");
-
   const nextLocale = locale === "en" ? "ru" : "en";
-
-  const newPath = `/${nextLocale}${cleanPath || ""}`;
 
   const handleSwitch = () => {
     if (locked || isPending) return;
-
     setLocked(true);
-
     startTransition(() => {
-      router.replace(newPath, { scroll: false });
-
-      setTimeout(() => {
-        setLocked(false);
-      }, 700);
+      router.replace(pathname, { locale: nextLocale });
+      setTimeout(() => setLocked(false), 700);
     });
   };
 

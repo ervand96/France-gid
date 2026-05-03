@@ -1,6 +1,5 @@
 import { fetchAboutData } from "lib/api/strapi/about/aboutSection";
 import AboutGuideSection from "../AboutGuideSection";
-import { notFound } from "next/navigation";
 
 export default async function AboutSectionWrapper({
   locale,
@@ -9,7 +8,8 @@ export default async function AboutSectionWrapper({
 }) {
   const aboutData = await fetchAboutData(locale);
 
-  if (!aboutData) notFound();
+  if (!aboutData)
+    return <div>Страница временно недоступна. Попробуйте позже.</div>;
 
   return <AboutGuideSection aboutData={aboutData} />;
 }

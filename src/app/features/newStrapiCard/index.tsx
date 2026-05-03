@@ -16,6 +16,8 @@ export default async function NewStrapiCard({
     (a, b) => a.order - b.order,
   );
 
+  if (!tours) return <div>Туры временно недоступны</div>;
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {sortedTours ? (

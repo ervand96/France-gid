@@ -1,6 +1,5 @@
 import TransferPage from "@/app/features/TransferComponent";
 import { fetchTransferPageData } from "lib/api/strapi/transfer/transferPage";
-import { notFound } from "next/navigation";
 
 export default async function Transfer({
   params,
@@ -10,7 +9,7 @@ export default async function Transfer({
   const { locale } = await params;
   const data = await fetchTransferPageData(locale);
 
-  if (!data) notFound();
+  if (!data) return <div>Страница временно недоступна. Попробуйте позже.</div>;
 
   return <TransferPage data={data} />;
 }

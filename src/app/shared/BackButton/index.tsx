@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Button from "../Button";
 import { BackButtonType } from "./type";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 
 
 export default function BackButton({ styles, arrowStyles, textStyles, onClick }: BackButtonType) {

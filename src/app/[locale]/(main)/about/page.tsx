@@ -1,6 +1,5 @@
 import AboutMe from "@/app/features/AboutMe";
 import { fetchAboutPageData } from "lib/api/strapi/about/aboutPage";
-import { notFound } from "next/navigation";
 
 export default async function About({
   params,
@@ -10,7 +9,9 @@ export default async function About({
   const { locale } = await params;
   const data = await fetchAboutPageData(locale);
 
-  if (!data) return notFound();
+  if (!data) {
+    return <div>Страница временно недоступна</div>;
+  }
 
   return <AboutMe aboutData={data} />;
 }

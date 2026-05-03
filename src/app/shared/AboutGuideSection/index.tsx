@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { ArrowRight, LucideIcon, Clock, Users, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
