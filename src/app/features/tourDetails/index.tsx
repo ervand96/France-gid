@@ -13,7 +13,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
-import { TourCard } from "lib/utils/tourCardType";
+import { Formats2, TourCard } from "lib/utils/tourCardType";
 import Button from "@/app/shared/Button";
 import Container from "@/app/shared/Container";
 import BookingModal from "@/app/shared/BookingModal";
@@ -122,6 +122,18 @@ export function TourDetail({ tour }: Props) {
       : `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
   };
 
+  const getBestImageFormat = (formats?: Formats2, fallbackUrl?: string) => {
+    if (!formats) return getImageUrl(fallbackUrl);
+
+    return (
+      getImageUrl(formats.large?.url) ||
+      getImageUrl(formats.medium?.url) ||
+      getImageUrl(formats.small?.url) ||
+      getImageUrl(formats.thumbnail?.url) ||
+      getImageUrl(fallbackUrl)
+    );
+  };
+
   return (
     <div className="bg-primary">
       <Container>
@@ -137,7 +149,12 @@ export function TourDetail({ tour }: Props) {
                   <ImageWithFallback
                     width={100}
                     height={100}
-                    src={getImageUrl(tour?.bgImg?.formats?.large?.url) || ""}
+                    src={
+                      getBestImageFormat(
+                        tour?.bgImg?.formats,
+                        tour?.bgImg?.url,
+                      ) || ""
+                    }
                     alt="Лувр"
                     className="w-full h-full object-cover"
                     unoptimized
