@@ -1,6 +1,12 @@
 import AboutMe from "@/app/features/AboutMe";
 import { fetchAboutPageData } from "lib/api/strapi/about/aboutPage";
 
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return [{ locale: "ru" }, { locale: "en" }];
+}
+
 export default async function About({
   params,
 }: {
@@ -10,7 +16,11 @@ export default async function About({
   const data = await fetchAboutPageData(locale);
 
   if (!data) {
-    return <div>Страница временно недоступна</div>;
+    return (
+      <div style={{ padding: "150px", textAlign: "center" }}>
+        <p>Страница временно недоступна. Попробуйте позже.</p>
+      </div>
+    );
   }
 
   return <AboutMe aboutData={data} />;

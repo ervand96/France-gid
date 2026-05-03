@@ -2,8 +2,9 @@ import Container from "@/app/shared/Container";
 import CategoryCards from "@/app/shared/category";
 import HeroSectionHome from "@/app/features/HeroSectionHome";
 import AboutSectionWrapper from "@/app/shared/AboutSectionWrapper";
-import TransferPromo from "@/app/features/TransferPromo";
 import TransferSectionWrapper from "@/app/shared/TransferSectionWrapper";
+
+export const revalidate = 3600;
 
 export default async function Home({
   params,
