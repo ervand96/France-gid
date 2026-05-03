@@ -8,6 +8,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "strapicms-production.up.railway.app",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "wise-creativity-c9c0a41985.media.strapiapp.com",
         port: "",
         pathname: "/**",
