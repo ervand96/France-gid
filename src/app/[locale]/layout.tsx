@@ -32,7 +32,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <NextIntlClientProvider locale={currentLocale} messages={messages}>
           <ModalProvider>
-            <LocaleSync currentLocale={currentLocale} />
+            <LocaleSync />
             <ContactModalWrapper />
             {children}
           </ModalProvider>
