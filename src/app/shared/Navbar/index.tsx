@@ -21,6 +21,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const t = useTranslations("Navbar");
 
+  const normalizedPath = pathname.replace(`/${locale}`, "") || "/";
+
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
@@ -43,17 +45,17 @@ export default function Navbar() {
 
             <ul className="hidden lg:flex justify-center items-center lg:gap-[16px] 2xl:gap-[32px] px-[20px] 2xl:px-[0px]">
               {navData &&
-                navData.map((item, index) => {
+                navData.map((item) => {
                   const fullPath = `/${locale}${item.path}`;
                   const isActive =
                     item.path === PathnameEnum.HOME
-                      ? pathname === "/"
-                      : pathname === item.path ||
-                        pathname.startsWith(item.path);
+                      ? normalizedPath === "/"
+                      : normalizedPath === item.path ||
+                        normalizedPath.startsWith(item.path);
 
                   return (
                     <Link
-                      key={index}
+                      key={item?.path}
                       href={fullPath}
                       className="lg:text-[14px] 2xl:text-[16px] text-secondary relative py-1 group transition-colors duration-300"
                     >
@@ -61,7 +63,8 @@ export default function Navbar() {
 
                       <span
                         className={`absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-500 ease-out
-                  ${isActive
+                  ${
+                    isActive
                       ? "w-full opacity-100 shadow-[0_0_8px_rgba(202,138,4,0.4)]"
                       : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-50"
                   }

@@ -35,7 +35,7 @@ export function proxy(request: NextRequest) {
   const newUrl = request.nextUrl.clone();
   newUrl.pathname = `/${targetLocale}${pathname}`;
 
-  return NextResponse.rewrite(newUrl);
+  return NextResponse.redirect(newUrl);
 }
 
 export const config = {

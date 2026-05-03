@@ -3,7 +3,7 @@
 import { Home, MapPin, Compass, ArrowLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-export default function NotFound() {
+export default function NotFoundContent() {
 
     const t = useTranslations("NotFound")
 
