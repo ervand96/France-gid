@@ -11,7 +11,7 @@ export default function LocaleSync() {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       lastPathname.current = pathname;
     }
-  }, [pathname]);
+  }, [pathname]); 
 
   return null;
 }
