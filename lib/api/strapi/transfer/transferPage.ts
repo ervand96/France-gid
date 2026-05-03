@@ -1,26 +1,21 @@
 import { TransferPageData } from "lib/utils/transferType";
+import { fetchWithRetry } from "../fetchWithRetry";
 
 export async function fetchTransferPageData(
   locale: string,
 ): Promise<TransferPageData | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-  const token = process.env.STRAPI_API_TOKEN;
-
   const query = new URLSearchParams();
   query.set("locale", locale);
-
   query.append("populate[0]", "carCarousel");
   query.append("populate[1]", "carSpecs");
   query.append("populate[2]", "priceTable");
 
-  const url = `${baseUrl}/api/transfer?${query.toString()}`;
+  const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/transfer?${query.toString()}`;
 
   try {
-    const res = await fetch(url, {
+    const res = await fetchWithRetry(url, {
       next: { revalidate: 60 },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
     });
 
     if (!res.ok) {

@@ -1,5 +1,6 @@
 import { categoryMap } from "@/constants/categoryEnum";
 import { TourCard } from "../../../utils/tourCardType";
+import { fetchWithRetry } from "../fetchWithRetry";
 
 const TOUR_DETAILS_POPULATE = [
   "bgImg",
@@ -32,7 +33,7 @@ export async function fetchTourDetails(
   const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tour-cards?${queryParams.toString()}&${TOUR_DETAILS_POPULATE}`;
 
   try {
-    const res = await fetch(url, {
+    const res = await fetchWithRetry(url, {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
@@ -47,10 +48,7 @@ export async function fetchTourDetails(
     }
 
     const { data } = await res.json();
-
-    if (!Array.isArray(data) || data.length === 0) {
-      return null;
-    }
+    if (!Array.isArray(data) || data.length === 0) return null;
 
     return data[0] as TourCard;
   } catch (error) {

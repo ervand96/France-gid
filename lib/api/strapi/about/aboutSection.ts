@@ -1,3 +1,5 @@
+import { fetchWithRetry } from "../fetchWithRetry";
+
 export async function fetchAboutData(locale: string) {
   const params = new URLSearchParams();
   params.set("locale", locale);
@@ -5,8 +7,9 @@ export async function fetchAboutData(locale: string) {
   params.append("populate", "gallery");
 
   const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-page?${params.toString()}`;
+
   try {
-    const res = await fetch(url, {
+    const res = await fetchWithRetry(url, {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +18,7 @@ export async function fetchAboutData(locale: string) {
     });
 
     if (!res.ok) {
-      console.error("Strapi Error:", res.status);
+      console.error("Strapi Error Status:", res.status);
       return null;
     }
 

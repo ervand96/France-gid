@@ -1,4 +1,5 @@
 import { StrapiResponse, TourCard } from "../../../utils/tourCardType";
+import { fetchWithRetry } from "../fetchWithRetry";
 
 export async function fetchTourCards(
   locale: string,
@@ -8,19 +9,17 @@ export async function fetchTourCards(
   params.set("locale", locale);
   params.set("populate", "bgImg");
   params.set("filters[filterCategory][$eq]", category);
+
+  const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tour-cards?${params.toString()}`;
+
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tour-cards?${params.toString()}`,
-      {
-        next: { revalidate: 60 },
-        headers: {
-          Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        },
-      },
-    );
+    const res = await fetchWithRetry(url, {
+      next: { revalidate: 60 },
+      headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
+    });
 
     if (!res.ok) {
-      console.error("Failed fetch tours:", res.status);
+      console.error("fetchTourCards error:", res.status);
       return null;
     }
 

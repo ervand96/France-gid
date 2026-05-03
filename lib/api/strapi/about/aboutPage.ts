@@ -1,4 +1,5 @@
 import { AboutPageData } from "lib/utils/aboutPageType";
+import { fetchWithRetry } from "../fetchWithRetry";
 
 export async function fetchAboutPageData(
   locale: string,
@@ -16,7 +17,6 @@ export async function fetchAboutPageData(
     "timelineEventItem",
     "principles",
   ];
-
   fields.forEach((field, index) => {
     params.append(`populate[${index}]`, field);
   });
@@ -24,11 +24,9 @@ export async function fetchAboutPageData(
   const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-page?${params.toString()}`;
 
   try {
-    const res = await fetch(url, {
+    const res = await fetchWithRetry(url, {
       next: { revalidate: 60 },
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
+      headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
     });
 
     if (!res.ok) {
@@ -37,7 +35,6 @@ export async function fetchAboutPageData(
     }
 
     const result = await res.json();
-
     return result.data;
   } catch (error) {
     console.error("❌ Network Error:", error);
