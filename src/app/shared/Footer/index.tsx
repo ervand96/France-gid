@@ -20,7 +20,9 @@ export default function Footer() {
           <div className="flex flex-col xl:flex-row justify-start md:justify-between gap-[50px] mb-8">
             <div className="flex-1">
               <Logo className="mb-4" />
-              <p className="text-secondary/50 text-sm max-w-[200px] lg:max-w-full">{t("DiscoverParis")}</p>
+              <p className="text-secondary/50 text-sm max-w-[200px] lg:max-w-full">
+                {t("DiscoverParis")}
+              </p>
             </div>
             <div className="flex-1 flex justify-between gap-[20px] flex-wrap">
               <div>
@@ -50,7 +52,7 @@ export default function Footer() {
                 <ul className="space-y-2 text-secondary/50 text-sm">
                   <li>
                     <a
-                      href={`${locale}${"/about"}`}
+                      href={"/about"}
                       className="hover:text-accent transition-colors"
                     >
                       {t("About")}
