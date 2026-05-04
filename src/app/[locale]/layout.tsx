@@ -2,8 +2,39 @@ import { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ModalProvider } from "@/context/ModalContext";
 import { NextIntlClientProvider } from "next-intl";
-import LocaleSync from "../shared/LocaleSync";
 import ContactModalWrapper from "../shared/ContactModalWrapper";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const isRu = locale === "ru";
+
+  return {
+    metadataBase: new URL("https://france-gid.vercel.app"),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { ru: "/ru", en: "/en" },
+    },
+    openGraph: {
+      siteName: isRu ? "Elite Paris Guide" : "Elite Paris Guide",
+      locale: isRu ? "ru_RU" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Elite Paris Guide",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/og-image.jpg"],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -32,7 +63,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <NextIntlClientProvider locale={currentLocale} messages={messages}>
           <ModalProvider>
-            <LocaleSync />
             <ContactModalWrapper />
             {children}
           </ModalProvider>
