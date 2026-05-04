@@ -1,6 +1,7 @@
 import { fetchTourCards } from "lib/api/strapi/tour/toursCard";
 import { TourCardNew } from "../TourCardNew";
 import { TourCard } from "lib/utils/tourCardType";
+import CategoryHeader from "@/app/shared/CategoryHeader";
 
 export default async function NewStrapiCard({
   locale,
@@ -19,14 +20,17 @@ export default async function NewStrapiCard({
   if (!tours) return <div>Туры временно недоступны</div>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sortedTours ? (
-        sortedTours.map((tour: TourCard) => (
-          <TourCardNew key={tour?.id} tour={tour} locale={locale} />
-        ))
-      ) : (
-        <div>No Data</div>
-      )}
-    </div>
+    <>
+      <CategoryHeader category={sortedTours?.[0].category} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedTours ? (
+          sortedTours.map((tour: TourCard) => (
+            <TourCardNew key={tour?.id} tour={tour} locale={locale} />
+          ))
+        ) : (
+          <div>No Data</div>
+        )}
+      </div>
+    </>
   );
 }

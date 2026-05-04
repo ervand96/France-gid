@@ -131,7 +131,7 @@ export default function TransferPromo({ data }: { data: TransferSectionData }) {
             <div className="flex">
               <Button
                 styles="px-6 py-3 rounded-lg font-semibold group inline-flex items-center gap-2"
-                onClick={() => router.push(`/${locale}/transfer`)}
+                onClick={() => router.push("transfer")}
                 designType="gold"
               >
                 <span className="group inline-flex items-center gap-2">
