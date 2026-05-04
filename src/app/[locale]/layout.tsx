@@ -5,6 +5,17 @@ import { NextIntlClientProvider } from "next-intl";
 import ContactModalWrapper from "../shared/ContactModalWrapper";
 import { Metadata } from "next";
 
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+type Props = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const isRu = locale === "ru";
@@ -16,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: { ru: "/ru", en: "/en" },
     },
     openGraph: {
-      siteName: isRu ? "Elite Paris Guide" : "Elite Paris Guide",
+      siteName: "Elite Paris Guide",
       locale: isRu ? "ru_RU" : "en_US",
       type: "website",
       images: [
@@ -36,17 +47,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-type Props = {
-  children: ReactNode;
-  params: Promise<{
-    locale: string;
-  }>;
-};
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   const currentLocale = locale === "en" ? "en" : "ru";

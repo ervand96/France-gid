@@ -2,8 +2,50 @@ import { fetchTourDetails } from "lib/api/strapi/tour/fetchTourDetails";
 import { fetchTourCards } from "lib/api/strapi/tour/toursCard";
 import { categoryMap } from "@/constants/categoryEnum";
 import { TourDetail } from "@/app/features/tourDetails";
+import { Metadata } from "next";
 
 export const revalidate = 3600;
+
+type Props = {
+  params: Promise<{ locale: string; category: string; slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, category, slug } = await params;
+  const data = await fetchTourDetails(locale, category, slug);
+
+  if (!data) return { title: "Elite Paris Guide" };
+
+  const title = `${data.primaryText} | Elite Paris Guide`;
+  const description =
+    data?.primaryText ||
+    (locale === "ru"
+      ? "Экскурсия с русскоговорящим гидом по Франции"
+      : "Guided tour in France with a Russian-speaking guide");
+
+  const imageUrl = data.bgImg?.url
+    ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.bgImg.url}`
+    : "/og-image.jpg";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://france-gid.vercel.app/${locale}/${category}/${slug}`,
+      images: [
+        { url: imageUrl, width: 1200, height: 630, alt: data.primaryText },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const locales = ["ru", "en"];
@@ -24,14 +66,6 @@ export async function generateStaticParams() {
 
   return paths;
 }
-
-type Props = {
-  params: Promise<{
-    locale: string;
-    category: string;
-    slug: string;
-  }>;
-};
 
 export default async function Page({ params }: Props) {
   const { locale, category, slug } = await params;
