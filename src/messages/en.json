@@ -16,7 +16,7 @@
     "ExclusiveGuided": "Exclusive guided tours revealing the hidden soul of the City of Light. Authentic experiences crafted for discerning travelers.",
     "BookATour": "Book a tour",
     "ContactUs": "Contact us",
-    "RecommendedExcursions": "Tours of Paris and other regions of France with a Russian-speaking guide",
+    "RecommendedExcursions": "Excursions in Paris, to the suburbs of Paris, and across the regions of France with a Russian-speaking guide",
     "ExcursionsThatWillReveal": "Excursions that will reveal the true Paris, its suburbs, and the rest of France, beyond the tourist routes.",
     "SightseeingTourOfParis": "Sightseeing tour of Paris",
     "EveningParisTour": "Evening Paris Tour and Seine River Cruise",
@@ -127,7 +127,8 @@
     "NumberOfPeople": "Number of people",
     "BookNow": "Book now",
     "NotSelected": "Not Selected",
-    "PleaseSelectDate": "Please select date"
+    "PleaseSelectDate": "Please select date",
+    "SubTitle": "Immerse yourself in the atmosphere of France through unique routes and experiences"
   },
   "BookingModal": {
     "BookATour": "Book a tour",

@@ -1,10 +1,10 @@
 import { ImageWithFallback } from "@/app/shared/imageWithFallback/imageWithFallback";
 import cuteSmile from "@/assets/about/cuteSmile.jpg";
 import paris from "@/assets/about/paris.jpeg";
-import { Star, MapPin, Sparkles } from "lucide-react";
+import { Star } from "lucide-react";
 import { AboutHeroProps } from "./type";
-import { getTranslations } from "next-intl/server";
 import ContactButtons from "../ContactButton";
+import SmallHeader from "../SmallHeader";
 
 export default async function AboutHero({
   description,
@@ -12,8 +12,6 @@ export default async function AboutHero({
   aboutPageImage,
   countExcursions,
 }: AboutHeroProps) {
-  const t = await getTranslations("About");
-
   const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
   const rawImageUrl = aboutPageImage?.[0]?.url;
 
@@ -42,22 +40,7 @@ export default async function AboutHero({
           <div className="relative max-w-[1440px] mx-auto  px-6 py-32 w-full">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="text-white space-y-8">
-                <div className="inline-flex items-center-safe gap-2 px-4 py-2 bg-amber-500/20 backdrop-blur-sm border border-amber-400/30 rounded-full">
-                  <Sparkles className="w-4 h-4 text-amber-300" />
-                  <span className="text-sm font-medium text-amber-100">
-                    {t("Professional")}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 className="text-7xl font-bold mb-4 leading-tight">
-                    {t("Name")}
-                  </h1>
-                  <div className="flex items-center gap-2 text-amber-300 mb-6">
-                    <MapPin className="w-5 h-5" />
-                    <span className="text-lg">{t("Paris")}</span>
-                  </div>
-                </div>
+                <SmallHeader />
 
                 <p className="text-1xl text-gray-200 leading-relaxed max-w-xl">
                   {description}

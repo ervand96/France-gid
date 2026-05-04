@@ -2,7 +2,7 @@
 
 import { useRouter } from "@/navigation";
 import { ArrowRight, LucideIcon, Clock, Users, Star } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
 import { useModals } from "@/context/ModalContext";
 import Container from "../Container";
@@ -21,7 +21,6 @@ type Props = {
   icon: LucideIcon;
 };
 export default function AboutGuideSection({ aboutData }: AboutDataProps) {
-  const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("About");
   const { openContact } = useModals();
