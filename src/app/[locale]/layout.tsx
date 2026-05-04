@@ -2,20 +2,51 @@ import { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ModalProvider } from "@/context/ModalContext";
 import { NextIntlClientProvider } from "next-intl";
-import LocaleSync from "../shared/LocaleSync";
 import ContactModalWrapper from "../shared/ContactModalWrapper";
+import { Metadata } from "next";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 type Props = {
   children: ReactNode;
-  params: Promise<{
-    locale: string;
-  }>;
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const isRu = locale === "ru";
+
+  return {
+    metadataBase: new URL("https://france-gid.vercel.app"),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { ru: "/ru", en: "/en" },
+    },
+    openGraph: {
+      siteName: "Elite Paris Guide",
+      locale: isRu ? "ru_RU" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Elite Paris Guide",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/og-image.jpg"],
+    },
+    robots: { index: true, follow: true },
+  };
+}
+
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   const currentLocale = locale === "en" ? "en" : "ru";
@@ -32,7 +63,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <NextIntlClientProvider locale={currentLocale} messages={messages}>
           <ModalProvider>
-            <LocaleSync />
             <ContactModalWrapper />
             {children}
           </ModalProvider>

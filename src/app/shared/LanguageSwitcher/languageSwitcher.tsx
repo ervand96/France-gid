@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
     if (locked || isPending) return;
     setLocked(true);
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      router.replace(pathname, { locale: nextLocale, scroll: false });
       setTimeout(() => setLocked(false), 700);
     });
   };

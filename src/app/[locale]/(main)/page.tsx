@@ -3,6 +3,50 @@ import CategoryCards from "@/app/shared/category";
 import HeroSectionHome from "@/app/features/HeroSectionHome";
 import AboutSectionWrapper from "@/app/shared/AboutSectionWrapper";
 import TransferSectionWrapper from "@/app/shared/TransferSectionWrapper";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isRu = locale === "ru";
+
+  return {
+    title: isRu
+      ? "Экскурсии в Париже с русскоговорящим гидом | Elite Paris Guide"
+      : "Paris Tours with Russian-Speaking Guide | Elite Paris Guide",
+    description: isRu
+      ? "Эксклюзивные экскурсии по Парижу, предместьям и регионам Франции. Индивидуальный подход, незабываемые впечатления. Забронируйте тур сегодня!"
+      : "Exclusive guided tours of Paris, its suburbs and regions of France. Personal approach, unforgettable experiences. Book your tour today!",
+    keywords: isRu
+      ? [
+          "экскурсии в Париже",
+          "русскоговорящий гид",
+          "туры во Францию",
+          "Версаль",
+          "Лувр",
+        ]
+      : [
+          "Paris tours",
+          "Russian speaking guide",
+          "France excursions",
+          "Versailles",
+          "Louvre",
+        ],
+    openGraph: {
+      title: isRu
+        ? "Экскурсии в Париже | Elite Paris Guide"
+        : "Paris Tours | Elite Paris Guide",
+      description: isRu
+        ? "Эксклюзивные экскурсии по Парижу и Франции с русскоговорящим гидом"
+        : "Exclusive tours of Paris and France with a Russian-speaking guide",
+      url: `https://france-gid.vercel.app/${locale}`,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+  };
+}
 
 export const revalidate = 3600;
 

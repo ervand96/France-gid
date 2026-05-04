@@ -1,5 +1,34 @@
 import TransferPage from "@/app/features/TransferComponent";
 import { fetchTransferPageData } from "lib/api/strapi/transfer/transferPage";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isRu = locale === "ru";
+
+  return {
+    title: isRu
+      ? "Трансфер из аэропорта Парижа | Elite Paris Guide"
+      : "Paris Airport Transfer | Elite Paris Guide",
+    description: isRu
+      ? "Комфортный трансфер из аэропортов Парижа (CDG, Orly). Встреча с табличкой, помощь с багажом. Бронируйте заранее!"
+      : "Comfortable transfer from Paris airports (CDG, Orly). Meet & greet, luggage assistance. Book in advance!",
+    openGraph: {
+      title: isRu
+        ? "Трансфер | Elite Paris Guide"
+        : "Transfer | Elite Paris Guide",
+      description: isRu
+        ? "Комфортный трансфер из аэропортов Парижа"
+        : "Comfortable transfer from Paris airports",
+      url: `https://france-gid.vercel.app/${locale}/transfer`,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+  };
+}
 
 export const revalidate = 3600;
 
